@@ -1,12 +1,10 @@
 Package: fitbitr
 Type: Package
-Version: 0.2
+Version: 0.1.0
 Authors@R: c(
-  person("Nagi", "Teramo", , "teramonagi@gmail.com", c("aut", "cre")),
-  person("Shinichi", "Takayanagi", , "shinichi.takayanagi@gmail.com", "aut"),
-  person("Matt", "Kaye", , "mrkaye97@gmail.com", "aut"))
-Title: Provides Access to Fitbit API
-Description: An implementation of Fitbit API.
+  person("Matt", "Kaye", , "mrkaye97@gmail.com", c("aut", "cre")))
+Title: Interface with the Fitbit API
+Description: An R package to make it easy to interface with the Fitbit API.
 License: GPL-3 + file LICENSE
 Imports:
     stringr,
