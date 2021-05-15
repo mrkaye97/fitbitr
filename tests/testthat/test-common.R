@@ -1,5 +1,3 @@
-context("common")
-
 test_that("format_date works", {
   expect_equal(format_date(as.Date("2014-7-11")), "2014-07-11")
   expect_equal(format_date("2014-7-11"), "2014-7-11")

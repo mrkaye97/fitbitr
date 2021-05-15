@@ -117,35 +117,3 @@ get_sleep <- function(token, resource_path, date = "", period = "", base_date = 
   get(url, token)[[1]]
 }
 
-#' Log Sleep
-#'
-#' Creates a log entry for a sleep event and returns a response in the format requested.
-#' Keep in mind that it is NOT possible to create overlapping log entries or entries for time periods that DO NOT originate from a tracker.
-#' Sleep log entries appear on website's sleep tracker interface according to the date on which the sleep event ends.
-#'
-#' @param token An OAuth 2.0 token
-#' @param startTime	required	Start time; hours and minutes in the format HH:mm.
-#' @param duration	required	Duration in minutes.
-#' @param date	required	Log entry date in the format yyyy-MM-dd.
-#' @export
-log_sleep <- function(token, startTime, duration, date) {
-  url <- paste0(url_api, "sleep.json")
-  body <- list(startTime = startTime, duration = 10^3 * 60 * duration, date = format_date(date))
-  response <- post(url, token, body = body)
-  lapply(response, as.data.frame)[[1]]
-}
-
-#' Delete Sleep Log
-#'
-#' Deletes a user's sleep log entry with the given ID.
-#' A successful request will return a 204 status code with an empty response body.
-#'
-#' @param token An OAuth 2.0 token
-#' @param log_id	ID of the sleep log to be deleted.
-#' @export
-delete_sleep_log <- function(token, log_id) {
-  for (id in unique(log_id)) {
-    url <- paste0(url_sleep, sprintf("%s.json", id))
-    delete(url = url, token)
-  }
-}

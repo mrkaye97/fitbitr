@@ -24,7 +24,6 @@ Suggests:
     testthat
 RoxygenNote: 7.1.1
 Collate: 
-    'common.R'
     'fitbitr.R'
     'activity.R'
     'api.R'
@@ -33,6 +32,4 @@ Collate:
     'heart-rate.R'
     'setup.R'
     'sleep.R'
-    'token.R'
-    'user.R'
     'utils-pipe.R'

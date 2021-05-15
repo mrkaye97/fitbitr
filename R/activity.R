@@ -1,5 +1,4 @@
 #' @include fitbitr.R
-#' @include common.R
 # Constants
 url_activity <- paste0(url_api, "activities/")
 
@@ -164,48 +163,6 @@ get_activity_type <- function(token, activity_id, simplify = TRUE) {
   tidy_output(get(url, token), simplify)
 }
 
-#' @title Get Frequent Activities
-#'
-#' @description
-#'   \code{get_frequent_activities()} retrieves a list of a user's frequent activities.
-#'
-#' @inheritParams inheritparams_token
-#' @inheritParams inheritparams_simplify
-#'
-#' @details
-#'   See \url{https://dev.fitbit.com/reference/web-api/activity/#get-frequent-activities}  for more details.
-#'
-#' @export
-get_frequent_activities <- make_get_function(paste0(url_activity, "frequent.json"))
-
-#' @title Get Recent Activity Types
-#'
-#' @description
-#'   \code{get_recent_activity_types()} retrieves a list of a user's recent activities types logged with some details of the last activity log of that type.
-#'
-#' @inheritParams inheritparams_token
-#' @inheritParams inheritparams_simplify
-#'
-#' @details
-#'   See \url{https://dev.fitbit.com/reference/web-api/activity/#get-recent-activity-types} for more details.
-#'
-#' @export
-get_recent_activity_types <- make_get_function(paste0(url_activity, "recent.json"))
-
-#' @title Get Favorite Activities
-#'
-#' @description
-#'   \code{get_favorite_activities()} returns a list of a user's favorite activities.
-#'
-#' @inheritParams inheritparams_token
-#' @inheritParams inheritparams_simplify
-#'
-#' @details
-#'   See \url{https://dev.fitbit.com/reference/web-api/activity/#get-favorite-activities} for more details.
-#'
-#' @export
-get_favorite_activities <- make_get_function(paste0(url_activity, "favorite.json"))
-
 #' @title Add Favorite Activity
 #'
 #' @description
@@ -292,18 +249,3 @@ update_activity_goals <- function(token, period, calories_out = NULL, active_min
   tidy_output(post(url, token, body), simplify = TRUE)
 }
 
-#' @title Get Lifetime Stats
-#'
-#' @description
-#'   \code{get_lifetime_stats()} retrieves the user's activity statistics.
-#'   Activity statistics includes Lifetime and Best achievement values from the My Achievements tile on the website dashboard.
-#'   Response contains both statistics from the tracker device and total numbers including tracker data and manual activity log entries as seen on the Fitbit website dashboard.
-#'
-#' @inheritParams inheritparams_token
-#' @inheritParams inheritparams_simplify
-#'
-#' @details
-#' See \url{https://dev.fitbit.com/reference/web-api/activity/#get-lifetime-stats} for more details.
-#'
-#' @export
-get_lifetime_stats <- make_get_function(paste0(url_api, "activities.json"))
