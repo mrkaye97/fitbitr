@@ -7,10 +7,6 @@ url_activity <- paste0(url_api, "activities/")
 #' @description
 #'   \code{get_activity_summary()} retrieves a summary and list of a user's activities for a given day.
 #'
-#' @inheritParams inheritparams_token
-#' @inheritParams inheritparams_date
-#' @inheritParams inheritparams_simplify
-#'
 #' @details
 #' See \url{https://dev.fitbit.com/reference/web-api/activity/#get-daily-activity-summary} for more details.
 #'
@@ -26,9 +22,6 @@ get_activity_summary <- function(token, date, simplify = TRUE) {
 #' @description
 #'   \code{get_activity_log()} retrieves a data.frame of a user's activity log entries for a given day.
 #'
-#' @inheritParams inheritparams_token
-#' @inheritParams inheritparams_date
-#' @inheritParams inheritparams_simplify
 #'
 #' @details
 #' See \url{https://dev.fitbit.com/build/reference/web-api/activity/#get-activity-logs-list} for more details.
@@ -53,13 +46,11 @@ get_activity_log <- function(token, date = Sys.Date(), simplify = TRUE) {
 #' @description
 #'   \code{get_activity()} returns time series data in the specified range for a given resource.
 #'
-#' @inheritParams inheritparams_token
 #' @param resource_path The resource path. see details below.
 #' @param base_date The range start date. A Date class object or a string in the format yyyy-MM-dd or today.
 #' @param end_date The end date of the range. A Date class object or a string in the format yyyy-MM-dd.
 #' @param date The end date of the period specified. A Date class object or a string in the format yyyy-MM-dd.
 #' @param period The range for which data will be returned. Options are "1d", "7d", "30d", "1w", "1m", "3m", "6m", "1y", or "max".
-#' @inheritParams inheritparams_simplify
 #'
 #' @details
 #'  Available resource_path are
@@ -97,13 +88,10 @@ get_activity <- function(token, resource_path, date = "", period = "", base_date
 #'   \code{get_activity_intraday()} returns intraday time series data in the specified range for a given resource.
 #'   Access to the Intraday Time Series for personal use (accessing your own data) is available through the "Personal" App Type.
 #'
-#' @inheritParams inheritparams_token
 #' @param resource_path The resource path of the desired data
-#' @inheritParams inheritparams_date
 #' @param detail_level Number of data points to include. Either 1min or 15min. Optional.
 #' @param start_time The start of the period, in the format HH:mm. Optional.
 #' @param end_time The end of the period, in the format HH:mm. Optional.
-#' @inheritParams inheritparams_simplify
 #'
 #' @details
 #'  Available resource_path are
@@ -138,8 +126,6 @@ get_activity_intraday <- function(token, resource_path, date, detail_level = "15
 #' @description
 #'   Get a tree of all valid Fitbit public activities from the activities catalog as well as private custom activities the user created
 #'
-#' @inheritParams inheritparams_token
-#' @inheritParams inheritparams_simplify
 #'
 #' @export
 get_activity_types <- function(token, simplify = TRUE) {
@@ -153,9 +139,7 @@ get_activity_types <- function(token, simplify = TRUE) {
 #' @description
 #'   \code{get_activity_type()} returns the details of a specific activity in the Fitbit activities database.
 #'
-#' @inheritParams inheritparams_token
 #' @param activity_id The activity ID.
-#' @inheritParams inheritparams_simplify
 #'
 #' @export
 get_activity_type <- function(token, activity_id, simplify = TRUE) {
@@ -186,7 +170,6 @@ add_favorite_activity <- function(token, activity_id) {
 #' @description
 #'   \code{delete_favorite_activity()} removes the activity with the given ID (activity_id) from a user's list of favorite activities.
 #'
-#' @inheritParams inheritparams_token
 #' @param activity_id The ID of the activity to be removed.
 #'
 #' @details
@@ -203,9 +186,7 @@ delete_favorite_activity <- function(token, activity_id) {
 #' @description
 #'   \code{get_activity_goals()} retrieves a user's current daily or weekly activity goals
 #'
-#' @inheritParams inheritparams_token
 #' @param period "daily" or "weekly"
-#' @inheritParams inheritparams_simplify
 #'
 #' @details
 #' See \url{https://dev.fitbit.com/reference/web-api/activity/#get-activity-goals} for more details.
@@ -223,7 +204,6 @@ get_activity_goals <- function(token, period, simplify = TRUE) {
 #' @description
 #'   \code{update_activity_goals()} creates or updates a user's daily activity goals.
 #'
-#' @inheritParams inheritparams_token
 #' @param period daily or weekly
 #' @param calories_out optional	Goal value; integer.
 #' @param active_minutes optional	Goal value; integer.

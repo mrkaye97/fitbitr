@@ -1,6 +1,7 @@
 #' @importFrom httr GET add_headers
 #' @param url the endpoint
 #' @param token your Fitbit API bearer token
+#' @noRd
 get <- function(url, token = Sys.getenv("FITBIT_ACCESS_TOKEN")) {
   GET(
     url,
@@ -18,6 +19,7 @@ get <- function(url, token = Sys.getenv("FITBIT_ACCESS_TOKEN")) {
 #' @param url the endpoint
 #' @param body the post body
 #' @param token your Fitbit API bearer token
+#' @noRd
 post <- function(url, body, token = Sys.getenv("FITBIT_ACCESS_TOKEN")) {
   POST(
     url,
