@@ -11,6 +11,18 @@ fitbitr_setup(
   config_file = "~/.fitbitr-oauth"
 )
 }
+\arguments{
+\item{access_token}{the Fitbit access token (default: NULL)}
+
+\item{refresh_token}{the Fitbit refresh token (default: NULL)}
+
+\item{user_id}{the Fitbit user_id (default: NULL)}
+
+\item{config_file}{the path to your config file (default: `~/.fitbitr-oauth`)}
+}
+\value{
+TRUE (invisibly) on success
+}
 \description{
 Set Access and Refresh Token as Env Vars
 }

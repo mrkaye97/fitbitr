@@ -132,9 +132,10 @@ update_fitbit_config <- function(..., path = '~/.fitbitr-oauth') {
 }
 
 #' Get token
+#' @param refresh_token the Fitbit refresh token
+#' @noRd
+#' @return TRUE (invisibly) on success
 refresh_token <- function(
-  key = Sys.getenv("FITBIT_KEY"),
-  secret = Sys.getenv("FITBIT_SECRET"),
   refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN")
 ) {
 
@@ -174,7 +175,12 @@ create_endpoint <- function() {
 
 
 #' Set Access and Refresh Token as Env Vars
-#'
+#' @param access_token the Fitbit access token (default: NULL)
+#' @param refresh_token the Fitbit refresh token (default: NULL)
+#' @param user_id the Fitbit user_id (default: NULL)
+#' @param config_file the path to your config file (default: `~/.fitbitr-oauth`)
+#' @return TRUE (invisibly) on success
+#' @export
 fitbitr_setup <- function(access_token = NULL, refresh_token = NULL, user_id = NULL, config_file = '~/.fitbitr-oauth') {
   if (!is.null(access_token) & (!is.null(refresh_token)) & (!is.null(user_id))) {
     Sys.setenv(
@@ -193,4 +199,10 @@ fitbitr_setup <- function(access_token = NULL, refresh_token = NULL, user_id = N
   } else {
     stop("You must either provide an access token, refresh token, and user id or a config file (in .dcf format) that contains them.")
   }
+
+  return(
+    invisible(
+      TRUE
+    )
+  )
 }

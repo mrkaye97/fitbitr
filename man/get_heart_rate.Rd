@@ -12,13 +12,13 @@ get_heart_rate(
 )
 }
 \arguments{
-\item{end_date}{The end date of the range in the format "yyyy-MM-dd" or "today" as a string or Date object.}
+\item{start_date}{The start date of records to be returned in "yyyy-mm-dd" or date(time) format}
 
-\item{date}{The end date of the period specified in the format "yyyy-MM-dd" or "today" as a string or Date object.}
+\item{end_date}{The end date of records to be returned in "yyyy-mm-dd" or date(time) format}
 
-\item{period}{The range for which data will be returned. Options are "1d", "7d", "30d", "1w", "1m".}
+\item{token}{Fitbit access token}
 
-\item{base_date}{The range start date in the format "yyyy-MM-dd" or "today" as a string or Date object.}
+\item{user_id}{Fitbit user id}
 }
 \description{
 \code{get_heart_rate()} returns time series data in the specified range
