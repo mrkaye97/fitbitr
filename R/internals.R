@@ -18,12 +18,12 @@ check_config_exists <- function(token, user_id) {
 #' @param r the API response
 #' @return r (the response) on success, and otherwise errors out with an informative message
 check_response <- function(r) {
-  if (r$status_code = 200) {
+  if (r$status_code == 200) {
     return(r)
-  } else if (r$status_code == 401 && grepl('expired', content(r))) {
+  } else if (r$status_code == 401 && grepl('expired', content(r)$errors[[1]]$message)) {
     stop('Your Fitbit Access Token has expired. Refresh it with refresh_token()')
   } else {
-    msg <- content(r)
-    stop(cat(msg))
+    msg <- content(r)$errors[[1]]$message
+    stop(msg)
   }
 }
