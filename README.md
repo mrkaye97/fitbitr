@@ -50,4 +50,9 @@ initial_setup(
 * If you want to use a file other than `~/.fitbitr-oauth` to cache your credentials, you can do so by specifying a file path with `path = <your-file_path>`.
 
 4. `initial_setup()` will send you to a page in your browser with a code in the URL. Copy the code into the prompt in your R session.
-5. And that's it! You now have your Fitbit API credentials set up in the file you specified, and you can use `fitbitr_setup()` to set them as env vars.
+5. And that's it! You now have your Fitbit API credentials set up in the file you specified, and you can use `fitbitr_setup()` to set them as env vars to make calling individual functions easier.
+
+Usage
+------------
+
+See the vignettes for details on how to use `fitbitr`
