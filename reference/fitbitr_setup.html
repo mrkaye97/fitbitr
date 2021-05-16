@@ -113,15 +113,21 @@
     </div>
 
     <pre class="usage"><span class='fu'>fitbitr_setup</span><span class='op'>(</span>
+  config_file <span class='op'>=</span> <span class='st'>"~/.fitbitr-oauth"</span>,
   access_token <span class='op'>=</span> <span class='cn'>NULL</span>,
   refresh_token <span class='op'>=</span> <span class='cn'>NULL</span>,
   user_id <span class='op'>=</span> <span class='cn'>NULL</span>,
-  config_file <span class='op'>=</span> <span class='st'>"~/.fitbitr-oauth"</span>
+  client_id <span class='op'>=</span> <span class='cn'>NULL</span>,
+  client_secret <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>config_file</th>
+      <td><p>the path to your config file (default: `~/.fitbitr-oauth`)</p></td>
+    </tr>
     <tr>
       <th>access_token</th>
       <td><p>the Fitbit access token (default: NULL)</p></td>
@@ -135,8 +141,12 @@
       <td><p>the Fitbit user_id (default: NULL)</p></td>
     </tr>
     <tr>
-      <th>config_file</th>
-      <td><p>the path to your config file (default: `~/.fitbitr-oauth`)</p></td>
+      <th>client_id</th>
+      <td><p>the Fitbit Client Id (default: NULL)</p></td>
+    </tr>
+    <tr>
+      <th>client_secret</th>
+      <td><p>the Fitbit Client Secret (default: NULL)</p></td>
     </tr>
     </table>
 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get Heart Rate Intraday Time Series — get_heart_rate_intraday • fitbitr</title>
+<title>Heart Rate Time Series — get_heart_rate_intraday • fitbitr</title>
 
 
 <!-- jquery -->
@@ -39,11 +39,9 @@
 
 
 
-<meta property="og:title" content="Get Heart Rate Intraday Time Series — get_heart_rate_intraday" />
-<meta property="og:description" content="get_heart_rate_intraday() returns the intraday time series.
-  If your application has the appropriate access, your calls to a time series endpoint for a specific day (by using start and end dates on the same day or a period of 1d),
-  the response will include extended intraday values with a one-minute detail level for that day.
-  Access to the Intraday Time Series for personal use (accessing your own data) is available through the &quot;Personal&quot; App Type." />
+<meta property="og:title" content="Heart Rate Time Series — get_heart_rate_intraday" />
+<meta property="og:description" content="get_heart_rate() returns time series data in the specified range
+  If you specify earlier dates in the request, the response will retrieve only data since the user's join date or the first log entry date for the requested collection." />
 
 
 
@@ -106,25 +104,21 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get Heart Rate Intraday Time Series</h1>
+    <h1>Heart Rate Time Series</h1>
     
     <div class="hidden name"><code>get_heart_rate_intraday.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>get_heart_rate_intraday()</code> returns the intraday time series.
-  If your application has the appropriate access, your calls to a time series endpoint for a specific day (by using start and end dates on the same day or a period of 1d),
-  the response will include extended intraday values with a one-minute detail level for that day.
-  Access to the Intraday Time Series for personal use (accessing your own data) is available through the "Personal" App Type.</p>
+    <p><code>get_heart_rate()</code> returns time series data in the specified range
+  If you specify earlier dates in the request, the response will retrieve only data since the user's join date or the first log entry date for the requested collection.</p>
     </div>
 
     <pre class="usage"><span class='fu'>get_heart_rate_intraday</span><span class='op'>(</span>
-  <span class='va'>token</span>,
-  date <span class='op'>=</span> <span class='st'>""</span>,
-  detail_level <span class='op'>=</span> <span class='st'>"1min"</span>,
-  start_time <span class='op'>=</span> <span class='cn'>NULL</span>,
-  end_time <span class='op'>=</span> <span class='cn'>NULL</span>,
-  simplify <span class='op'>=</span> <span class='cn'>TRUE</span>
+  <span class='va'>date</span>,
+  minutes <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"FITBIT_ACCESS_TOKEN"</span><span class='op'>)</span>,
+  user_id <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"FITBIT_USER_ID"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -132,25 +126,25 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>date</th>
-      <td><p>The end date of the period specified in the format "yyyy-MM-dd" or "today" as a string or Date object.</p></td>
+      <td><p>The start date of records to be returned in "yyyy-mm-dd" or date(time) format</p></td>
     </tr>
     <tr>
-      <th>detail_level</th>
-      <td><p>Number of data points to include. Either "1sec" or "1min".</p></td>
+      <th>minutes</th>
+      <td><p>a boolean for whether data should be returned in minutes (TRUE) or seconds (FALSE)</p></td>
     </tr>
     <tr>
-      <th>start_time</th>
-      <td><p>The start of the period, in the format "HH:mm".</p></td>
+      <th>token</th>
+      <td><p>Fitbit access token</p></td>
     </tr>
     <tr>
-      <th>end_time</th>
-      <td><p>The end of the period, in the format "HH:mm"</p></td>
+      <th>user_id</th>
+      <td><p>Fitbit user id</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>See <a href=''https://dev.fitbit.com/reference/web-api/heart-rate/#get-heart-rate-intraday-time-series'>'https://dev.fitbit.com/reference/web-api/heart-rate/#get-heart-rate-intraday-time-series</a> for more details.</p>
+    <p>See <a href='https://dev.fitbit.com/reference/web-api/heart-rate/#get-heart-rate-time-series'>https://dev.fitbit.com/reference/web-api/heart-rate/#get-heart-rate-time-series</a> for more details.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
