@@ -3,7 +3,7 @@
 #' @param token your Fitbit API bearer token
 #' @noRd
 get <- function(url, token = Sys.getenv("FITBIT_ACCESS_TOKEN")) {
-  GET(
+  r <- GET(
     url,
     add_headers(
       .headers =  c(
@@ -12,7 +12,7 @@ get <- function(url, token = Sys.getenv("FITBIT_ACCESS_TOKEN")) {
     )
   )
 
-  ## add logic to refresh token automatically here if response comes back as failed with expired token
+  check_response(r)
 }
 
 #' @importFrom httr POST
@@ -21,7 +21,7 @@ get <- function(url, token = Sys.getenv("FITBIT_ACCESS_TOKEN")) {
 #' @param token your Fitbit API bearer token
 #' @noRd
 post <- function(url, body, token = Sys.getenv("FITBIT_ACCESS_TOKEN")) {
-  POST(
+  r <- POST(
     url,
     body = body,
     add_headers(
@@ -31,6 +31,5 @@ post <- function(url, body, token = Sys.getenv("FITBIT_ACCESS_TOKEN")) {
     )
   )
 
-  ## add logic to refresh token automatically here if response comes back as failed with expired token
-
+  check_response(r)
 }

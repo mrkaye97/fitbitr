@@ -136,12 +136,14 @@ update_fitbit_config <- function(..., path = '~/.fitbitr-oauth') {
 #' @param refresh_token the Fitbit refresh token
 #' @param client_id the Fitbit Client ID
 #' @param client_secret the Fitbit Client Secret
-#' @noRd
+#' @param expires_in How long do you want your token to remain valid? (default: 86400 sec = 1 day)
 #' @return TRUE (invisibly) on success
+#' @export
 refresh_token <- function(
   refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN"),
   client_id = Sys.getenv("FITBIT_CLIENT_ID"),
-  client_secret = Sys.getenv("FITBIT_CLIENT_SECRET")
+  client_secret = Sys.getenv("FITBIT_CLIENT_SECRET"),
+  expires_in = 86400
 ) {
 
   r <- POST(
@@ -152,7 +154,7 @@ refresh_token <- function(
     ),
     httr::content_type("application/x-www-form-urlencoded"),
     body = list(
-      expires_in = 86400,   ## expires in one day
+      expires_in = expires_in,   ## expires in one day
       grant_type = 'refresh_token',
       refresh_token = refresh_token
     ),
