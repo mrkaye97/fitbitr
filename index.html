@@ -87,7 +87,10 @@
 <p>There are a few steps you’ll need to do before you can start pulling your Fitbit data:</p>
 <ol>
 <li><p>Make an app <a href="https://dev.fitbit.com/apps/new">here</a>.</p></li>
-<li><p>Fill in the fields as you like (see image below for guidance).</p></li>
+<li>
+<p>Fill in the fields as you like (see image below for guidance).</p>
+<p><img src="https://raw.githubusercontent.com/mrkaye97/fitbitr/master/inst/app_setup.png" width="100%"></p>
+</li>
 <li><p>You’ll be redirected to a page with your credentials. <strong>Make sure you keep the Client ID, Client Secret, and Redirect URL. You’ll need them to finish the setup process</strong>. You can always refer back to <a href="https://dev.fitbit.com/apps">the apps page</a> to find them again.</p></li>
 <li>
 <p>Run the following command:</p>
@@ -106,8 +109,6 @@
 <li><p><code><a href="reference/initial_setup.html">initial_setup()</a></code> will send you to a page in your browser with a code in the URL. Copy the code into the prompt in your R session.</p></li>
 <li><p>And that’s it! You now have your Fitbit API credentials set up in the file you specified, and you can use <code><a href="reference/fitbitr_setup.html">fitbitr_setup()</a></code> to set them as env vars to make calling individual functions easier.</p></li>
 </ol>
-<p>App Registration Page:</p>
-<p><img src="https://raw.githubusercontent.com/mrkaye97/fitbitr/master/inst/app_setup.png" width="100%"></p>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
@@ -146,6 +147,7 @@
 <ul class="list-unstyled">
 <li><a href="https://github.com/mrkaye97/fitbitr/actions"><img src="https://github.com/mrkaye97/fitbitr/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="http://cran.rstudio.com/web/packages/fitbitr"><img src="http://www.r-pkg.org/badges/version/fitbitr" alt="CRAN Version"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 </ul>
 </div>
 </div>
