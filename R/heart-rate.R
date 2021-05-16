@@ -4,23 +4,26 @@
 #'  \code{get_heart_rate()} returns time series data in the specified range
 #'   If you specify earlier dates in the request, the response will retrieve only data since the user's join date or the first log entry date for the requested collection.
 #'
-#' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
-#' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @param date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @param minutes a boolean for whether data should be returned in minutes (TRUE) or seconds (FALSE)
 #' @param token Fitbit access token
 #' @param user_id Fitbit user id
+#' @importFrom dplyr rename
+#' @importFrom lubridate as_datetime
+#' @importFrom rlang .data
 #'
 #' @details
 #' See \url{https://dev.fitbit.com/reference/web-api/heart-rate/#get-heart-rate-time-series} for more details.
 #'
 #' @export
-get_heart_rate <- function(start_date, end_date = NULL, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
+get_heart_rate_intraday <- function(date, minutes = TRUE, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
 
   check_config_exists(token, user_id)
 
-  start_date_conv <- paste0('/', as.Date(start_date))
-  if (!is.null(end_date)) end_date <- paste0('/', as.Date(end_date))
+  date_conv <- paste0('/', as.Date(date))
+  detail_level <- ifelse(minutes, '/1min', '/1sec')
 
-  url <- paste0(url_sleep, 'date', start_date_conv, end_date, '.json')
+  url <- paste0(url_heart, 'date', date_conv, '/1d', detail_level, '.json')
   url <- gsub('user/-/', paste0("user/", user_id, "/"), url)
 
   r <- get(
@@ -30,12 +33,15 @@ get_heart_rate <- function(start_date, end_date = NULL, token = Sys.getenv("FITB
 
   r %>%
     content() %>%
-    pluck('sleep') %>%
-    map(
-      function(x) list_modify(x, "minuteData" = NULL)
-    ) %>%
+    pluck('activities-heart-intraday') %>%
+    pluck('dataset') %>%
     bind_rows() %>%
-    arrange(dateOfSleep)
+    mutate(
+      time = as_datetime(paste0(date, .data$time))
+    ) %>%
+    rename(
+      heart_rate = .data$value
+    )
 }
 
 #' @title Heart Rate Zones

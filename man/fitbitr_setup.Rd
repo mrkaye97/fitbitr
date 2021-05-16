@@ -5,20 +5,26 @@
 \title{Set Access and Refresh Token as Env Vars}
 \usage{
 fitbitr_setup(
+  config_file = "~/.fitbitr-oauth",
   access_token = NULL,
   refresh_token = NULL,
   user_id = NULL,
-  config_file = "~/.fitbitr-oauth"
+  client_id = NULL,
+  client_secret = NULL
 )
 }
 \arguments{
+\item{config_file}{the path to your config file (default: `~/.fitbitr-oauth`)}
+
 \item{access_token}{the Fitbit access token (default: NULL)}
 
 \item{refresh_token}{the Fitbit refresh token (default: NULL)}
 
 \item{user_id}{the Fitbit user_id (default: NULL)}
 
-\item{config_file}{the path to your config file (default: `~/.fitbitr-oauth`)}
+\item{client_id}{the Fitbit Client Id (default: NULL)}
+
+\item{client_secret}{the Fitbit Client Secret (default: NULL)}
 }
 \value{
 TRUE (invisibly) on success

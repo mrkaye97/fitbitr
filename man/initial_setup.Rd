@@ -2,12 +2,12 @@
 % Please edit documentation in R/setup.R
 \name{initial_setup}
 \alias{initial_setup}
-\title{Persist key and secret in .Reviron
-Simplify the setup process by persisting your Fitbit key and secret in the `.fitbitr-oauth` file.}
+\title{Persist client_id and secret in .Reviron
+Simplify the setup process by persisting your Fitbit client_id and secret in the `.fitbitr-oauth` file.}
 \usage{
 initial_setup(
-  key,
-  secret,
+  client_id,
+  client_secret,
   callback,
   path = "~/.fitbitr-oauth",
   scope = c("sleep", "activity", "heartrate", "location", "nutrition", "profile",
@@ -16,9 +16,9 @@ initial_setup(
 )
 }
 \arguments{
-\item{key}{your Fitbit client ID}
+\item{client_id}{your Fitbit client ID}
 
-\item{secret}{your Fitbit client secret}
+\item{client_secret}{your Fitbit client secret}
 
 \item{callback}{your Fitbit redirect URL}
 
@@ -32,6 +32,6 @@ initial_setup(
 TRUE (invisibly) on success
 }
 \description{
-Persist key and secret in .Reviron
-Simplify the setup process by persisting your Fitbit key and secret in the `.fitbitr-oauth` file.
+Persist client_id and secret in .Reviron
+Simplify the setup process by persisting your Fitbit client_id and secret in the `.fitbitr-oauth` file.
 }

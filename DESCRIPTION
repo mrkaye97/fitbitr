@@ -14,7 +14,9 @@ Imports:
     jsonlite,
     RCurl,
     magrittr,
-    tibble (>= 2.0.0)
+    tibble (>= 2.0.0),
+    lubridate,
+    rlang
 Suggests:
     testthat
 RoxygenNote: 7.1.1

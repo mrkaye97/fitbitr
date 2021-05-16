@@ -8,6 +8,7 @@
 #' @importFrom purrr pluck list_modify
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
+#' @importFrom dplyr arrange
 #' @return a tibble of sleep summary data
 #' @export
 get_sleep_summary <- function(start_date, end_date = NULL, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
@@ -32,5 +33,5 @@ get_sleep_summary <- function(start_date, end_date = NULL, token = Sys.getenv("F
       function(x) list_modify(x, "minuteData" = NULL)
     ) %>%
     bind_rows() %>%
-    arrange(dateOfSleep)
+    arrange(.data$dateOfSleep)
 }

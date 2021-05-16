@@ -6,3 +6,5 @@ url_body <- paste0(url_api, "body/")
 url_sleep <- paste0(url_api, "sleep/")
 url_heart <- paste0(url_api, 'activities/heart/')
 
+## misc helpers for pipes
+. <- NULL
