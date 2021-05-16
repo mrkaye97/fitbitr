@@ -5,19 +5,16 @@ Authors@R: c(
   person("Matt", "Kaye", , "mrkaye97@gmail.com", c("aut", "cre")))
 Title: Interface with the Fitbit API
 Description: An R package to make it easy to interface with the Fitbit API.
-License: GPL-3 + file LICENSE
+License: GPL (>= 3)
 Imports:
-    stringr,
-    lubridate,
     dplyr,
     tidyr,
     purrr,
-    rlang,
     httr,
     jsonlite,
-    httpuv,
     RCurl,
-    magrittr
+    magrittr,
+    tibble (>= 2.0.0)
 Suggests:
     testthat
 RoxygenNote: 7.1.1
