@@ -27,8 +27,27 @@ Setup
 There are a few steps you'll need to do before you can start pulling your Fitbit data:
 
 1. Make an app [here](https://dev.fitbit.com/apps/new).
-2. Fill in the following fields as you like. *Make sure you keep the Client ID, Client Secret, and Redirect URL. You'll need them to finish the setup process*
+2. Fill in the following fields as you like. 
+3. You'll be redirected to a page with your credentials. **Make sure you keep the Client ID, Client Secret, and Redirect URL. You'll need them to finish the setup process**. You can always refer back to [the apps page](https://dev.fitbit.com/apps) to find them again.
 
 <p align="center">
-<img src="https://github.com/mrkaye97/fitbitr/blob/master/inst/app_seup.png" width="500" height="750" align = "center">
+<img src="https://github.com/mrkaye97/fitbitr/blob/master/inst/app_seup.png" width="500" height="750">
 </p>
+
+3. Run the following command:
+
+```r
+library(fitbitr)
+
+initial_setup(
+  client_id = <YOUR-CLIENT-ID>,
+  client_secret = <YOUR-CLIENT-SECRET>
+  callback = <YOUR-CALLBACK>
+)
+```
+
+* If you want to edit the scopes that are enabled, you can do so with the `scopes = c('scopes', 'you', 'want', 'enabled')` argument. You can find information on the available scope options [here](https://dev.fitbit.com/build/reference/web-api/oauth2/#scope).
+* If you want to use a file other than `~/.fitbitr-oauth` to cache your credentials, you can do so by specifying a file path with `path = <your-file_path>`.
+
+4. `initial_setup()` will send you to a page in your browser with a code in the URL. Copy the code into the prompt in your R session.
+5. And that's it! You now have your Fitbit API credentials set up in the file you specified, and you can use `fitbitr_setup()` to set them as env vars.
