@@ -30,15 +30,15 @@ There are a few steps you’ll need to do before you can start pulling
 your Fitbit data:
 
 1.  Make an app [here](https://dev.fitbit.com/apps/new).
-2.  Fill in the following fields as you like.
+
+2.  Fill in the fields as you like (see image below for guidance).
+
 3.  You’ll be redirected to a page with your credentials. **Make sure
     you keep the Client ID, Client Secret, and Redirect URL. You’ll need
     them to finish the setup process**. You can always refer back to
     [the apps page](https://dev.fitbit.com/apps) to find them again.
 
-<img src="https://raw.githubusercontent.com/mrkaye97/fitbitr/master/inst/app_setup.png" width="100%" />
-
-3.  Run the following command:
+4.  Run the following command:
 
 ``` r
 library(fitbitr)
@@ -58,11 +58,15 @@ initial_setup(
     your credentials, you can do so by specifying a file path with
     `path = <your-file_path>`.
 
-4.  `initial_setup()` will send you to a page in your browser with a
+5.  `initial_setup()` will send you to a page in your browser with a
     code in the URL. Copy the code into the prompt in your R session.
-5.  And that’s it! You now have your Fitbit API credentials set up in
+6.  And that’s it! You now have your Fitbit API credentials set up in
     the file you specified, and you can use `fitbitr_setup()` to set
     them as env vars to make calling individual functions easier.
+
+App Registration Page:
+
+<img src="https://raw.githubusercontent.com/mrkaye97/fitbitr/master/inst/app_setup.png" width="100%" />
 
 ## Usage
 
