@@ -79,13 +79,10 @@
 <a href="#setup" class="anchor"></a>Setup</h2>
 <p>There are a few steps you’ll need to do before you can start pulling your Fitbit data:</p>
 <ol>
-<li>Make an app <a href="https://dev.fitbit.com/apps/new">here</a>.</li>
-<li>Fill in the following fields as you like.</li>
-<li>You’ll be redirected to a page with your credentials. <strong>Make sure you keep the Client ID, Client Secret, and Redirect URL. You’ll need them to finish the setup process</strong>. You can always refer back to <a href="https://dev.fitbit.com/apps">the apps page</a> to find them again.</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/mrkaye97/fitbitr/master/inst/app_setup.png" width="100%"></p>
-<ol>
-<li>Run the following command:</li>
+<li><p>Make an app <a href="https://dev.fitbit.com/apps/new">here</a>.</p></li>
+<li><p>Fill in the fields as you like (see image below for guidance).</p></li>
+<li><p>You’ll be redirected to a page with your credentials. <strong>Make sure you keep the Client ID, Client Secret, and Redirect URL. You’ll need them to finish the setup process</strong>. You can always refer back to <a href="https://dev.fitbit.com/apps">the apps page</a> to find them again.</p></li>
+<li><p>Run the following command:</p></li>
 </ol>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(fitbitr)</span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
@@ -103,6 +100,8 @@
 <code><a href="reference/initial_setup.html">initial_setup()</a></code> will send you to a page in your browser with a code in the URL. Copy the code into the prompt in your R session.</li>
 <li>And that’s it! You now have your Fitbit API credentials set up in the file you specified, and you can use <code><a href="reference/fitbitr_setup.html">fitbitr_setup()</a></code> to set them as env vars to make calling individual functions easier.</li>
 </ol>
+<p>App Registration Page:</p>
+<p><img src="https://raw.githubusercontent.com/mrkaye97/fitbitr/master/inst/app_setup.png" width="100%"></p>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
