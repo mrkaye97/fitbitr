@@ -2,10 +2,14 @@ Package: fitbitr
 Type: Package
 Version: 0.1.0
 Authors@R: c(
-  person("Matt", "Kaye", , "mrkaye97@gmail.com", c("aut", "cre")))
+  person("Matt", "Kaye", , "mrkaye97@gmail.com", c("aut", "cre"))
+  )
 Title: Interface with the Fitbit API
 Description: An R package to make it easy to interface with the Fitbit API.
 License: GPL (>= 3)
+Date: 2021-05-16
+URL: https://github.com/mrkaye97/fitbitr, https://mrkaye97.github.io/fitbitr/
+BugReports: https://github.com/mrkaye97/fitbitr/issues
 Imports:
     dplyr,
     tidyr,
@@ -19,5 +23,6 @@ Imports:
     rlang
 Suggests:
     testthat (>= 3.0.0)
+Encoding: UTF-8
 RoxygenNote: 7.1.1
 Config/testthat/edition: 3
