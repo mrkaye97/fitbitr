@@ -33,7 +33,7 @@ initial_setup <- function(
   overwrite = FALSE
 ) {
 
-  FITBIT_VARS <- c("FITBIT_CLIENT_ID", "FITBIT_SECRET", "FITBIT_CALLBACK", "FITBIT_ACCESS_TOKEN", "FITBIT_REFRESH_TOKEN", "FITBIT_USER_ID")
+  FITBIT_VARS <- c("FITBIT_CLIENT_ID", "FITBIT_CLIENT_SECRET", "FITBIT_CALLBACK", "FITBIT_ACCESS_TOKEN", "FITBIT_REFRESH_TOKEN", "FITBIT_USER_ID")
 
   check_if_var_exists <- function(all_vars, x) {
     any(
@@ -46,6 +46,7 @@ initial_setup <- function(
     )
   }
 
+  if (!file.exists(path)) file.create(path)
   env <- readLines(path)
 
   creds_exist <- env %>%
@@ -73,7 +74,7 @@ initial_setup <- function(
 
   update_fitbit_config(
     FITBIT_CLIENT_ID = client_id,
-    FITBIT_SECRET = client_secret,
+    FITBIT_CLIENT_SECRET = client_secret,
     FITBIT_CALLBACK = callback,
     FITBIT_ACCESS_TOKEN = token$credentials$access_token,
     FITBIT_REFRESH_TOKEN = token$credentials$refresh_token,
@@ -111,7 +112,7 @@ update_fitbit_config <- function(..., path = '~/.fitbitr-oauth') {
     unlist() %>%
     c(
       args %>%
-        paste0(names(.), '=', .)
+        paste0(names(.), ': ', .)
     )
 
   do.call(Sys.setenv, args)
