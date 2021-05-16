@@ -5,6 +5,8 @@
 #' @param date The date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param token Fitbit access token
 #' @param user_id Fitbit user id
+#' @importFrom dplyr bind_rows mutate select everything
+#' @importFrom httr content
 #' @export
 get_activity_summary <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
 
