@@ -33,38 +33,6 @@ get_activity_summary <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN")
     select(date, everything())
 }
 
-#' @title Distances
-#'
-#' @details
-#' See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
-#' @param date The date of records to be returned in "yyyy-mm-dd" or date(time) format
-#' @param token Fitbit access token
-#' @param user_id Fitbit user id
-#' @export
-get_distances <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
-
-  date_conv <- paste0('/', as.Date(date))
-
-  url <- paste0(url_activity, 'date', date_conv, '.json')
-  url <- gsub('user/-/', paste0("user/", user_id, "/"), url)
-
-  # We can not simplify this output because it is so complicated nested list
-  r <- get(
-    url = url,
-    token = token
-  )
-
-  r %>%
-    content() %>%
-    pluck('summary') %>%
-    pluck('distances') %>%
-    bind_rows() %>%
-    mutate(
-      date = date
-    ) %>%
-    select(date, everything())
-}
-
 #' @title Activity Time Series
 #'
 #' @details

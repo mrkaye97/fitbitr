@@ -2,8 +2,7 @@
 % Please edit documentation in R/setup.R
 \name{initial_setup}
 \alias{initial_setup}
-\title{Persist client_id and secret in .Reviron
-Simplify the setup process by persisting your Fitbit client_id and secret in the `.fitbitr-oauth` file.}
+\title{Persist necessary credentials}
 \usage{
 initial_setup(
   client_id,
@@ -32,6 +31,5 @@ initial_setup(
 TRUE (invisibly) on success
 }
 \description{
-Persist client_id and secret in .Reviron
 Simplify the setup process by persisting your Fitbit client_id and secret in the `.fitbitr-oauth` file.
 }

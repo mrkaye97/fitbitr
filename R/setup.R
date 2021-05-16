@@ -12,7 +12,8 @@ set_env_var <- function(client_id, value) {
   )
 }
 
-#' Persist client_id and secret in .Reviron
+#' Persist necessary credentials
+#'
 #' Simplify the setup process by persisting your Fitbit client_id and secret in the `.fitbitr-oauth` file.
 #'
 #' @importFrom httr oauth_app oauth2.0_token
@@ -132,7 +133,8 @@ update_fitbit_config <- function(..., path = '~/.fitbitr-oauth') {
   )
 }
 
-#' Get token
+#' Refresh your Fitbit Access Token
+#'
 #' @param refresh_token the Fitbit refresh token
 #' @param client_id the Fitbit Client ID
 #' @param client_secret the Fitbit Client Secret

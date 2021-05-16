@@ -2,7 +2,7 @@
 % Please edit documentation in R/setup.R
 \name{refresh_token}
 \alias{refresh_token}
-\title{Get token}
+\title{Refresh your Fitbit Access Token}
 \usage{
 refresh_token(
   refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN"),
@@ -24,5 +24,5 @@ refresh_token(
 TRUE (invisibly) on success
 }
 \description{
-Get token
+Refresh your Fitbit Access Token
 }
