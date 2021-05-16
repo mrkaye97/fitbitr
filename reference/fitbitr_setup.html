@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Set Access and Refresh Token as Env Vars — fitbitr_setup • fitbitr</title>
+<title>Set necessary env vars — fitbitr_setup • fitbitr</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,11 @@
 
 
 
-<meta property="og:title" content="Set Access and Refresh Token as Env Vars — fitbitr_setup" />
-<meta property="og:description" content="Set Access and Refresh Token as Env Vars" />
+<meta property="og:title" content="Set necessary env vars — fitbitr_setup" />
+<meta property="og:description" content="Make calling the Fitbit API easier by setting env vars at setup time.
+This function sets the config that's necessary for making API requests,
+including the access token, refresh token, user id, client id, and client secret.
+Then, functions making API calls will use `Sys.getenv()` to access the config." />
 
 
 
@@ -103,13 +106,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Set Access and Refresh Token as Env Vars</h1>
+    <h1>Set necessary env vars</h1>
     
     <div class="hidden name"><code>fitbitr_setup.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Set Access and Refresh Token as Env Vars</p>
+    <p>Make calling the Fitbit API easier by setting env vars at setup time.
+This function sets the config that's necessary for making API requests,
+including the access token, refresh token, user id, client id, and client secret.
+Then, functions making API calls will use `Sys.getenv()` to access the config.</p>
     </div>
 
     <pre class="usage"><span class='fu'>fitbitr_setup</span><span class='op'>(</span>
