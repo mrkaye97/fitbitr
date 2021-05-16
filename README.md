@@ -8,7 +8,8 @@
 [![R-CMD-check](https://github.com/mrkaye97/fitbitr/workflows/R-CMD-check/badge.svg)](https://github.com/mrkaye97/fitbitr/actions)
 [![CRAN
 Version](http://www.r-pkg.org/badges/version/fitbitr)](http://cran.rstudio.com/web/packages/fitbitr)
-![](http://cranlogs.r-pkg.org/badges/grand-total/fitbitr)
+![](http://cranlogs.r-pkg.org/badges/grand-total/fitbitr) [![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 `fitbitr` makes it easy to interface with Fitbit data in R.
