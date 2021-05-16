@@ -26,7 +26,7 @@ Collate:
     'activity.R'
     'api.R'
     'body_weight.R'
-    'device.R'
+    'constants.R'
     'heart-rate.R'
     'setup.R'
     'sleep.R'

@@ -3,13 +3,13 @@
 \name{one_time_setup}
 \alias{one_time_setup}
 \title{Persist key and secret in .Reviron
-Simplify the setup process by persisting your Fitbit key and secret in the `.Renviron` file.}
+Simplify the setup process by persisting your Fitbit key and secret in the `.fitbitr-oauth` file.}
 \usage{
 one_time_setup(
   key,
   secret,
   callback,
-  path = "~/.Renviron",
+  path = "~/.fitbitr-oauth",
   scope = c("sleep", "activity", "heartrate", "location", "nutrition", "profile",
     "settings", "social", "weight"),
   overwrite = FALSE
@@ -22,7 +22,7 @@ one_time_setup(
 
 \item{callback}{your Fitbit redirect URL}
 
-\item{path}{the path to your `.Renviron` file}
+\item{path}{the path to your `.fitbitr-oauth` file}
 
 \item{scope}{the scopes to enable}
 
@@ -33,5 +33,5 @@ TRUE (invisibly) on success
 }
 \description{
 Persist key and secret in .Reviron
-Simplify the setup process by persisting your Fitbit key and secret in the `.Renviron` file.
+Simplify the setup process by persisting your Fitbit key and secret in the `.fitbitr-oauth` file.
 }

@@ -1,87 +1,38 @@
 # Constants
 url_sleep <- paste0(url_api, "sleep/")
 
-#' Get Sleep Logs
+#' Nightly Sleep Summary
 #'
-#' Returns a summary and list of a user's sleep log entries as well as minute by minute sleep entry data for a given day in the format requested.
-#' The response includes summary for all sleep log entries for the given day (including naps.)
-#' If you need to fetch data only for the user's main sleep event, you can send the request with isMainSleep=true or use a Time Series call.
-#'
-#' The relationship between sleep log entry properties is expressed with the following equation:
-#' timeInBed = minutesToFallAsleep + minutesAsleep + minutesAwake + minutesAfterWakeup
-#'
-#' Also, values for minuteData can be 1 ("asleep"), 2 ("awake"), or 3 ("really awake").
-#'
-#' @param token An OAuth 2.0 token
-#' @param date	The date of records to be returned in the format "yyyy-MM-dd" or "today" as a string or Date object.
-#' @importFrom lubridate days
-#' @importFrom dplyr select bind_rows
-#' @return a list of "sleep" and "summary" data.frame. "sleep" data.frame contains time series information of sleep. "summary" data.frame contains the summary of each "sleep" information.
+#' Returns a single row tibble of summary data on the night of sleep
+#' @param date The date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @param token Fitbit access token
+#' @param user_id Fitbit user id
+#' @importFrom purrr pluck list_modify
+#' @importFrom tibble enframe
+#' @importFrom tidyr pivot_wider
+#' @return a tibble of sleep summary data
 #' @export
-get_sleep_logs <- function(token, date) {
-  date <- format_date(date)
-  url <- paste0(url_sleep, sprintf("date/%s.json", date))
-  data <- get(url, token)
-  data$sleep$dateOfSleep <- as.Date(data$sleep$dateOfSleep)
-  data$sleep$startTime <- to_posixct(data$sleep$startTime)
-  data$sleep$minuteData <- lapply(data$sleep$minuteData, function(x) {
-    x$value <- as.numeric(x$value)
-    date_time <- to_posixct(date, x$dateTime)
-    is_date_change <- Reduce(function(x, y) {
-      x || y != 1
-    }, diff(date_time), FALSE, accumulate = TRUE)
-    x$dateTime <- date_time + days(1) * is_date_change
-    x
-  })
-  sleep <- suppressWarnings(cbind(
-    dplyr::select(data$sleep, -data$sleep$minuteData),
-    dplyr::bind_rows(data$sleep$minuteData)
-  ))
-  list(sleep = sleep, summary = as.data.frame(data$summary))
-}
+get_sleep_summary <- function(start_date, end_date = NULL, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
 
-#' Get Sleep Goal
-#'
-#' Returns a user's current sleep goal
-#'
-#' @param token An OAuth 2.0 token
-#' @examples
-#' \dontrun{
-#' # Get the current sleep goal.
-#' get_sleep_goal(token)
-#' }
-#' @export
-get_sleep_goal <- function(token) {
-  sleep_goal(token)
-}
+  start_date <- paste0('/', as.Date(start_date))
+  if (!is.null(end_date)) end_date <- paste0('/', as.Date(end_date))
 
-#' Update Sleep Goal
-#'
-#' The Update Sleep Goal endpoint creates or updates a user's sleep goal and get a response in the in the format requested
-#'
-#' @param token An OAuth 2.0 token
-#' @param min_duration The target sleep duration is in minutes.
-#' @examples
-#' \dontrun{
-#' # Set a new sleep goal(377)
-#' update_sleep_goal(token, 377)
-#' }
-#' @export
-update_sleep_goal <- function(token, min_duration) {
-  sleep_goal(token, min_duration)
-}
+  url <- paste0(url_sleep, 'date', start_date, end_date, '.json')
+  url <- gsub('user/-/', paste0("user/", user_id, "/"), url)
 
-sleep_goal <- function(token, min_duration = NULL) {
-  url <- paste0(url_sleep, "goal.json")
-  response <- if (is.null(min_duration)) {
-    get(url, token)
-  } else {
-    post(url, token, body = list(minDuration = min_duration))
-  }
+  r <- get(
+    url = url,
+    token = token
+  )
 
-  result <- Reduce(cbind, lapply(response, as.data.frame))
-  result$updatedOn <- to_posixct(result$updatedOn)
-  result
+  r %>%
+    content() %>%
+    pluck('sleep') %>%
+    map(
+      function(x) list_modify(x, "minuteData" = NULL)
+    ) %>%
+    bind_rows() %>%
+    arrange(dateOfSleep)
 }
 
 #' Get Sleep Time Series
@@ -110,10 +61,13 @@ sleep_goal <- function(token, min_duration = NULL) {
 #' @export
 get_sleep <- function(token, resource_path, date = "", period = "", base_date = "", end_date = "") {
   url <- if (date != "" && period != "") {
-    paste0(url_sleep, sprintf("%s/date/%s/%s.json", resource_path, format_date(date), period))
+    paste0(url_sleep, sprintf("%s/date/%s/%s.json", resource_path, as.Date(date), period))
   } else if (base_date != "" & end_date != "") {
-    paste0(url_sleep, sprintf("%s/date/%s/%s.json", resource_path, format_date(base_date), format_date(end_date)))
+    paste0(url_sleep, sprintf("date/%s/%s.json", as.Date(base_date), as.Date(end_date)))
   }
-  get(url, token)[[1]]
+
+  url <- gsub('user/-/', paste0("user/", user_id, "/"), url)
+
+  x <- content(get(url, token))
 }
 
