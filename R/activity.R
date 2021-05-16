@@ -1,5 +1,3 @@
-url_activity <- paste0(url_api, "activities/")
-
 #' @title Daily Activity Summary
 #'
 #' @details

@@ -1,6 +1,3 @@
-# Constants
-url_heart <- "https://api.fitbit.com/1/user/-/activities/heart/"
-
 #' @title Get Heart Rate Time Series
 #'
 #' @description

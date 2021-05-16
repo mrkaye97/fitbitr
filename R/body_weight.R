@@ -1,6 +1,3 @@
-# Constants
-url_body <- paste0(url_api, "body/")
-
 #' @title Get Body Fat Logs
 #'
 #' @description

@@ -1,5 +1,3 @@
-url_sleep <- paste0(url_api, "sleep/")
-
 #' Nightly Sleep Summary
 #'
 #' Returns a single row tibble of summary data on the night of sleep
