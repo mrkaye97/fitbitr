@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get token — refresh_token • fitbitr</title>
+<title>Minutes Fairly Active Time Series — get_minutes_fairly_active • fitbitr</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Get token — refresh_token" />
-<meta property="og:description" content="Get token" />
+<meta property="og:title" content="Minutes Fairly Active Time Series — get_minutes_fairly_active" />
+<meta property="og:description" content="Resource path /activities/minutesFairlyActive" />
 
 
 
@@ -103,46 +103,43 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get token</h1>
+    <h1>Minutes Fairly Active Time Series</h1>
     
-    <div class="hidden name"><code>refresh_token.Rd</code></div>
+    <div class="hidden name"><code>get_minutes_fairly_active.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get token</p>
+    <p>Resource path /activities/minutesFairlyActive</p>
     </div>
 
-    <pre class="usage"><span class='fu'>refresh_token</span><span class='op'>(</span>
-  refresh_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"FITBIT_REFRESH_TOKEN"</span><span class='op'>)</span>,
-  client_id <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"FITBIT_CLIENT_ID"</span><span class='op'>)</span>,
-  client_secret <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"FITBIT_CLIENT_SECRET"</span><span class='op'>)</span>,
-  expires_in <span class='op'>=</span> <span class='fl'>86400</span>
+    <pre class="usage"><span class='fu'>get_minutes_fairly_active</span><span class='op'>(</span>
+  <span class='va'>start_date</span>,
+  <span class='va'>end_date</span>,
+  token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"FITBIT_ACCESS_TOKEN"</span><span class='op'>)</span>,
+  user_id <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"FITBIT_USER_ID"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>refresh_token</th>
-      <td><p>the Fitbit refresh token</p></td>
+      <th>start_date</th>
+      <td><p>The start date of records to be returned in "yyyy-mm-dd" or date(time) format</p></td>
     </tr>
     <tr>
-      <th>client_id</th>
-      <td><p>the Fitbit Client ID</p></td>
+      <th>end_date</th>
+      <td><p>The end date of records to be returned in "yyyy-mm-dd" or date(time) format</p></td>
     </tr>
     <tr>
-      <th>client_secret</th>
-      <td><p>the Fitbit Client Secret</p></td>
+      <th>token</th>
+      <td><p>Fitbit access token</p></td>
     </tr>
     <tr>
-      <th>expires_in</th>
-      <td><p>How long do you want your token to remain valid? (default: 86400 sec = 1 day)</p></td>
+      <th>user_id</th>
+      <td><p>Fitbit user id</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>TRUE (invisibly) on success</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
