@@ -54,6 +54,7 @@ test_that('fitbitr_teardown() tears down env successfully', {
 test_that("fitbitr_setup() works with explicit params", {
 
   skip_on_cran()
+  skip_on_ci()
 
   env <- c(
     access_token = Sys.getenv("FITBIT_ACCESS_TOKEN"),
