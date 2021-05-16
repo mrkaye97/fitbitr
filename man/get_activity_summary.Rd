@@ -2,13 +2,24 @@
 % Please edit documentation in R/activity.R
 \name{get_activity_summary}
 \alias{get_activity_summary}
-\title{Get Daily Activity Summary}
+\title{Daily Activity Summary}
 \usage{
-get_activity_summary(token, date, simplify = TRUE)
+get_activity_summary(
+  date,
+  token = Sys.getenv("FITBIT_ACCESS_TOKEN"),
+  user_id = Sys.getenv("FITBIT_USER_ID")
+)
+}
+\arguments{
+\item{date}{The date of records to be returned in "yyyy-mm-dd" or date(time) format}
+
+\item{token}{Fitbit access token}
+
+\item{user_id}{Fitbit user id}
 }
 \description{
-\code{get_activity_summary()} retrieves a summary and list of a user's activities for a given day.
+Daily Activity Summary
 }
 \details{
-See \url{https://dev.fitbit.com/reference/web-api/activity/#get-daily-activity-summary} for more details.
+See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
 }

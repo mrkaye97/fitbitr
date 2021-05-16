@@ -22,7 +22,6 @@ Suggests:
     testthat
 RoxygenNote: 7.1.1
 Collate: 
-    'fitbitr.R'
     'activity.R'
     'api.R'
     'body_weight.R'
