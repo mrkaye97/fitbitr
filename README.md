@@ -40,26 +40,28 @@ your Fitbit data:
 
 4.  Run the following command:
 
-``` r
-library(fitbitr)
+    ``` r
+    library(fitbitr)
 
-initial_setup(
-  client_id = <YOUR-CLIENT-ID>,
-  client_secret = <YOUR-CLIENT-SECRET>
-  callback = <YOUR-REDIRECT-URL>
-)
-```
+    initial_setup(
+      client_id = <YOUR-CLIENT-ID>,
+      client_secret = <YOUR-CLIENT-SECRET>
+      callback = <YOUR-REDIRECT-URL>
+    )
+    ```
 
--   If you want to edit the scopes that are enabled, you can do so with
-    the `scopes = c('scopes', 'you', 'want', 'enabled')` argument. You
-    can find information on the available scope options
-    [here](https://dev.fitbit.com/build/reference/web-api/oauth2/#scope).
--   If you want to use a file other than `~/.fitbitr-oauth` to cache
-    your credentials, you can do so by specifying a file path with
-    `path = <your-file_path>`.
+    -   If you want to edit the scopes that are enabled, you can do so
+        with the `scopes = c('scopes', 'you', 'want', 'enabled')`
+        argument. You can find information on the available scope
+        options
+        [here](https://dev.fitbit.com/build/reference/web-api/oauth2/#scope).
+    -   If you want to use a file other than `~/.fitbitr-oauth` to cache
+        your credentials, you can do so by specifying a file path with
+        `path = <your-file_path>`.
 
 5.  `initial_setup()` will send you to a page in your browser with a
     code in the URL. Copy the code into the prompt in your R session.
+
 6.  And that’s it! You now have your Fitbit API credentials set up in
     the file you specified, and you can use `fitbitr_setup()` to set
     them as env vars to make calling individual functions easier.
