@@ -224,3 +224,28 @@ fitbitr_setup <- function(config_file = "~/.fitbitr-oauth", access_token = NULL,
     )
   )
 }
+
+#' Env Teardown
+#'
+#' Unset env variables created by `fitbitr_setup()`. Essentially, this amounts to cleaning up after yourself.
+#' @seealso [fitbitr_setup()]
+#' @examples
+#' \dontrun{
+#'   fitbitr_teardown()
+#' }
+#' @return TRUE (invisibly)
+#' @export
+fitbitr_teardown <- function() {
+
+  Sys.unsetenv("FITBIT_ACCESS_TOKEN")
+  Sys.unsetenv("FITBIT_REFRESH_TOKEN")
+  Sys.unsetenv("FITBIT_USER_ID")
+  Sys.unsetenv("FITBIT_CLIENT_ID")
+  Sys.unsetenv("FITBIT_CLIENT_SECRET")
+
+  message('Successfully tore down environment variables created by fitbitr_setup()')
+
+  return(
+    invisible(TRUE)
+  )
+}

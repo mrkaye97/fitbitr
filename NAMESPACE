@@ -2,6 +2,7 @@
 
 export("%>%")
 export(fitbitr_setup)
+export(fitbitr_teardown)
 export(get_activity_calories)
 export(get_activity_summary)
 export(get_calories)
