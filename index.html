@@ -89,8 +89,8 @@
 <li><p>Make an app <a href="https://dev.fitbit.com/apps/new">here</a>.</p></li>
 <li><p>Fill in the fields as you like (see image below for guidance).</p></li>
 <li><p>You’ll be redirected to a page with your credentials. <strong>Make sure you keep the Client ID, Client Secret, and Redirect URL. You’ll need them to finish the setup process</strong>. You can always refer back to <a href="https://dev.fitbit.com/apps">the apps page</a> to find them again.</p></li>
-<li><p>Run the following command:</p></li>
-</ol>
+<li>
+<p>Run the following command:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(fitbitr)</span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="kw">initial_setup</span>(</span>
@@ -102,10 +102,9 @@
 <li>If you want to edit the scopes that are enabled, you can do so with the <code>scopes = c('scopes', 'you', 'want', 'enabled')</code> argument. You can find information on the available scope options <a href="https://dev.fitbit.com/build/reference/web-api/oauth2/#scope">here</a>.</li>
 <li>If you want to use a file other than <code>~/.fitbitr-oauth</code> to cache your credentials, you can do so by specifying a file path with <code>path = &lt;your-file_path&gt;</code>.</li>
 </ul>
-<ol>
-<li>
-<code><a href="reference/initial_setup.html">initial_setup()</a></code> will send you to a page in your browser with a code in the URL. Copy the code into the prompt in your R session.</li>
-<li>And that’s it! You now have your Fitbit API credentials set up in the file you specified, and you can use <code><a href="reference/fitbitr_setup.html">fitbitr_setup()</a></code> to set them as env vars to make calling individual functions easier.</li>
+</li>
+<li><p><code><a href="reference/initial_setup.html">initial_setup()</a></code> will send you to a page in your browser with a code in the URL. Copy the code into the prompt in your R session.</p></li>
+<li><p>And that’s it! You now have your Fitbit API credentials set up in the file you specified, and you can use <code><a href="reference/fitbitr_setup.html">fitbitr_setup()</a></code> to set them as env vars to make calling individual functions easier.</p></li>
 </ol>
 <p>App Registration Page:</p>
 <p><img src="https://raw.githubusercontent.com/mrkaye97/fitbitr/master/inst/app_setup.png" width="100%"></p>
