@@ -36,11 +36,7 @@ your Fitbit data:
     them to finish the setup process**. You can always refer back to
     [the apps page](https://dev.fitbit.com/apps) to find them again.
 
-``` r
-knitr::include_graphics("https://github.com/mrkaye97/fitbitr/blob/master/inst/app_setup.png")
-```
-
-<img src="https://github.com/mrkaye97/fitbitr/blob/master/inst/app_setup.png" width="100%" />
+<img src="https://raw.githubusercontent.com/mrkaye97/fitbitr/master/inst/app_setup.png" width="100%" />
 
 3.  Run the following command:
 
