@@ -3,8 +3,8 @@
 #' @param value the value of the env var
 #' @return TRUE invisibly on success
 set_env_var <- function(client_id, value) {
-  args = list(value)
-  names(args) = client_id
+  args <- list(value)
+  names(args) <- client_id
   do.call(Sys.setenv, args)
 
   return(
@@ -26,14 +26,12 @@ set_env_var <- function(client_id, value) {
 #' @return TRUE (invisibly) on success
 #' @export
 initial_setup <- function(
-  client_id,
-  client_secret,
-  callback,
-  path = '~/.fitbitr-oauth',
-  scope = c("sleep", "activity", "heartrate", "location", "nutrition", "profile", "settings", "social", "weight"),
-  overwrite = FALSE
-) {
-
+                          client_id,
+                          client_secret,
+                          callback,
+                          path = "~/.fitbitr-oauth",
+                          scope = c("sleep", "activity", "heartrate", "location", "nutrition", "profile", "settings", "social", "weight"),
+                          overwrite = FALSE) {
   FITBIT_VARS <- c("FITBIT_CLIENT_ID", "FITBIT_CLIENT_SECRET", "FITBIT_CALLBACK", "FITBIT_ACCESS_TOKEN", "FITBIT_REFRESH_TOKEN", "FITBIT_USER_ID")
 
   check_if_var_exists <- function(all_vars, x) {
@@ -93,12 +91,12 @@ initial_setup <- function(
 #' @param ... named args to add to the env file
 #' @param path the path to the env file (defaults to `~/.fitbitr-oauth`)
 #' @return TRUE (invisibly) on success
-update_fitbit_config <- function(..., path = '~/.fitbitr-oauth') {
+update_fitbit_config <- function(..., path = "~/.fitbitr-oauth") {
   args <- list(...)
 
   env <- readLines(path) %>%
     purrr::discard(
-      ~ .x == ''
+      ~ .x == ""
     ) %>%
     map(
       strsplit, "="
@@ -108,12 +106,12 @@ update_fitbit_config <- function(..., path = '~/.fitbitr-oauth') {
       ~ .x[1] %in% names(args)
     ) %>%
     map(
-      ~ paste0(.x[1], '=', .x[2])
+      ~ paste0(.x[1], "=", .x[2])
     ) %>%
     unlist() %>%
     c(
       args %>%
-        paste0(names(.), ': ', .)
+        paste0(names(.), ": ", .)
     )
 
   do.call(Sys.setenv, args)
@@ -121,11 +119,11 @@ update_fitbit_config <- function(..., path = '~/.fitbitr-oauth') {
   writeLines(
     env,
     path,
-    sep = '\n'
+    sep = "\n"
   )
 
   message(
-    paste('New environment variables have been added to', path, '.')
+    paste("New environment variables have been added to", path, ".")
   )
 
   return(
@@ -142,25 +140,24 @@ update_fitbit_config <- function(..., path = '~/.fitbitr-oauth') {
 #' @return TRUE (invisibly) on success
 #' @export
 refresh_token <- function(
-  refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN"),
-  client_id = Sys.getenv("FITBIT_CLIENT_ID"),
-  client_secret = Sys.getenv("FITBIT_CLIENT_SECRET"),
-  expires_in = 86400
-) {
-
+                          refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN"),
+                          client_id = Sys.getenv("FITBIT_CLIENT_ID"),
+                          client_secret = Sys.getenv("FITBIT_CLIENT_SECRET"),
+                          expires_in = 86400) {
   r <- POST(
-    'https://api.fitbit.com/oauth2/token',
+    "https://api.fitbit.com/oauth2/token",
     add_headers(
-      .headers =  c(
-        Authorization = paste0("Basic ", RCurl::base64Encode(charToRaw(paste0(client_id, ":", client_secret)))))
+      .headers = c(
+        Authorization = paste0("Basic ", RCurl::base64Encode(charToRaw(paste0(client_id, ":", client_secret))))
+      )
     ),
     httr::content_type("application/x-www-form-urlencoded"),
     body = list(
-      expires_in = expires_in,   ## expires in one day
-      grant_type = 'refresh_token',
+      expires_in = expires_in, ## expires in one day
+      grant_type = "refresh_token",
       refresh_token = refresh_token
     ),
-    encode = 'form'
+    encode = "form"
   )
 
   token <- content(r)
@@ -198,7 +195,7 @@ create_endpoint <- function() {
 #' @param client_secret the Fitbit Client Secret (default: NULL)
 #' @return TRUE (invisibly) on success
 #' @export
-fitbitr_setup <- function(config_file = '~/.fitbitr-oauth', access_token = NULL, refresh_token = NULL, user_id = NULL, client_id = NULL, client_secret = NULL) {
+fitbitr_setup <- function(config_file = "~/.fitbitr-oauth", access_token = NULL, refresh_token = NULL, user_id = NULL, client_id = NULL, client_secret = NULL) {
   if (!is.null(access_token) & (!is.null(refresh_token)) & (!is.null(user_id)) & (!is.null(client_id)) & (!is.null(client_secret))) {
     Sys.setenv(
       FITBIT_ACCESS_TOKEN = access_token,
@@ -211,11 +208,11 @@ fitbitr_setup <- function(config_file = '~/.fitbitr-oauth', access_token = NULL,
     config <- read.dcf(config_file)
 
     Sys.setenv(
-      FITBIT_ACCESS_TOKEN = config[, 'FITBIT_ACCESS_TOKEN'],
-      FITBIT_REFRESH_TOKEN = config[, 'FITBIT_REFRESH_TOKEN'],
-      FITBIT_USER_ID = config[, 'FITBIT_USER_ID'],
-      FITBIT_CLIENT_ID = config[, 'FITBIT_CLIENT_ID'],
-      FITBIT_CLIENT_SECRET = config[, 'FITBIT_CLIENT_SECRET']
+      FITBIT_ACCESS_TOKEN = config[, "FITBIT_ACCESS_TOKEN"],
+      FITBIT_REFRESH_TOKEN = config[, "FITBIT_REFRESH_TOKEN"],
+      FITBIT_USER_ID = config[, "FITBIT_USER_ID"],
+      FITBIT_CLIENT_ID = config[, "FITBIT_CLIENT_ID"],
+      FITBIT_CLIENT_SECRET = config[, "FITBIT_CLIENT_SECRET"]
     )
   } else {
     stop("You must either provide an access token, refresh token, user id, client id, and client secret or a config file (in .dcf format) that contains them.")

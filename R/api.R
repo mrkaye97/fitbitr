@@ -6,7 +6,7 @@ get <- function(url, token = Sys.getenv("FITBIT_ACCESS_TOKEN")) {
   r <- GET(
     url,
     add_headers(
-      .headers =  c(
+      .headers = c(
         Authorization = paste0("Bearer ", token)
       )
     )
@@ -25,7 +25,7 @@ post <- function(url, body, token = Sys.getenv("FITBIT_ACCESS_TOKEN")) {
     url,
     body = body,
     add_headers(
-      .headers =  c(
+      .headers = c(
         Authorization = paste0("Bearer ", token)
       )
     )

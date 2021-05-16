@@ -17,14 +17,13 @@
 #'
 #' @export
 get_heart_rate_intraday <- function(date, minutes = TRUE, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
-
   check_config_exists(token, user_id)
 
-  date_conv <- paste0('/', as.Date(date))
-  detail_level <- ifelse(minutes, '/1min', '/1sec')
+  date_conv <- paste0("/", as.Date(date))
+  detail_level <- ifelse(minutes, "/1min", "/1sec")
 
-  url <- paste0(url_heart, 'date', date_conv, '/1d', detail_level, '.json')
-  url <- gsub('user/-/', paste0("user/", user_id, "/"), url)
+  url <- paste0(url_heart, "date", date_conv, "/1d", detail_level, ".json")
+  url <- gsub("user/-/", paste0("user/", user_id, "/"), url)
 
   r <- get(
     url = url,
@@ -33,8 +32,8 @@ get_heart_rate_intraday <- function(date, minutes = TRUE, token = Sys.getenv("FI
 
   r %>%
     content() %>%
-    pluck('activities-heart-intraday') %>%
-    pluck('dataset') %>%
+    pluck("activities-heart-intraday") %>%
+    pluck("dataset") %>%
     bind_rows() %>%
     mutate(
       time = as_datetime(paste0(date, .data$time))
@@ -53,11 +52,10 @@ get_heart_rate_intraday <- function(date, minutes = TRUE, token = Sys.getenv("FI
 #' @param user_id Fitbit user id
 #' @export
 get_heart_rate_zones <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
+  date_conv <- paste0("/", as.Date(date))
 
-  date_conv <- paste0('/', as.Date(date))
-
-  url <- paste0(url_activity, 'date', date_conv, '.json')
-  url <- gsub('user/-/', paste0("user/", user_id, "/"), url)
+  url <- paste0(url_activity, "date", date_conv, ".json")
+  url <- gsub("user/-/", paste0("user/", user_id, "/"), url)
 
   r <- get(
     url = url,
@@ -66,12 +64,11 @@ get_heart_rate_zones <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN")
 
   r %>%
     content() %>%
-    pluck('summary') %>%
-    pluck('heartRateZones') %>%
+    pluck("summary") %>%
+    pluck("heartRateZones") %>%
     bind_rows() %>%
     mutate(
       date = date
     ) %>%
     select(date, everything())
 }
-

@@ -12,14 +12,13 @@
 #' @return a tibble of sleep summary data
 #' @export
 get_sleep_summary <- function(start_date, end_date = NULL, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
-
   check_config_exists(token, user_id)
 
-  start_date <- paste0('/', as.Date(start_date))
-  if (!is.null(end_date)) end_date <- paste0('/', as.Date(end_date))
+  start_date <- paste0("/", as.Date(start_date))
+  if (!is.null(end_date)) end_date <- paste0("/", as.Date(end_date))
 
-  url <- paste0(url_sleep, 'date', start_date, end_date, '.json')
-  url <- gsub('user/-/', paste0("user/", user_id, "/"), url)
+  url <- paste0(url_sleep, "date", start_date, end_date, ".json")
+  url <- gsub("user/-/", paste0("user/", user_id, "/"), url)
 
   r <- get(
     url = url,
@@ -28,7 +27,7 @@ get_sleep_summary <- function(start_date, end_date = NULL, token = Sys.getenv("F
 
   r %>%
     content() %>%
-    pluck('sleep') %>%
+    pluck("sleep") %>%
     map(
       function(x) list_modify(x, "minuteData" = NULL)
     ) %>%

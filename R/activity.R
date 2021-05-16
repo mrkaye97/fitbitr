@@ -9,11 +9,10 @@
 #' @importFrom httr content
 #' @export
 get_activity_summary <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
+  date_conv <- paste0("/", as.Date(date))
 
-  date_conv <- paste0('/', as.Date(date))
-
-  url <- paste0(url_activity, 'date', date_conv, '.json')
-  url <- gsub('user/-/', paste0("user/", user_id, "/"), url)
+  url <- paste0(url_activity, "date", date_conv, ".json")
+  url <- gsub("user/-/", paste0("user/", user_id, "/"), url)
 
   r <- get(
     url = url,
@@ -22,9 +21,9 @@ get_activity_summary <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN")
 
   r %>%
     content() %>%
-    pluck('summary') %>%
-    list_modify('heartRateZones' = NULL) %>%
-    list_modify('distances' = NULL) %>%
+    pluck("summary") %>%
+    list_modify("heartRateZones" = NULL) %>%
+    list_modify("distances" = NULL) %>%
     bind_rows() %>%
     mutate(
       date = date
@@ -44,12 +43,11 @@ get_activity_summary <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN")
 #' @importFrom purrr flatten_dfr
 #' @noRd
 get_activity_time_series <- function(start_date, end_date, resource_path, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
+  start_date_conv <- paste0("/", as.Date(start_date))
+  end_date_conv <- paste0("/", as.Date(end_date))
 
-  start_date_conv <- paste0('/', as.Date(start_date))
-  end_date_conv <- paste0('/', as.Date(end_date))
-
-  url <- paste0(url_activity, resource_path, '/date', start_date_conv, end_date_conv, '.json')
-  url <- gsub('user/-/', paste0("user/", user_id, "/"), url)
+  url <- paste0(url_activity, resource_path, "/date", start_date_conv, end_date_conv, ".json")
+  url <- gsub("user/-/", paste0("user/", user_id, "/"), url)
 
   r <- get(
     url = url,
@@ -73,7 +71,7 @@ get_calories <- function(start_date, end_date, token = Sys.getenv("FITBIT_ACCESS
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = 'calories',
+    resource_path = "calories",
     token = token,
     user_id = user_id
   )
@@ -91,7 +89,7 @@ get_calories_bmr <- function(start_date, end_date, token = Sys.getenv("FITBIT_AC
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = 'caloriesBMR',
+    resource_path = "caloriesBMR",
     token = token,
     user_id = user_id
   )
@@ -109,7 +107,7 @@ get_steps <- function(start_date, end_date, token = Sys.getenv("FITBIT_ACCESS_TO
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = 'steps',
+    resource_path = "steps",
     token = token,
     user_id = user_id
   )
@@ -127,7 +125,7 @@ get_distance <- function(start_date, end_date, token = Sys.getenv("FITBIT_ACCESS
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = 'distance',
+    resource_path = "distance",
     token = token,
     user_id = user_id
   )
@@ -145,7 +143,7 @@ get_floors <- function(start_date, end_date, token = Sys.getenv("FITBIT_ACCESS_T
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = 'floors',
+    resource_path = "floors",
     token = token,
     user_id = user_id
   )
@@ -163,7 +161,7 @@ get_elevation <- function(start_date, end_date, token = Sys.getenv("FITBIT_ACCES
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = 'elevation',
+    resource_path = "elevation",
     token = token,
     user_id = user_id
   )
@@ -181,7 +179,7 @@ get_minutes_sedentary <- function(start_date, end_date, token = Sys.getenv("FITB
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = 'minutesSedentary',
+    resource_path = "minutesSedentary",
     token = token,
     user_id = user_id
   )
@@ -199,7 +197,7 @@ get_minutes_lightly_active <- function(start_date, end_date, token = Sys.getenv(
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = 'minutesLightlyActive',
+    resource_path = "minutesLightlyActive",
     token = token,
     user_id = user_id
   )
@@ -217,7 +215,7 @@ get_minutes_fairly_active <- function(start_date, end_date, token = Sys.getenv("
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = 'minutesFairlyActive',
+    resource_path = "minutesFairlyActive",
     token = token,
     user_id = user_id
   )
@@ -235,7 +233,7 @@ get_minutes_very_active <- function(start_date, end_date, token = Sys.getenv("FI
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = 'minutesVeryActive',
+    resource_path = "minutesVeryActive",
     token = token,
     user_id = user_id
   )
@@ -253,7 +251,7 @@ get_activity_calories <- function(start_date, end_date, token = Sys.getenv("FITB
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = 'activityCalories',
+    resource_path = "activityCalories",
     token = token,
     user_id = user_id
   )
