@@ -27,4 +27,6 @@ Setup
 There are a few steps you'll need to do before you can start pulling your Fitbit data:
 
 1. Make an app [here](https://dev.fitbit.com/apps/new).
-2. ![](https://github.com/mrkaye97/fitbitr/blob/master/inst/app_seup.png)
+2. Fill in the following fields as you like. *Make sure you keep the Client ID, Client Secret, and Redirect URL. You'll need them to finish the setup process*
+
+<img src="https://github.com/mrkaye97/fitbitr/blob/master/inst/app_seup.png" width="80" height="150">
