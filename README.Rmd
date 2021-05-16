@@ -43,6 +43,13 @@ There are a few steps you'll need to do before you can start pulling your Fitbit
 
 1. Make an app [here](https://dev.fitbit.com/apps/new).
 2. Fill in the fields as you like (see image below for guidance). 
+
+    
+    ```{r, echo = FALSE}
+    knitr::include_graphics("https://raw.githubusercontent.com/mrkaye97/fitbitr/master/inst/app_setup.png")
+    ```
+
+
 3. You'll be redirected to a page with your credentials. **Make sure you keep the Client ID, Client Secret, and Redirect URL. You'll need them to finish the setup process**. You can always refer back to [the apps page](https://dev.fitbit.com/apps) to find them again.
 
 4. Run the following command:
@@ -62,13 +69,6 @@ There are a few steps you'll need to do before you can start pulling your Fitbit
 
 5. `initial_setup()` will send you to a page in your browser with a code in the URL. Copy the code into the prompt in your R session.
 6. And that's it! You now have your Fitbit API credentials set up in the file you specified, and you can use `fitbitr_setup()` to set them as env vars to make calling individual functions easier.
-
-
-App Registration Page:
-
-```{r, echo = FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/mrkaye97/fitbitr/master/inst/app_setup.png")
-```
 
 
 Usage

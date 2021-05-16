@@ -33,6 +33,8 @@ your Fitbit data:
 
 2.  Fill in the fields as you like (see image below for guidance).
 
+    <img src="https://raw.githubusercontent.com/mrkaye97/fitbitr/master/inst/app_setup.png" width="100%" />
+
 3.  You’ll be redirected to a page with your credentials. **Make sure
     you keep the Client ID, Client Secret, and Redirect URL. You’ll need
     them to finish the setup process**. You can always refer back to
@@ -65,10 +67,6 @@ your Fitbit data:
 6.  And that’s it! You now have your Fitbit API credentials set up in
     the file you specified, and you can use `fitbitr_setup()` to set
     them as env vars to make calling individual functions easier.
-
-App Registration Page:
-
-<img src="https://raw.githubusercontent.com/mrkaye97/fitbitr/master/inst/app_setup.png" width="100%" />
 
 ## Usage
 
