@@ -1,6 +1,7 @@
 test_that('fitbitr_setup() sets env variables from config file', {
   skip_on_cran()
   skip_on_ci()
+
   fitbitr_setup()
 
   conditions <- c(
@@ -16,6 +17,8 @@ test_that('fitbitr_setup() sets env variables from config file', {
 })
 
 test_that('fitbitr_teardown() tears down env successfully', {
+
+  skip_on_cran()
 
   env <- c(
     access_token = Sys.getenv("FITBIT_ACCESS_TOKEN"),
@@ -49,6 +52,9 @@ test_that('fitbitr_teardown() tears down env successfully', {
 })
 
 test_that("fitbitr_setup() works with explicit params", {
+
+  skip_on_cran()
+
   env <- c(
     access_token = Sys.getenv("FITBIT_ACCESS_TOKEN"),
     refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN"),
