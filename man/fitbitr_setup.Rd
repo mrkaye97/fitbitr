@@ -2,7 +2,7 @@
 % Please edit documentation in R/setup.R
 \name{fitbitr_setup}
 \alias{fitbitr_setup}
-\title{Set Access and Refresh Token as Env Vars}
+\title{Set necessary env vars}
 \usage{
 fitbitr_setup(
   config_file = "~/.fitbitr-oauth",
@@ -30,5 +30,8 @@ fitbitr_setup(
 TRUE (invisibly) on success
 }
 \description{
-Set Access and Refresh Token as Env Vars
+Make calling the Fitbit API easier by setting env vars at setup time.
+This function sets the config that's necessary for making API requests,
+including the access token, refresh token, user id, client id, and client secret.
+Then, functions making API calls will use `Sys.getenv()` to access the config.
 }

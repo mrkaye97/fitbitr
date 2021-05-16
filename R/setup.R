@@ -183,7 +183,13 @@ create_endpoint <- function() {
 }
 
 
-#' Set Access and Refresh Token as Env Vars
+#' Set necessary env vars
+#'
+#' Make calling the Fitbit API easier by setting env vars at setup time.
+#' This function sets the config that's necessary for making API requests,
+#' including the access token, refresh token, user id, client id, and client secret.
+#' Then, functions making API calls will use `Sys.getenv()` to access the config.
+#'
 #' @param config_file the path to your config file (default: `~/.fitbitr-oauth`)
 #' @param access_token the Fitbit access token (default: NULL)
 #' @param refresh_token the Fitbit refresh token (default: NULL)

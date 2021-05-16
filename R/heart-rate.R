@@ -59,7 +59,6 @@ get_heart_rate_zones <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN")
   url <- paste0(url_activity, 'date', date_conv, '.json')
   url <- gsub('user/-/', paste0("user/", user_id, "/"), url)
 
-  # We can not simplify this output because it is so complicated nested list
   r <- get(
     url = url,
     token = token

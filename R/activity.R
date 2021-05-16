@@ -15,7 +15,6 @@ get_activity_summary <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN")
   url <- paste0(url_activity, 'date', date_conv, '.json')
   url <- gsub('user/-/', paste0("user/", user_id, "/"), url)
 
-  # We can not simplify this output because it is so complicated nested list
   r <- get(
     url = url,
     token = token
@@ -52,7 +51,6 @@ get_activity_time_series <- function(start_date, end_date, resource_path, token 
   url <- paste0(url_activity, resource_path, '/date', start_date_conv, end_date_conv, '.json')
   url <- gsub('user/-/', paste0("user/", user_id, "/"), url)
 
-  # We can not simplify this output because it is so complicated nested list
   r <- get(
     url = url,
     token = token
