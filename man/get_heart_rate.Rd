@@ -2,25 +2,23 @@
 % Please edit documentation in R/heart-rate.R
 \name{get_heart_rate}
 \alias{get_heart_rate}
-\title{Get Heart Rate Time Series}
+\title{Heart Rate Time Series}
 \usage{
 get_heart_rate(
-  token,
-  date = "",
-  period = "",
-  base_date = "",
-  end_date = "",
-  simplify = TRUE
+  start_date,
+  end_date = NULL,
+  token = Sys.getenv("FITBIT_ACCESS_TOKEN"),
+  user_id = Sys.getenv("FITBIT_USER_ID")
 )
 }
 \arguments{
+\item{end_date}{The end date of the range in the format "yyyy-MM-dd" or "today" as a string or Date object.}
+
 \item{date}{The end date of the period specified in the format "yyyy-MM-dd" or "today" as a string or Date object.}
 
 \item{period}{The range for which data will be returned. Options are "1d", "7d", "30d", "1w", "1m".}
 
 \item{base_date}{The range start date in the format "yyyy-MM-dd" or "today" as a string or Date object.}
-
-\item{end_date}{The end date of the range in the format "yyyy-MM-dd" or "today" as a string or Date object.}
 }
 \description{
 \code{get_heart_rate()} returns time series data in the specified range

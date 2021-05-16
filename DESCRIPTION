@@ -18,12 +18,3 @@ Imports:
 Suggests:
     testthat
 RoxygenNote: 7.1.1
-Collate: 
-    'activity.R'
-    'api.R'
-    'body_weight.R'
-    'constants.R'
-    'heart-rate.R'
-    'setup.R'
-    'sleep.R'
-    'utils-pipe.R'
