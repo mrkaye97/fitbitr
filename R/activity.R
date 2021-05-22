@@ -265,3 +265,109 @@ activity_calories <- function(start_date, end_date, token = Sys.getenv("FITBIT_A
     user_id = user_id
   )
 }
+
+#' @noRd
+get_bests_and_totals <- function(best, tracker, token, user_id) {
+
+  check_config_exists(token, user_id)
+
+  url <- paste("https://api.fitbit.com/1/user", user_id, "activities.json", sep = "/")
+
+  r <- get(
+    url = url,
+    token = token
+  )
+
+  r %>%
+    content() %>%
+    pluck(ifelse(best, 'best', 'lifetime')) %>%
+    pluck(ifelse(tracker, 'tracker', 'total'))
+}
+#' Tracker Totals
+#'
+#' Retrieve tracker total distance, floors, steps calories, and active score
+#' @param token Fitbit access token
+#' @param user_id Fitbit user id
+#' @export
+tracker_totals <- function(token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
+  get_bests_and_totals(
+    best = FALSE,
+    tracker = TRUE,
+    token = token,
+    user_id = user_id
+  ) %>%
+    bind_rows() %>%
+    select(
+      .data$distance,
+      .data$floors,
+      .data$steps,
+      active_score = .data$activeScore,
+      calories_out = .data$caloriesOut
+    )
+}
+
+#' Lifetime Totals
+#'
+#' Retrieve lifetime total distance, floors, steps calories, and active score
+#' @param token Fitbit access token
+#' @param user_id Fitbit user id
+#' @export
+lifetime_totals <- function(token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
+  get_bests_and_totals(
+    best = FALSE,
+    tracker = FALSE,
+    token = token,
+    user_id = user_id
+  ) %>%
+    bind_rows() %>%
+    select(
+      .data$distance,
+      .data$floors,
+      .data$steps,
+      active_score = .data$activeScore,
+      calories_out = .data$caloriesOut
+    )
+
+}
+
+#' Tracker Bests
+#'
+#' Retrieve tracker best distance, floors, and steps
+#' @param token Fitbit access token
+#' @param user_id Fitbit user id
+#' @importFrom tidyr unnest_wider
+#' @importFrom tibble enframe
+#' @export
+tracker_bests <- function(token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
+  get_bests_and_totals(
+    best = TRUE,
+    tracker = TRUE,
+    token = token,
+    user_id = user_id
+  ) %>%
+    enframe() %>%
+    unnest_wider(.data$value) %>%
+    rename(
+      metric = .data$name
+    )
+}
+
+#' Lifetime Bests
+#'
+#' Retrieve lifetime best distance, floors, and steps
+#' @param token Fitbit access token
+#' @param user_id Fitbit user id
+#' @export
+lifetime_bests <- function(token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
+  get_bests_and_totals(
+    best = TRUE,
+    tracker = FALSE,
+    token = token,
+    user_id = user_id
+  ) %>%
+    enframe() %>%
+    unnest_wider(.data$value) %>%
+    rename(
+      metric = .data$name
+    )
+}
