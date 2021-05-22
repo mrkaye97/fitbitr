@@ -99,14 +99,14 @@ update_fitbit_config <- function(..., path = "~/.fitbitr-oauth") {
       ~ .x == ""
     ) %>%
     map(
-      strsplit, "="
+      strsplit, ": "
     ) %>%
     flatten() %>%
     purrr::discard(
       ~ .x[1] %in% names(args)
     ) %>%
     map(
-      ~ paste0(.x[1], "=", .x[2])
+      ~ paste0(.x[1], ": ", .x[2])
     ) %>%
     unlist() %>%
     c(
@@ -140,10 +140,12 @@ update_fitbit_config <- function(..., path = "~/.fitbitr-oauth") {
 #' @return TRUE (invisibly) on success
 #' @export
 refresh_token <- function(
-                          refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN"),
-                          client_id = Sys.getenv("FITBIT_CLIENT_ID"),
-                          client_secret = Sys.getenv("FITBIT_CLIENT_SECRET"),
-                          expires_in = 86400) {
+  refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN"),
+  client_id = Sys.getenv("FITBIT_CLIENT_ID"),
+  client_secret = Sys.getenv("FITBIT_CLIENT_SECRET"),
+  expires_in = 86400
+) {
+
   r <- POST(
     "https://api.fitbit.com/oauth2/token",
     add_headers(
@@ -160,11 +162,11 @@ refresh_token <- function(
     encode = "form"
   )
 
-  token <- content(r)
+  token <- content(r, type = 'application/json', as = 'parsed')
 
   update_fitbit_config(
-    access_token = token$access_token,
-    refresh_token = token$refresh_token
+    FITBIT_ACCESS_TOKEN = token$access_token,
+    FITBIT_REFRESH_TOKEN = token$refresh_token
   )
 
   return(
