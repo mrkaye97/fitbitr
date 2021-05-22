@@ -12,7 +12,7 @@ activity_summary <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), us
 
   url <- sprintf(
     "%s/user/%s/activities/date/%s.json",
-    url_base,
+    base_url,
     user_id,
     date
   )
@@ -50,7 +50,7 @@ activity_time_series <- function(start_date, end_date, resource_path, token = Sy
 
   url <- sprintf(
     "%s/user/%s/%s/date/%s.json",
-    url_base,
+    base_url,
     user_id,
     resource_path,
     date
@@ -275,7 +275,7 @@ get_bests_and_totals <- function(best, tracker, token, user_id) {
 
   url <- sprintf(
     "%s/user/%s/activities.json",
-    url_base,
+    base_url,
     user_id
   )
 
