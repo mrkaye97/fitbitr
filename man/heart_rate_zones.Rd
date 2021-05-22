@@ -12,11 +12,13 @@ heart_rate_zones(
 )
 }
 \arguments{
+\item{start_date}{The start date of records to be returned in "yyyy-mm-dd" or date(time) format}
+
+\item{end_date}{The end date of records to be returned in "yyyy-mm-dd" or date(time) format}
+
 \item{token}{Fitbit access token}
 
 \item{user_id}{Fitbit user id}
-
-\item{date}{The date of records to be returned in "yyyy-mm-dd" or date(time) format}
 }
 \description{
 See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.

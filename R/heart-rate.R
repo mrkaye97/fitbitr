@@ -47,7 +47,8 @@ heart_rate_intraday <- function(date, minutes = TRUE, token = Sys.getenv("FITBIT
 #'
 #' See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
 #' @importFrom purrr map_chr
-#' @param date The date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param token Fitbit access token
 #' @param user_id Fitbit user id
 #' @export
