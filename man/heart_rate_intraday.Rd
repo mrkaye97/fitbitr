@@ -2,7 +2,7 @@
 % Please edit documentation in R/heart-rate.R
 \name{heart_rate_intraday}
 \alias{heart_rate_intraday}
-\title{Heart Rate Time Series}
+\title{Heart Rate Intraday}
 \usage{
 heart_rate_intraday(
   date,
@@ -21,8 +21,7 @@ heart_rate_intraday(
 \item{user_id}{Fitbit user id}
 }
 \description{
-\code{heart_rate()} returns time series data in the specified range
-  If you specify earlier dates in the request, the response will retrieve only data since the user's join date or the first log entry date for the requested collection.
+Returns heart rate data for the specified day
 }
 \details{
 See \url{https://dev.fitbit.com/reference/web-api/heart-rate/#get-heart-rate-time-series} for more details.

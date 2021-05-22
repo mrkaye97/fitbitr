@@ -18,8 +18,5 @@ heart_rate_zones(
 \item{user_id}{Fitbit user id}
 }
 \description{
-Heart Rate Zones
-}
-\details{
 See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
 }

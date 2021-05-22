@@ -1,8 +1,6 @@
-#' @title Heart Rate Time Series
+#' Heart Rate Intraday
 #'
-#' @description
-#'  \code{heart_rate()} returns time series data in the specified range
-#'   If you specify earlier dates in the request, the response will retrieve only data since the user's join date or the first log entry date for the requested collection.
+#' Returns heart rate data for the specified day
 #'
 #' @param date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param minutes a boolean for whether data should be returned in minutes (TRUE) or seconds (FALSE)
@@ -43,9 +41,8 @@ heart_rate_intraday <- function(date, minutes = TRUE, token = Sys.getenv("FITBIT
     )
 }
 
-#' @title Heart Rate Zones
+#' Heart Rate Zones
 #'
-#' @details
 #' See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
 #' @param date The date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param token Fitbit access token

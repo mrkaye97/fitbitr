@@ -1,6 +1,5 @@
-#' @title Daily Activity Summary
+#' Activity Summary
 #'
-#' @details
 #' See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
 #' @param date The date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param token Fitbit access token
@@ -33,9 +32,8 @@ activity_summary <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), us
     select(date, everything())
 }
 
-#' @title Activity Time Series
+#' Activity Time Series
 #'
-#' @details
 #' See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format

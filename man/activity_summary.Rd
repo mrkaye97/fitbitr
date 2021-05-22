@@ -2,7 +2,7 @@
 % Please edit documentation in R/activity.R
 \name{activity_summary}
 \alias{activity_summary}
-\title{Daily Activity Summary}
+\title{Activity Summary}
 \usage{
 activity_summary(
   date,
@@ -18,8 +18,5 @@ activity_summary(
 \item{user_id}{Fitbit user id}
 }
 \description{
-Daily Activity Summary
-}
-\details{
 See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
 }
