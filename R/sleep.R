@@ -11,7 +11,7 @@
 #' @importFrom dplyr arrange
 #' @return a tibble of sleep summary data
 #' @export
-get_sleep_summary <- function(start_date, end_date = NULL, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
+sleep_summary <- function(start_date, end_date = NULL, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
   check_config_exists(token, user_id)
 
   start_date <- paste0("/", as.Date(start_date))

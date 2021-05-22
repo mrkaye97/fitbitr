@@ -1,7 +1,7 @@
 #' @title Heart Rate Time Series
 #'
 #' @description
-#'  \code{get_heart_rate()} returns time series data in the specified range
+#'  \code{heart_rate()} returns time series data in the specified range
 #'   If you specify earlier dates in the request, the response will retrieve only data since the user's join date or the first log entry date for the requested collection.
 #'
 #' @param date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
@@ -16,7 +16,7 @@
 #' See \url{https://dev.fitbit.com/reference/web-api/heart-rate/#get-heart-rate-time-series} for more details.
 #'
 #' @export
-get_heart_rate_intraday <- function(date, minutes = TRUE, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
+heart_rate_intraday <- function(date, minutes = TRUE, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
 
   check_config_exists(token, user_id)
 
@@ -52,7 +52,7 @@ get_heart_rate_intraday <- function(date, minutes = TRUE, token = Sys.getenv("FI
 #' @param token Fitbit access token
 #' @param user_id Fitbit user id
 #' @export
-get_heart_rate_zones <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
+heart_rate_zones <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
 
   check_config_exists(token, user_id)
   date_conv <- paste0("/", as.Date(date))
