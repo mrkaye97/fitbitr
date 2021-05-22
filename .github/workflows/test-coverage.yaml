@@ -1,11 +1,9 @@
 on:
   push:
     branches:
-      - main
       - master
   pull_request:
     branches:
-      - main
       - master
 
 name: test-coverage
@@ -15,6 +13,7 @@ jobs:
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     steps:
       - uses: actions/checkout@v2
 
@@ -44,5 +43,5 @@ jobs:
         shell: Rscript {0}
 
       - name: Test coverage
-        run: covr::codecov()
+        run: covr::codecov(token = Sys.getenv("CODECOV_TOKEN"))
         shell: Rscript {0}
