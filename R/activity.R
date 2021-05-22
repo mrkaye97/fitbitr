@@ -10,10 +10,12 @@
 activity_summary <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
   check_config_exists(token, user_id)
 
-  date_conv <- paste0("/", as.Date(date))
-
-  url <- paste0(url_activity, "date", date_conv, ".json")
-  url <- gsub("user/-/", paste0("user/", user_id, "/"), url)
+  url <- sprintf(
+    "%s/user/%s/activities/date/%s.json",
+    url_base,
+    user_id,
+    date
+  )
 
   r <- get(
     url = url,
@@ -46,11 +48,13 @@ activity_summary <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), us
 activity_time_series <- function(start_date, end_date, resource_path, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
   check_config_exists(token, user_id)
 
-  start_date_conv <- paste0("/", as.Date(start_date))
-  end_date_conv <- paste0("/", as.Date(end_date))
-
-  url <- paste0(url_activity, resource_path, "/date", start_date_conv, end_date_conv, ".json")
-  url <- gsub("user/-/", paste0("user/", user_id, "/"), url)
+  url <- sprintf(
+    "%s/user/%s/%s/date/%s.json",
+    url_base,
+    user_id,
+    resource_path,
+    date
+  )
 
   r <- get(
     url = url,
@@ -269,7 +273,11 @@ get_bests_and_totals <- function(best, tracker, token, user_id) {
 
   check_config_exists(token, user_id)
 
-  url <- paste("https://api.fitbit.com/1/user", user_id, "activities.json", sep = "/")
+  url <- sprintf(
+    "%s/user/%s/activities.json",
+    url_base,
+    user_id
+  )
 
   r <- get(
     url = url,
