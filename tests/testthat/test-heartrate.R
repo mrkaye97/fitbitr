@@ -2,6 +2,10 @@ date <- start_date <- '2021-05-20'
 end_date <- '2021-05-21'
 
 test_that("Heart rate by minute works", {
+
+  skip_on_ci()
+  skip_on_cran()
+
   tmp <- heart_rate_intraday(
     date = date,
     minutes = TRUE
@@ -12,6 +16,10 @@ test_that("Heart rate by minute works", {
 })
 
 test_that("Heart rate by second works", {
+
+  skip_on_ci()
+  skip_on_cran()
+
   tmp <- heart_rate_intraday(
     date = date,
     minutes = FALSE
@@ -22,6 +30,10 @@ test_that("Heart rate by second works", {
 })
 
 test_that("Heart rate zones works", {
+
+  skip_on_ci()
+  skip_on_cran()
+
   tmp <- heart_rate_zones(date)
 
   expect_equal(nrow(tmp), 4)
