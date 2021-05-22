@@ -17,7 +17,6 @@
 #'
 #' @export
 heart_rate_intraday <- function(date, minutes = TRUE, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
-
   check_config_exists(token, user_id)
 
   date_conv <- paste0("/", as.Date(date))
@@ -53,7 +52,6 @@ heart_rate_intraday <- function(date, minutes = TRUE, token = Sys.getenv("FITBIT
 #' @param user_id Fitbit user id
 #' @export
 heart_rate_zones <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
-
   check_config_exists(token, user_id)
   date_conv <- paste0("/", as.Date(date))
 

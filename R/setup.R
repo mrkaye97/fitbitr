@@ -140,12 +140,10 @@ update_fitbit_config <- function(..., path = "~/.fitbitr-oauth") {
 #' @return TRUE (invisibly) on success
 #' @export
 refresh_token <- function(
-  refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN"),
-  client_id = Sys.getenv("FITBIT_CLIENT_ID"),
-  client_secret = Sys.getenv("FITBIT_CLIENT_SECRET"),
-  expires_in = 86400
-) {
-
+                          refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN"),
+                          client_id = Sys.getenv("FITBIT_CLIENT_ID"),
+                          client_secret = Sys.getenv("FITBIT_CLIENT_SECRET"),
+                          expires_in = 86400) {
   r <- POST(
     "https://api.fitbit.com/oauth2/token",
     add_headers(
@@ -162,7 +160,7 @@ refresh_token <- function(
     encode = "form"
   )
 
-  token <- content(r, type = 'application/json', as = 'parsed')
+  token <- content(r, type = "application/json", as = "parsed")
 
   update_fitbit_config(
     FITBIT_ACCESS_TOKEN = token$access_token,
@@ -233,19 +231,18 @@ fitbitr_setup <- function(config_file = "~/.fitbitr-oauth", access_token = NULL,
 #' @seealso [fitbitr_setup()]
 #' @examples
 #' \dontrun{
-#'   fitbitr_teardown()
+#' fitbitr_teardown()
 #' }
 #' @return TRUE (invisibly)
 #' @export
 fitbitr_teardown <- function() {
-
   Sys.unsetenv("FITBIT_ACCESS_TOKEN")
   Sys.unsetenv("FITBIT_REFRESH_TOKEN")
   Sys.unsetenv("FITBIT_USER_ID")
   Sys.unsetenv("FITBIT_CLIENT_ID")
   Sys.unsetenv("FITBIT_CLIENT_SECRET")
 
-  message('Successfully tore down environment variables created by fitbitr_setup()')
+  message("Successfully tore down environment variables created by fitbitr_setup()")
 
   return(
     invisible(TRUE)

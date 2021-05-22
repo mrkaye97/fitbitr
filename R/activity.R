@@ -9,7 +9,6 @@
 #' @importFrom httr content
 #' @export
 activity_summary <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
-
   check_config_exists(token, user_id)
 
   date_conv <- paste0("/", as.Date(date))
@@ -46,7 +45,6 @@ activity_summary <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), us
 #' @importFrom purrr flatten_dfr
 #' @noRd
 activity_time_series <- function(start_date, end_date, resource_path, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
-
   check_config_exists(token, user_id)
 
   start_date_conv <- paste0("/", as.Date(start_date))
