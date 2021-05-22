@@ -11,14 +11,16 @@
 #' @importFrom dplyr arrange
 #' @return a tibble of sleep summary data
 #' @export
-sleep_summary <- function(start_date, end_date = NULL, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
+sleep_summary <- function(start_date, end_date = start_date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
   check_config_exists(token, user_id)
 
-  start_date <- paste0("/", as.Date(start_date))
-  if (!is.null(end_date)) end_date <- paste0("/", as.Date(end_date))
-
-  url <- paste0(url_sleep, "date", start_date, end_date, ".json")
-  url <- gsub("user/-/", paste0("user/", user_id, "/"), url)
+  url <- sprintf(
+    "%s/user/%s/sleep/date/%s/%s.json",
+    base_url,
+    user_id,
+    start_date,
+    end_date
+  )
 
   r <- get(
     url = url,
