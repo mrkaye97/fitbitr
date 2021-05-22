@@ -32,5 +32,23 @@ sleep_summary <- function(start_date, end_date = NULL, token = Sys.getenv("FITBI
       function(x) list_modify(x, "minuteData" = NULL)
     ) %>%
     bind_rows() %>%
-    arrange(.data$dateOfSleep)
+    arrange(.data$dateOfSleep) %>%
+    select(
+      log_id = .data$logId,
+      date = .data$dateOfSleep,
+      start_time = .data$startTime,
+      end_time = .data$endTime,
+      .data$duration,
+      .data$efficiency,
+      minutes_to_fall_asleep = .data$minutesToFallAsleep,
+      minutes_asleep = .data$minutesAsleep,
+      minutes_awake = .data$minutesAwake,
+      minutes_after_wakeup = .data$minutesAfterWakeup,
+      awake_count = .data$awakeCount,
+      awakenings_count = .data$awakeningsCount,
+      awake_duration = .data$awakeDuration,
+      restless_count = .data$restlessCount,
+      restless_duration = .data$restlessDuration,
+      time_in_bed = .data$timeInBed
+    )
 }
