@@ -17,11 +17,13 @@
 heart_rate_intraday <- function(date, minutes = TRUE, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
   check_config_exists(token, user_id)
 
-  date_conv <- paste0("/", as.Date(date))
-  detail_level <- ifelse(minutes, "/1min", "/1sec")
-
-  url <- paste0(url_heart, "date", date_conv, "/1d", detail_level, ".json")
-  url <- gsub("user/-/", paste0("user/", user_id, "/"), url)
+  url <- sprintf(
+    "%s/user/%s/activities/heart/date/%s/1d/%s.json",
+    base_url,
+    user_id,
+    date,
+    ifelse(minutes, "1min", "1sec")
+  )
 
   r <- get(
     url = url,
@@ -44,29 +46,48 @@ heart_rate_intraday <- function(date, minutes = TRUE, token = Sys.getenv("FITBIT
 #' Heart Rate Zones
 #'
 #' See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
+#' @importFrom purrr map_chr
 #' @param date The date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param token Fitbit access token
 #' @param user_id Fitbit user id
 #' @export
-heart_rate_zones <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
+heart_rate_zones <- function(start_date, end_date = start_date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
   check_config_exists(token, user_id)
-  date_conv <- paste0("/", as.Date(date))
 
-  url <- paste0(url_activity, "date", date_conv, ".json")
-  url <- gsub("user/-/", paste0("user/", user_id, "/"), url)
+  url <- sprintf(
+    "%s/user/%s/activities/heart/date/%s/%s.json",
+    base_url,
+    user_id,
+    start_date,
+    end_date
+  )
 
   r <- get(
     url = url,
     token = token
   )
 
-  r %>%
+  hr_data <- r %>%
     content() %>%
-    pluck("summary") %>%
-    pluck("heartRateZones") %>%
-    bind_rows() %>%
+    pluck('activities-heart') %>%
+    map(
+      pluck, 'value'
+    ) %>%
+    map(
+      pluck, 'heartRateZones'
+    ) %>%
+    bind_rows()
+
+  dates <- r %>%
+    content() %>%
+    pluck('activities-heart') %>%
+    map_chr(
+      pluck, 'dateTime'
+    )
+
+  hr_data %>%
     mutate(
-      date = date
+      date = dates %>% map(rep, 4) %>% unlist()
     ) %>%
     select(
       date,
