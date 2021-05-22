@@ -71,5 +71,12 @@ heart_rate_zones <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), us
     mutate(
       date = date
     ) %>%
-    select(date, everything())
+    select(
+      date,
+      zone = .data$name,
+      min_hr = .data$min,
+      max_hr = .data$max,
+      minutes_in_zone = .data$minutes,
+      calories_out = .data$caloriesOut
+    )
 }
