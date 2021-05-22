@@ -7,7 +7,6 @@ test_that("Heart rate by minute works", {
     minutes = TRUE
   )
 
-  expect_equal(ncol(tmp), 2)
   expect_equal(colnames(tmp), c('time', 'heart_rate'))
   expect_gt(nrow(tmp), 100)
 })
@@ -18,7 +17,6 @@ test_that("Heart rate by second works", {
     minutes = FALSE
   )
 
-  expect_equal(ncol(tmp), 2)
   expect_equal(colnames(tmp), c('time', 'heart_rate'))
   expect_gt(nrow(tmp), 100)
 })
@@ -26,7 +24,6 @@ test_that("Heart rate by second works", {
 test_that("Heart rate zones works", {
   tmp <- heart_rate_zones(date)
 
-  expect_equal(ncol(tmp), 4)
   expect_equal(nrow(tmp), 4)
   expect_equal(colnames(tmp), c("date", "zone", "min_hr", "max_hr", "minutes_in_zone", "calories_out"))
 })
