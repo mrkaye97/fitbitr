@@ -62,7 +62,8 @@ activity_time_series <- function(start_date, end_date, resource_path, token = Sy
     content() %>%
     flatten_dfr() %>%
     rename(
-      date = dateTime
+      date = dateTime,
+      !!resource_path := value
     )
 }
 
