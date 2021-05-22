@@ -43,6 +43,7 @@ activity_summary <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), us
 #' @param token Fitbit access token
 #' @param user_id Fitbit user id
 #' @importFrom purrr flatten_dfr
+#' @importFrom rlang :=
 #' @noRd
 activity_time_series <- function(start_date, end_date, resource_path, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
   check_config_exists(token, user_id)
@@ -62,8 +63,8 @@ activity_time_series <- function(start_date, end_date, resource_path, token = Sy
     content() %>%
     flatten_dfr() %>%
     rename(
-      date = dateTime,
-      !!resource_path := value
+      date = .data$dateTime,
+      !!resource_path := .data$value
     )
 }
 

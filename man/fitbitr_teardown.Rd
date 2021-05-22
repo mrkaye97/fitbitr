@@ -14,7 +14,7 @@ Unset env variables created by `fitbitr_setup()`. Essentially, this amounts to c
 }
 \examples{
 \dontrun{
-  fitbitr_teardown()
+fitbitr_teardown()
 }
 }
 \seealso{
