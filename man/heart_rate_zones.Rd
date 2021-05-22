@@ -5,17 +5,18 @@
 \title{Heart Rate Zones}
 \usage{
 heart_rate_zones(
-  date,
+  start_date,
+  end_date = start_date,
   token = Sys.getenv("FITBIT_ACCESS_TOKEN"),
   user_id = Sys.getenv("FITBIT_USER_ID")
 )
 }
 \arguments{
-\item{date}{The date of records to be returned in "yyyy-mm-dd" or date(time) format}
-
 \item{token}{Fitbit access token}
 
 \item{user_id}{Fitbit user id}
+
+\item{date}{The date of records to be returned in "yyyy-mm-dd" or date(time) format}
 }
 \description{
 See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
