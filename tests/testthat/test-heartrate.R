@@ -13,6 +13,7 @@ test_that("Heart rate by minute works", {
 
   expect_equal(colnames(tmp), c('time', 'heart_rate'))
   expect_gt(nrow(tmp), 100)
+  checkmate::expect_posixct(tmp$time)
 })
 
 test_that("Heart rate by second works", {
@@ -27,6 +28,7 @@ test_that("Heart rate by second works", {
 
   expect_equal(colnames(tmp), c('time', 'heart_rate'))
   expect_gt(nrow(tmp), 100)
+  checkmate::expect_posixct(tmp$time)
 })
 
 test_that("Heart rate zones works", {
@@ -38,4 +40,5 @@ test_that("Heart rate zones works", {
 
   expect_equal(nrow(tmp), 4)
   expect_equal(colnames(tmp), c("date", "zone", "min_hr", "max_hr", "minutes_in_zone", "calories_out"))
+  checkmate::expect_date(tmp$date)
 })

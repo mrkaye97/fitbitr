@@ -15,4 +15,6 @@ test_that("Sleep works", {
     colnames(tmp),
     c("log_id", "date", "start_time", "end_time", "duration", "efficiency", "minutes_to_fall_asleep", "minutes_asleep", "minutes_awake", "minutes_after_wakeup", "time_in_bed")
   )
+
+  checkmate::expect_date(tmp$date)
 })

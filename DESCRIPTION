@@ -23,6 +23,7 @@ Imports:
     rlang
 Suggests:
     testthat (>= 3.0.0)
+    checkmate (>= 2.1.0)
 Encoding: UTF-8
 RoxygenNote: 7.1.1
 Config/testthat/edition: 3
