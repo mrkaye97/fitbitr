@@ -88,7 +88,7 @@ heart_rate_zones <- function(start_date, end_date = start_date, token = Sys.gete
 
   hr_data %>%
     mutate(
-      date = dates %>% map(rep, 4) %>% unlist()
+      date = dates %>% map(rep, 4) %>% unlist() %>% as.Date()
     ) %>%
     select(
       date,

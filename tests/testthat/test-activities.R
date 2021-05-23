@@ -121,7 +121,7 @@ test_that('Minutes downloads', {
 
   all_data %>%
     purrr::map(
-      ~ checkmate::expect_date(.x$date, 'Date')
+      ~ checkmate::expect_date(.x$date)
     )
 })
 

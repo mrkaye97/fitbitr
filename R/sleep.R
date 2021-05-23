@@ -47,6 +47,9 @@ sleep_summary <- function(start_date, end_date = start_date, token = Sys.getenv(
       minutes_awake = .data$minutesAwake,
       minutes_after_wakeup = .data$minutesAfterWakeup,
       time_in_bed = .data$timeInBed
+    ) %>%
+    mutate(
+      date = as.Date(.data$date)
     )
 }
 
@@ -101,7 +104,8 @@ sleep_stage_summary <- function(start_date, end_date = start_date, token = Sys.g
     map(
       rep, 4
     ) %>%
-    unlist()
+    unlist() %>%
+    as.Date()
 
   sleep %>%
     mutate(
@@ -159,5 +163,8 @@ sleep_stage_granular <- function(start_date, end_date = start_date, token = Sys.
     bind_rows() %>%
     rename(
       time = .data$dateTime
+    ) %>%
+    mutate(
+      time = as_datetime(.data$time)
     )
 }

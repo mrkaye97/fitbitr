@@ -29,7 +29,7 @@ activity_summary <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), us
     list_modify("distances" = NULL) %>%
     bind_rows() %>%
     mutate(
-      date = date
+      date = as.Date(date)
     ) %>%
     select(date, everything())
 }
@@ -68,6 +68,9 @@ activity_time_series <- function(start_date, end_date, resource_path, token = Sy
     rename(
       date = .data$dateTime,
       !!resource_path := .data$value
+    ) %>%
+    mutate(
+      date = as.Date(.data$date)
     )
 }
 
