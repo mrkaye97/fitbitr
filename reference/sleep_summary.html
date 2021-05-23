@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Nightly Sleep Summary — sleep_summary" />
-<meta property="og:description" content="Returns a single row tibble of summary data on the night of sleep" />
+<meta property="og:description" content="Returns a tibble of summary by night" />
 
 
 
@@ -114,12 +114,12 @@
     </div>
 
     <div class="ref-description">
-    <p>Returns a single row tibble of summary data on the night of sleep</p>
+    <p>Returns a tibble of summary by night</p>
     </div>
 
     <pre class="usage"><span class='fu'>sleep_summary</span><span class='op'>(</span>
   <span class='va'>start_date</span>,
-  end_date <span class='op'>=</span> <span class='cn'>NULL</span>,
+  end_date <span class='op'>=</span> <span class='va'>start_date</span>,
   token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"FITBIT_ACCESS_TOKEN"</span><span class='op'>)</span>,
   user_id <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"FITBIT_USER_ID"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
