@@ -11,7 +11,7 @@ activity_summary <- function(date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), us
   check_config_exists(token, user_id)
 
   url <- sprintf(
-    "%s/user/%s/activities/date/%s.json",
+    "%s/1/user/%s/activities/date/%s.json",
     base_url,
     user_id,
     date
@@ -49,11 +49,12 @@ activity_time_series <- function(start_date, end_date, resource_path, token = Sy
   check_config_exists(token, user_id)
 
   url <- sprintf(
-    "%s/user/%s/%s/date/%s.json",
+    "%s/1/user/%s/activities/%s/date/%s/%s.json",
     base_url,
     user_id,
     resource_path,
-    date
+    start_date,
+    end_date
   )
 
   r <- get(

@@ -18,7 +18,7 @@ heart_rate_intraday <- function(date, minutes = TRUE, token = Sys.getenv("FITBIT
   check_config_exists(token, user_id)
 
   url <- sprintf(
-    "%s/user/%s/activities/heart/date/%s/1d/%s.json",
+    "%s/1/user/%s/activities/heart/date/%s/1d/%s.json",
     base_url,
     user_id,
     date,
@@ -56,7 +56,7 @@ heart_rate_zones <- function(start_date, end_date = start_date, token = Sys.gete
   check_config_exists(token, user_id)
 
   url <- sprintf(
-    "%s/user/%s/activities/heart/date/%s/%s.json",
+    "%s/1/user/%s/activities/heart/date/%s/%s.json",
     base_url,
     user_id,
     start_date,
