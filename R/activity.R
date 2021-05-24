@@ -278,7 +278,7 @@ get_bests_and_totals <- function(best, tracker, token, user_id) {
   check_config_exists(token, user_id)
 
   url <- sprintf(
-    "%s/user/%s/activities.json",
+    "%s/1/user/%s/activities.json",
     base_url,
     user_id
   )
