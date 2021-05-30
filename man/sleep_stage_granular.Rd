@@ -12,7 +12,7 @@ sleep_stage_granular(start_date, end_date = start_date)
 \item{end_date}{The end date of records to be returned in "yyyy-mm-dd" or date(time) format}
 }
 \value{
-a tibble of sleep summary data
+A tibble of granular sleep stage data. This method is more granular than \link[fitbitr]{sleep_stage_summary}, and returns blocks of time that you spent in each zone throughout the night.
 }
 \description{
 Returns a tibble of nightly sleep stage data.

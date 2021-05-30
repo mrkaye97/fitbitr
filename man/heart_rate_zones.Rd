@@ -11,6 +11,9 @@ heart_rate_zones(start_date, end_date = start_date)
 
 \item{end_date}{The end date of records to be returned in "yyyy-mm-dd" or date(time) format}
 }
+\value{
+A tibble of the date, the heart rate zone (\code{zone}), the minimum heart rate in that zone (\code{min_hr}), the maximum heart rate in that zone (\code{max_hr}), the minutes in that zone (\code{minutes_in_zone}), and the calories burned in that zone (\code{calories_out})
+}
 \description{
 See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
 }

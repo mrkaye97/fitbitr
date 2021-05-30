@@ -6,6 +6,9 @@
 \usage{
 lifetime_bests()
 }
+\value{
+A tibble the best \code{distance}, \code{floors}, and \code{steps} (by date) tracked on any of your trackers
+}
 \description{
 Retrieve lifetime best distance, floors, and steps
 }

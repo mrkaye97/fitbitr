@@ -7,7 +7,7 @@
 #' @importFrom dplyr rename
 #' @importFrom lubridate as_datetime
 #' @importFrom rlang .data
-#'
+#' @return A tibble of the `time` and your `heart_rate` at that time.
 #' @details
 #' See \url{https://dev.fitbit.com/reference/web-api/heart-rate/#get-heart-rate-time-series} for more details.
 #'
@@ -47,6 +47,7 @@ heart_rate_intraday <- function(date, minutes = TRUE) {
 #' @importFrom purrr map_chr
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @return A tibble of the date, the heart rate zone (`zone`), the minimum heart rate in that zone (`min_hr`), the maximum heart rate in that zone (`max_hr`), the minutes in that zone (`minutes_in_zone`), and the calories burned in that zone (`calories_out`)
 #' @export
 heart_rate_zones <- function(start_date, end_date = start_date) {
   check_token_exists()

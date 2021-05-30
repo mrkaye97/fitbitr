@@ -7,7 +7,7 @@
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
 #' @importFrom dplyr arrange
-#' @return a tibble of sleep summary data
+#' @return A tibble of a variety of sleep summary data by day
 #' @export
 sleep_summary <- function(start_date, end_date = start_date) {
   check_token_exists()
@@ -61,7 +61,7 @@ sleep_summary <- function(start_date, end_date = start_date) {
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
 #' @importFrom dplyr arrange
-#' @return a tibble of sleep summary data
+#' @return A tibble of a variety of sleep stage summary data, by day
 #' @export
 sleep_stage_summary <- function(start_date, end_date = start_date) {
   check_token_exists()
@@ -125,7 +125,7 @@ sleep_stage_summary <- function(start_date, end_date = start_date) {
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
 #' @importFrom dplyr arrange
-#' @return a tibble of sleep summary data
+#' @return A tibble of granular sleep stage data. This method is more granular than \link[fitbitr]{sleep_stage_summary}, and returns blocks of time that you spent in each zone throughout the night.
 #' @export
 sleep_stage_granular <- function(start_date, end_date = start_date) {
   check_token_exists()

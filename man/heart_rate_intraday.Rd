@@ -11,6 +11,9 @@ heart_rate_intraday(date, minutes = TRUE)
 
 \item{minutes}{a boolean for whether data should be returned in minutes (TRUE) or seconds (FALSE)}
 }
+\value{
+A tibble of the \code{time} and your \code{heart_rate} at that time.
+}
 \description{
 Returns heart rate data for the specified day
 }

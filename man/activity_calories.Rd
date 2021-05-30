@@ -11,6 +11,9 @@ activity_calories(start_date, end_date)
 
 \item{end_date}{The end date of records to be returned in "yyyy-mm-dd" or date(time) format}
 }
+\value{
+A tibble with two columns: \code{date} and \code{activity_calories}
+}
 \description{
 Resource path /activities/activityCalories
 }

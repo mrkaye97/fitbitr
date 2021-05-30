@@ -6,6 +6,9 @@
 \usage{
 tracker_totals()
 }
+\value{
+A tibble of all-time tracker totals (i.e. the total \code{distance}, \code{floors}, \code{steps}, \code{active_score}, and \code{calories_out} tracked by your tracker)
+}
 \description{
 Retrieve tracker total distance, floors, steps calories, and active score
 }

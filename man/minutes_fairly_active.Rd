@@ -11,6 +11,9 @@ minutes_fairly_active(start_date, end_date)
 
 \item{end_date}{The end date of records to be returned in "yyyy-mm-dd" or date(time) format}
 }
+\value{
+A tibble with two columns: \code{date} and \code{minutes_fairly_active}
+}
 \description{
 Resource path /activities/minutesFairlyActive
 }

@@ -6,6 +6,9 @@
 \usage{
 tracker_bests()
 }
+\value{
+A tibble the best \code{distance}, \code{floors}, and \code{steps} (by date) tracked on your tracker
+}
 \description{
 Retrieve tracker best distance, floors, and steps
 }

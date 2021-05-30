@@ -5,7 +5,7 @@
 #' @importFrom dplyr bind_rows mutate select everything
 #' @importFrom httr content
 #' @importFrom janitor clean_names
-#' @return A tibble with the date and a number of actvity summary metrics for the day.
+#' @return A tibble with the `date` and a number of actvity summary metrics for the day.
 #' @export
 activity_summary <- function(date) {
   check_token_exists()
@@ -77,6 +77,7 @@ activity_time_series <- function(start_date, end_date, resource_path) {
 #' Resource path /activities/calories
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @return A tibble with two columns: `date` and `calories`
 #' @export
 calories <- function(start_date, end_date) {
   activity_time_series(
@@ -91,6 +92,7 @@ calories <- function(start_date, end_date) {
 #' Resource path /activities/caloriesBMR
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @return A tibble with two columns: `date` and `calories_bmr`
 #' @export
 calories_bmr <- function(start_date, end_date) {
   activity_time_series(
@@ -105,6 +107,7 @@ calories_bmr <- function(start_date, end_date) {
 #' Resource path /activities/steps
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @return A tibble with two columns: `date` and `steps`
 #' @export
 steps <- function(start_date, end_date) {
   activity_time_series(
@@ -119,6 +122,7 @@ steps <- function(start_date, end_date) {
 #' Resource path /activities/distance
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @return A tibble with two columns: `date` and `distance`
 #' @export
 distance <- function(start_date, end_date) {
   activity_time_series(
@@ -133,6 +137,7 @@ distance <- function(start_date, end_date) {
 #' Resource path /activities/floors
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @return A tibble with two columns: `date` and `floors`
 #' @export
 floors <- function(start_date, end_date) {
   activity_time_series(
@@ -147,6 +152,7 @@ floors <- function(start_date, end_date) {
 #' Resource path /activities/elevation
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @return A tibble with two columns: `date` and `elevation`
 #' @export
 elevation <- function(start_date, end_date) {
   activity_time_series(
@@ -161,6 +167,7 @@ elevation <- function(start_date, end_date) {
 #' Resource path /activities/minutesSedentary
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @return A tibble with two columns: `date` and `minutes_sedentary`
 #' @export
 minutes_sedentary <- function(start_date, end_date) {
   activity_time_series(
@@ -175,6 +182,7 @@ minutes_sedentary <- function(start_date, end_date) {
 #' Resource path /activities/minutesLightlyActive
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @return A tibble with two columns: `date` and `minutes_lightly_active`
 #' @export
 minutes_lightly_active <- function(start_date, end_date) {
   activity_time_series(
@@ -189,6 +197,7 @@ minutes_lightly_active <- function(start_date, end_date) {
 #' Resource path /activities/minutesFairlyActive
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @return A tibble with two columns: `date` and `minutes_fairly_active`
 #' @export
 minutes_fairly_active <- function(start_date, end_date) {
   activity_time_series(
@@ -203,6 +212,7 @@ minutes_fairly_active <- function(start_date, end_date) {
 #' Resource path /activities/minutesVeryActive
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @return A tibble with two columns: `date` and `minutes_very_active`
 #' @export
 minutes_very_active <- function(start_date, end_date) {
   activity_time_series(
@@ -217,6 +227,7 @@ minutes_very_active <- function(start_date, end_date) {
 #' Resource path /activities/activityCalories
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @return A tibble with two columns: `date` and `activity_calories`
 #' @export
 activity_calories <- function(start_date, end_date) {
   activity_time_series(
@@ -249,6 +260,7 @@ get_bests_and_totals <- function(best, tracker) {
 #'
 #' Retrieve tracker total distance, floors, steps calories, and active score
 #' @export
+#' @return A tibble of all-time tracker totals (i.e. the total `distance`, `floors`, `steps`, `active_score`, and `calories_out` tracked by your tracker)
 tracker_totals <- function() {
   get_bests_and_totals(
     best = FALSE,
@@ -267,6 +279,7 @@ tracker_totals <- function() {
 #' Lifetime Totals
 #'
 #' Retrieve lifetime total distance, floors, steps calories, and active score
+#' @return A tibble of all-time totals across trackers (i.e. the total `distance`, `floors`, `steps`, `active_score`, and `calories_out` tracked across all of your trackers)
 #' @export
 lifetime_totals <- function() {
   get_bests_and_totals(
@@ -288,6 +301,7 @@ lifetime_totals <- function() {
 #' Retrieve tracker best distance, floors, and steps
 #' @importFrom tidyr unnest_wider
 #' @importFrom tibble enframe
+#' @return A tibble the best `distance`, `floors`, and `steps` (by date) tracked on your tracker
 #' @export
 tracker_bests <- function() {
   get_bests_and_totals(
@@ -304,6 +318,7 @@ tracker_bests <- function() {
 #' Lifetime Bests
 #'
 #' Retrieve lifetime best distance, floors, and steps
+#' @return A tibble the best `distance`, `floors`, and `steps` (by date) tracked on any of your trackers
 #' @export
 lifetime_bests <- function() {
   get_bests_and_totals(

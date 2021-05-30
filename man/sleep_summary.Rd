@@ -12,7 +12,7 @@ sleep_summary(start_date, end_date = start_date)
 \item{end_date}{The end date of records to be returned in "yyyy-mm-dd" or date(time) format}
 }
 \value{
-a tibble of sleep summary data
+A tibble of a variety of sleep summary data by day
 }
 \description{
 Returns a tibble of summary by night
