@@ -1,32 +1,36 @@
-Package: fitbitr
 Type: Package
-Version: 0.1.0
-Authors@R: c(
-  person("Matt", "Kaye", , "mrkaye97@gmail.com", c("aut", "cre"))
-  )
+Package: fitbitr
 Title: Interface with the Fitbit API
-Description: An R package to make it easy to interface with the Fitbit API.
-License: GPL (>= 3)
+Version: 0.1.0
 Date: 2021-05-16
-URL: https://github.com/mrkaye97/fitbitr, https://mrkaye97.github.io/fitbitr/
+Authors@R: 
+    person(given = "Matt",
+           family = "Kaye",
+           role = c("aut", "cre"),
+           email = "mrkaye97@gmail.com")
+Description: An R package to make it easy to interface with the
+    Fitbit API.
+License: GPL (>= 3)
+URL: https://github.com/mrkaye97/fitbitr,
+    https://mrkaye97.github.io/fitbitr/
 BugReports: https://github.com/mrkaye97/fitbitr/issues
 Imports:
     dplyr,
-    tidyr,
-    purrr,
     httr,
     jsonlite,
-    RCurl,
-    magrittr,
-    tibble (>= 2.0.0),
     lubridate,
-    rlang
+    magrittr,
+    purrr,
+    RCurl,
+    rlang,
+    tibble (>= 2.0.0),
+    tidyr
 Suggests:
-    testthat (>= 3.0.0),
     checkmate (>= 2.0.0),
-    spelling
-Encoding: UTF-8
-RoxygenNote: 7.1.1
+    spelling,
+    testthat (>= 3.0.0)
 Config/testthat/edition: 3
-Roxygen: list(markdown = TRUE)
+Encoding: UTF-8
 Language: en-US
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
