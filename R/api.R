@@ -21,14 +21,15 @@ get <- function(url) {
         do_refresh <- askYesNo(
           "Could not refresh your token. Would you like to generate a new one?",
           default = FALSE,
-          prompts = c('y', 'n', 'c')
+          prompts = c("y", "n", "c")
         )
 
         if (do_refresh) {
           message("Trying to generate a new token...")
           .fitbitr_token$init_credentials()
         }
-    })
+      }
+    )
 
     get(url)
   }
