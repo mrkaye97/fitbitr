@@ -37,7 +37,8 @@ heart_rate_intraday <- function(date, minutes = TRUE) {
     ) %>%
     rename(
       heart_rate = .data$value
-    )
+    ) %>%
+    clean_names()
 }
 
 #' Heart Rate Zones

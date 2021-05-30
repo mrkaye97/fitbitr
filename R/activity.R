@@ -4,6 +4,8 @@
 #' @param date The date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @importFrom dplyr bind_rows mutate select everything
 #' @importFrom httr content
+#' @importFrom janitor clean_names
+#' @return A tibble with the date and a number of actvity summary metrics for the day.
 #' @export
 activity_summary <- function(date) {
   check_token_exists()
@@ -28,7 +30,8 @@ activity_summary <- function(date) {
     mutate(
       date = as.Date(date)
     ) %>%
-    select(date, everything())
+    select(date, everything()) %>%
+    clean_names()
 }
 
 #' Activity Time Series
@@ -65,7 +68,8 @@ activity_time_series <- function(start_date, end_date, resource_path) {
     ) %>%
     mutate(
       date = as.Date(.data$date)
-    )
+    ) %>%
+    clean_names()
 }
 
 #' Calories Time Series

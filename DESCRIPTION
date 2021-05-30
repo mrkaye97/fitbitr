@@ -24,7 +24,8 @@ Imports:
     RCurl,
     rlang,
     tibble (>= 2.0.0),
-    tidyr
+    tidyr,
+    janitor
 Suggests:
     checkmate (>= 2.0.0),
     spelling,

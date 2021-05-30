@@ -35,19 +35,12 @@ sleep_summary <- function(start_date, end_date = start_date) {
     select(
       log_id = .data$logId,
       date = .data$dateOfSleep,
-      start_time = .data$startTime,
-      end_time = .data$endTime,
-      .data$duration,
-      .data$efficiency,
-      minutes_to_fall_asleep = .data$minutesToFallAsleep,
-      minutes_asleep = .data$minutesAsleep,
-      minutes_awake = .data$minutesAwake,
-      minutes_after_wakeup = .data$minutesAfterWakeup,
-      time_in_bed = .data$timeInBed
+      everything()
     ) %>%
     mutate(
       date = as.Date(.data$date)
-    )
+    ) %>%
+    clean_names()
 }
 
 #' Nightly Sleep Stage Summary Data

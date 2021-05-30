@@ -9,6 +9,9 @@ activity_summary(date)
 \arguments{
 \item{date}{The date of records to be returned in "yyyy-mm-dd" or date(time) format}
 }
+\value{
+A tibble with the date and a number of actvity summary metrics for the day.
+}
 \description{
 See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
 }
