@@ -1,49 +1,54 @@
-#' @importFrom httr GET add_headers
+#' @importFrom httr GET add_headers stop_for_status
 #' @param url the endpoint
-#' @param token your Fitbit API bearer token
 #' @noRd
-get <- function(url, token = Sys.getenv("FITBIT_ACCESS_TOKEN")) {
+get <- function(url) {
   r <- GET(
     url,
     add_headers(
       .headers = c(
-        Authorization = paste0("Bearer ", token)
+        Authorization = paste0("Bearer ", .fitbitr_token$credentials$access_token)
       )
     )
   )
 
-  check_response(r)
+  if (check_token_expiry(r)) {
+    .fitbitr_token$refresh()
+    get(url)
+  }
+
+  stop_for_status(r)
 }
 
 #' @importFrom httr POST
 #' @param url the endpoint
 #' @param body the post body
-#' @param token your Fitbit API bearer token
 #' @noRd
-post <- function(url, body, token = Sys.getenv("FITBIT_ACCESS_TOKEN")) {
+post <- function(url, body) {
   r <- POST(
     url,
     body = body,
     add_headers(
       .headers = c(
-        Authorization = paste0("Bearer ", token)
+        Authorization = paste0("Bearer ", .fitbitr_token$credentials$access_token)
       )
     )
   )
 
-  check_response(r)
+  if (check_token_expiry(r)) {
+    .fitbitr_token$refresh()
+    post(url, body)
+  }
+
+  stop_for_status(r)
 }
 
 #' @noRd
 #' @param r the API response
-#' @return r (the response) on success, and otherwise errors out with an informative message
-check_response <- function(r) {
-  if (r$status_code == 200) {
-    return(r)
-  } else if (r$status_code == 401 && grepl("expired", content(r, as = "parsed", type = "application/json")$errors[[1]]$message)) {
-    stop("Your Fitbit Access Token has expired. Refresh it with refresh_token()")
+#' @return `TRUE` if the token is expired, `FALSE` otherwise
+check_token_expiry <- function(r) {
+  if (r$status_code == 401 && grepl("expired", content(r, as = "parsed", type = "application/json")$errors[[1]]$message)) {
+    TRUE
   } else {
-    msg <- content(r)$errors[[1]]$message
-    stop(msg)
+    FALSE
   }
 }

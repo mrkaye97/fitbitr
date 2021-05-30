@@ -4,21 +4,12 @@
 \alias{heart_rate_intraday}
 \title{Heart Rate Intraday}
 \usage{
-heart_rate_intraday(
-  date,
-  minutes = TRUE,
-  token = Sys.getenv("FITBIT_ACCESS_TOKEN"),
-  user_id = Sys.getenv("FITBIT_USER_ID")
-)
+heart_rate_intraday(date, minutes = TRUE)
 }
 \arguments{
 \item{date}{The start date of records to be returned in "yyyy-mm-dd" or date(time) format}
 
 \item{minutes}{a boolean for whether data should be returned in minutes (TRUE) or seconds (FALSE)}
-
-\item{token}{Fitbit access token}
-
-\item{user_id}{Fitbit user id}
 }
 \description{
 Returns heart rate data for the specified day

@@ -4,15 +4,7 @@
 \alias{lifetime_totals}
 \title{Lifetime Totals}
 \usage{
-lifetime_totals(
-  token = Sys.getenv("FITBIT_ACCESS_TOKEN"),
-  user_id = Sys.getenv("FITBIT_USER_ID")
-)
-}
-\arguments{
-\item{token}{Fitbit access token}
-
-\item{user_id}{Fitbit user id}
+lifetime_totals()
 }
 \description{
 Retrieve lifetime total distance, floors, steps calories, and active score

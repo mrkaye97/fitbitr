@@ -4,21 +4,12 @@
 \alias{minutes_fairly_active}
 \title{Minutes Fairly Active Time Series}
 \usage{
-minutes_fairly_active(
-  start_date,
-  end_date,
-  token = Sys.getenv("FITBIT_ACCESS_TOKEN"),
-  user_id = Sys.getenv("FITBIT_USER_ID")
-)
+minutes_fairly_active(start_date, end_date)
 }
 \arguments{
 \item{start_date}{The start date of records to be returned in "yyyy-mm-dd" or date(time) format}
 
 \item{end_date}{The end date of records to be returned in "yyyy-mm-dd" or date(time) format}
-
-\item{token}{Fitbit access token}
-
-\item{user_id}{Fitbit user id}
 }
 \description{
 Resource path /activities/minutesFairlyActive

@@ -3,28 +3,25 @@
 #' Returns a tibble of summary by night
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
-#' @param token Fitbit access token
-#' @param user_id Fitbit user id
-#' @importFrom purrr pluck list_modify
+#' @importFrom purrr pluck list_modify map flatten
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
 #' @importFrom dplyr arrange
 #' @return a tibble of sleep summary data
 #' @export
-sleep_summary <- function(start_date, end_date = start_date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
-  check_config_exists(token, user_id)
+sleep_summary <- function(start_date, end_date = start_date) {
+  check_token_exists()
 
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
-    user_id,
+    .fitbitr_token$credentials$user_id,
     start_date,
     end_date
   )
 
   r <- get(
-    url = url,
-    token = token
+    url = url
   )
 
   r %>%
@@ -59,28 +56,25 @@ sleep_summary <- function(start_date, end_date = start_date, token = Sys.getenv(
 #' Minutes in each stage, count of times in each stage, and a thirty day average for the number of minutes in each stage.
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
-#' @param token Fitbit access token
-#' @param user_id Fitbit user id
 #' @importFrom purrr pluck list_modify
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
 #' @importFrom dplyr arrange
 #' @return a tibble of sleep summary data
 #' @export
-sleep_stage_summary <- function(start_date, end_date = start_date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
-  check_config_exists(token, user_id)
+sleep_stage_summary <- function(start_date, end_date = start_date) {
+  check_token_exists()
 
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
-    user_id,
+    .fitbitr_token$credentials$user_id,
     start_date,
     end_date
   )
 
   r <- get(
-    url = url,
-    token = token
+    url = url
   ) %>%
     content() %>%
     pluck("sleep")
@@ -126,28 +120,25 @@ sleep_stage_summary <- function(start_date, end_date = start_date, token = Sys.g
 #' Very granular. Returns blocks of time spent in each phase.
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
-#' @param token Fitbit access token
-#' @param user_id Fitbit user id
 #' @importFrom purrr pluck list_modify
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
 #' @importFrom dplyr arrange
 #' @return a tibble of sleep summary data
 #' @export
-sleep_stage_granular <- function(start_date, end_date = start_date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
-  check_config_exists(token, user_id)
+sleep_stage_granular <- function(start_date, end_date = start_date) {
+  check_token_exists()
 
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
-    user_id,
+    .fitbitr_token$credentials$user_id,
     start_date,
     end_date
   )
 
   r <- get(
-    url = url,
-    token = token
+    url = url
   ) %>%
     content() %>%
     pluck("sleep")

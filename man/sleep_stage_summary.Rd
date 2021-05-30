@@ -4,21 +4,12 @@
 \alias{sleep_stage_summary}
 \title{Nightly Sleep Stage Summary Data}
 \usage{
-sleep_stage_summary(
-  start_date,
-  end_date = start_date,
-  token = Sys.getenv("FITBIT_ACCESS_TOKEN"),
-  user_id = Sys.getenv("FITBIT_USER_ID")
-)
+sleep_stage_summary(start_date, end_date = start_date)
 }
 \arguments{
 \item{start_date}{The start date of records to be returned in "yyyy-mm-dd" or date(time) format}
 
 \item{end_date}{The end date of records to be returned in "yyyy-mm-dd" or date(time) format}
-
-\item{token}{Fitbit access token}
-
-\item{user_id}{Fitbit user id}
 }
 \value{
 a tibble of sleep summary data

@@ -4,15 +4,7 @@
 \alias{lifetime_bests}
 \title{Lifetime Bests}
 \usage{
-lifetime_bests(
-  token = Sys.getenv("FITBIT_ACCESS_TOKEN"),
-  user_id = Sys.getenv("FITBIT_USER_ID")
-)
-}
-\arguments{
-\item{token}{Fitbit access token}
-
-\item{user_id}{Fitbit user id}
+lifetime_bests()
 }
 \description{
 Retrieve lifetime best distance, floors, and steps

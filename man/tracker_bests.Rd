@@ -4,15 +4,7 @@
 \alias{tracker_bests}
 \title{Tracker Bests}
 \usage{
-tracker_bests(
-  token = Sys.getenv("FITBIT_ACCESS_TOKEN"),
-  user_id = Sys.getenv("FITBIT_USER_ID")
-)
-}
-\arguments{
-\item{token}{Fitbit access token}
-
-\item{user_id}{Fitbit user id}
+tracker_bests()
 }
 \description{
 Retrieve tracker best distance, floors, and steps

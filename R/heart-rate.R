@@ -4,8 +4,6 @@
 #'
 #' @param date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param minutes a boolean for whether data should be returned in minutes (TRUE) or seconds (FALSE)
-#' @param token Fitbit access token
-#' @param user_id Fitbit user id
 #' @importFrom dplyr rename
 #' @importFrom lubridate as_datetime
 #' @importFrom rlang .data
@@ -14,20 +12,19 @@
 #' See \url{https://dev.fitbit.com/reference/web-api/heart-rate/#get-heart-rate-time-series} for more details.
 #'
 #' @export
-heart_rate_intraday <- function(date, minutes = TRUE, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
-  check_config_exists(token, user_id)
+heart_rate_intraday <- function(date, minutes = TRUE) {
+  check_token_exists()
 
   url <- sprintf(
     "%s/1/user/%s/activities/heart/date/%s/1d/%s.json",
     base_url,
-    user_id,
+    .fitbitr_token$credentials$user_id,
     date,
     ifelse(minutes, "1min", "1sec")
   )
 
   r <- get(
-    url = url,
-    token = token
+    url = url
   )
 
   r %>%
@@ -49,23 +46,20 @@ heart_rate_intraday <- function(date, minutes = TRUE, token = Sys.getenv("FITBIT
 #' @importFrom purrr map_chr
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
-#' @param token Fitbit access token
-#' @param user_id Fitbit user id
 #' @export
-heart_rate_zones <- function(start_date, end_date = start_date, token = Sys.getenv("FITBIT_ACCESS_TOKEN"), user_id = Sys.getenv("FITBIT_USER_ID")) {
-  check_config_exists(token, user_id)
+heart_rate_zones <- function(start_date, end_date = start_date) {
+  check_token_exists()
 
   url <- sprintf(
     "%s/1/user/%s/activities/heart/date/%s/%s.json",
     base_url,
-    user_id,
+    .fitbitr_token$credentials$user_id,
     start_date,
     end_date
   )
 
   r <- get(
-    url = url,
-    token = token
+    url = url
   )
 
   hr_data <- r %>%

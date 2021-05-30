@@ -4,18 +4,10 @@
 \alias{activity_summary}
 \title{Activity Summary}
 \usage{
-activity_summary(
-  date,
-  token = Sys.getenv("FITBIT_ACCESS_TOKEN"),
-  user_id = Sys.getenv("FITBIT_USER_ID")
-)
+activity_summary(date)
 }
 \arguments{
 \item{date}{The date of records to be returned in "yyyy-mm-dd" or date(time) format}
-
-\item{token}{Fitbit access token}
-
-\item{user_id}{Fitbit user id}
 }
 \description{
 See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
