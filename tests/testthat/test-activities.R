@@ -21,7 +21,7 @@ test_that("Activity calories downloads", {
 
   expect_equal(nrow(tmp), 2)
   expect_equal(ncol(tmp), 2)
-  expect_equal(colnames(tmp), c("date", "activityCalories"))
+  expect_equal(colnames(tmp), c("date", "activity_calories"))
   checkmate::expect_date(tmp$date)
 })
 
@@ -33,7 +33,7 @@ test_that("BMR calories downloads", {
 
   expect_equal(nrow(tmp), 2)
   expect_equal(ncol(tmp), 2)
-  expect_equal(colnames(tmp), c("date", "caloriesBMR"))
+  expect_equal(colnames(tmp), c("date", "calories_bmr"))
   checkmate::expect_date(tmp$date)
 })
 
