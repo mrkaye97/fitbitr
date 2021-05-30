@@ -10,7 +10,7 @@ load_cached_token(path = ".httr-oauth")
 \item{path}{the path to the file where the token is stored}
 }
 \value{
-No return value. The token is stored in the global environment as a hidden variable named `.fitbitr_token`
+No return value. The token is stored in the global environment as a hidden variable named \code{.fitbitr_token}
 }
 \description{
 Load a token from the cache

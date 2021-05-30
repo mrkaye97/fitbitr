@@ -26,13 +26,13 @@ generate_token(
 
 \item{cache}{Do you want to cache your token? See \link[httr]{oauth2.0_token} for details}
 
-\item{use_basic_auth}{A boolean for whether or not to use basic auth in \link[httr]{oauth2.0_token}. Defaults to `TRUE`}
+\item{use_basic_auth}{A boolean for whether or not to use basic auth in \link[httr]{oauth2.0_token}. Defaults to \code{TRUE}}
 
 \item{...}{additional arguments to be passed to \link[httr]{oauth2.0_token}}
 }
 \value{
-No return value. This function generates a token and saves it (hidden) in the global environment to be used for the remainder of the R session. You can cache this token with `cache = TRUE` or explicitly setting a filepath to cache to. See \link[httr]{oauth2.0_token} for details.
+No return value. This function generates a token and saves it (hidden) in the global environment to be used for the remainder of the R session. You can cache this token with \code{cache = TRUE} or explicitly setting a filepath to cache to. See \link[httr]{oauth2.0_token} for details.
 }
 \description{
-Simplify the setup process by persisting your Fitbit client_id and secret in the `.fitbitr-oauth` file.
+Simplify the setup process by persisting your Fitbit client_id and secret in the \code{.fitbitr-oauth} file.
 }
