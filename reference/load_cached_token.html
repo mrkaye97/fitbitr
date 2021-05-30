@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Nightly Sleep Stage Summary Data — sleep_stage_summary • fitbitr</title>
+<title>Load a token from the cache — load_cached_token • fitbitr</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Nightly Sleep Stage Summary Data — sleep_stage_summary" />
-<meta property="og:description" content="Returns a tibble of nightly sleep stage data.
-Minutes in each stage, count of times in each stage, and a thirty day average for the number of minutes in each stage." />
+<meta property="og:title" content="Load a token from the cache — load_cached_token" />
+<meta property="og:description" content="Load a token from the cache" />
 
 
 
@@ -109,34 +108,29 @@ Minutes in each stage, count of times in each stage, and a thirty day average fo
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Nightly Sleep Stage Summary Data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mrkaye97/fitbitr/blob/master/R/sleep.R'><code>R/sleep.R</code></a></small>
-    <div class="hidden name"><code>sleep_stage_summary.Rd</code></div>
+    <h1>Load a token from the cache</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mrkaye97/fitbitr/blob/master/R/setup.R'><code>R/setup.R</code></a></small>
+    <div class="hidden name"><code>load_cached_token.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Returns a tibble of nightly sleep stage data.
-Minutes in each stage, count of times in each stage, and a thirty day average for the number of minutes in each stage.</p>
+    <p>Load a token from the cache</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sleep_stage_summary</span><span class='op'>(</span><span class='va'>start_date</span>, end_date <span class='op'>=</span> <span class='va'>start_date</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>load_cached_token</span><span class='op'>(</span>path <span class='op'>=</span> <span class='st'>".httr-oauth"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>start_date</th>
-      <td><p>The start date of records to be returned in "yyyy-mm-dd" or date(time) format</p></td>
-    </tr>
-    <tr>
-      <th>end_date</th>
-      <td><p>The end date of records to be returned in "yyyy-mm-dd" or date(time) format</p></td>
+      <th>path</th>
+      <td><p>the path to the file where the token is stored</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a tibble of sleep summary data</p>
+    <p>No return value. The token is stored in the global environment as a hidden variable named `.fitbitr_token`</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

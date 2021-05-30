@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Nightly Sleep Stage Summary Data — sleep_stage_summary • fitbitr</title>
+<title>Generate a Fitbit API token — generate_token • fitbitr</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Nightly Sleep Stage Summary Data — sleep_stage_summary" />
-<meta property="og:description" content="Returns a tibble of nightly sleep stage data.
-Minutes in each stage, count of times in each stage, and a thirty day average for the number of minutes in each stage." />
+<meta property="og:title" content="Generate a Fitbit API token — generate_token" />
+<meta property="og:description" content="Simplify the setup process by persisting your Fitbit client_id and secret in the `.fitbitr-oauth` file." />
 
 
 
@@ -109,34 +108,62 @@ Minutes in each stage, count of times in each stage, and a thirty day average fo
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Nightly Sleep Stage Summary Data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mrkaye97/fitbitr/blob/master/R/sleep.R'><code>R/sleep.R</code></a></small>
-    <div class="hidden name"><code>sleep_stage_summary.Rd</code></div>
+    <h1>Generate a Fitbit API token</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mrkaye97/fitbitr/blob/master/R/setup.R'><code>R/setup.R</code></a></small>
+    <div class="hidden name"><code>generate_token.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Returns a tibble of nightly sleep stage data.
-Minutes in each stage, count of times in each stage, and a thirty day average for the number of minutes in each stage.</p>
+    <p>Simplify the setup process by persisting your Fitbit client_id and secret in the `.fitbitr-oauth` file.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sleep_stage_summary</span><span class='op'>(</span><span class='va'>start_date</span>, end_date <span class='op'>=</span> <span class='va'>start_date</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>generate_token</span><span class='op'>(</span>
+  <span class='va'>client_id</span>,
+  <span class='va'>client_secret</span>,
+  callback <span class='op'>=</span> <span class='st'>"http://localhost:1410/"</span>,
+  scope <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sleep"</span>, <span class='st'>"activity"</span>, <span class='st'>"heartrate"</span>, <span class='st'>"location"</span>, <span class='st'>"nutrition"</span>, <span class='st'>"profile"</span>,
+    <span class='st'>"settings"</span>, <span class='st'>"social"</span>, <span class='st'>"weight"</span><span class='op'>)</span>,
+  cache <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  use_basic_auth <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>start_date</th>
-      <td><p>The start date of records to be returned in "yyyy-mm-dd" or date(time) format</p></td>
+      <th>client_id</th>
+      <td><p>your Fitbit client ID</p></td>
     </tr>
     <tr>
-      <th>end_date</th>
-      <td><p>The end date of records to be returned in "yyyy-mm-dd" or date(time) format</p></td>
+      <th>client_secret</th>
+      <td><p>your Fitbit client secret</p></td>
+    </tr>
+    <tr>
+      <th>callback</th>
+      <td><p>your Fitbit redirect URL</p></td>
+    </tr>
+    <tr>
+      <th>scope</th>
+      <td><p>the scopes to enable</p></td>
+    </tr>
+    <tr>
+      <th>cache</th>
+      <td><p>Do you want to cache your token? See <a href='https://httr.r-lib.org/reference/oauth2.0_token.html'>oauth2.0_token</a> for details</p></td>
+    </tr>
+    <tr>
+      <th>use_basic_auth</th>
+      <td><p>A boolean for whether or not to use basic auth in <a href='https://httr.r-lib.org/reference/oauth2.0_token.html'>oauth2.0_token</a>. Defaults to `TRUE`</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>additional arguments to be passed to <a href='https://httr.r-lib.org/reference/oauth2.0_token.html'>oauth2.0_token</a></p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a tibble of sleep summary data</p>
+    <p>No return value. This function generates a token and saves it (hidden) in the global environment to be used for the remainder of the R session. You can cache this token with `cache = TRUE` or explicitly setting a filepath to cache to. See <a href='https://httr.r-lib.org/reference/oauth2.0_token.html'>oauth2.0_token</a> for details.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
