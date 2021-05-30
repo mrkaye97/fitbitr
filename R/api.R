@@ -1,4 +1,5 @@
 #' @importFrom httr GET add_headers stop_for_status
+#' @importFrom utils askYesNo
 #' @param url the endpoint
 #' @noRd
 get <- function(url) {
