@@ -33,7 +33,7 @@ sleep_summary <- function(start_date, end_date = start_date) {
     bind_rows() %>%
     arrange(.data$dateOfSleep) %>%
     mutate(
-      date = as.Date(.data$date)
+      date = as.Date(.data$dateOfSleep)
     ) %>%
     clean_names() %>%
     select(
