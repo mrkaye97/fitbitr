@@ -12,21 +12,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Interface with the Fitbit API">
-<meta property="og:description" content="fitbitr is an R package that makes it easy
-    to interface with the Fitbit API. Many Fitbit users, and
-    R-friendly Fitbit users especially, have found themselves curious
-    about their Fitbit data. Since Fitbit aggregates a large amount of
-    personal data, much of this data is interesting for persoanl research
-    (and to satisfy curiosity), personal projects, and even potentially in
-    medical settings. The goal of fitbitr` is to make interfacing with
-    the Fitbit API as streamlined as possible, to make it simple for R
-    users of all backgrounds and comfort levels to analyze their Fitbit
-    data, and do whatever they want with it! Currently, fitbitr` includes
-    methods for pulling data on activity, sleep, and heart rate, but this
-    list is likely to grow in the future as the package gains more
-    traction and more requests for new methods to be implemented come in.
-    You can find details on the Fitbit API at
-    &lt;https://dev.fitbit.com/build/reference/web-api/&gt; ">
+<meta property="og:description" content="Many Fitbit users, and R-friendly Fitbit
+    users especially, have found themselves curious about their Fitbit
+    data. Fitbit aggregates a large amount of personal data, much of
+    which is interesting for personal research and to satisfy curiosity,
+    and is even potentially useful in medical settings. The goal of
+    fitbitr` is to make interfacing with the Fitbit API as streamlined
+    as possible, to make it simple for R users of all backgrounds and
+    comfort levels to analyze their Fitbit data and do whatever they
+    want with it! Currently, fitbitr` includes methods for pulling data
+    on activity, sleep, and heart rate, but this list is likely to grow in
+    the future as the package gains more traction and more requests for
+    new methods to be implemented come in.  You can find details on the
+    Fitbit API at &lt;https://dev.fitbit.com/build/reference/web-api/&gt;.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -107,27 +105,21 @@
 </li>
 <li><p>You’ll be redirected to a page with your credentials. <strong>Make sure you keep the Client ID, Client Secret, and Redirect URL. You’ll need them to finish the setup process</strong>. You can always refer back to <a href="https://dev.fitbit.com/apps">the apps page</a> to find them again.</p></li>
 <li>
-<p>Run the following command:</p>
+<p>Generate a token:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(fitbitr)</span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">initial_setup</span>(</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">generate_token</span>(</span>
 <span id="cb2-4"><a href="#cb2-4"></a>  <span class="dt">client_id =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>CLIENT<span class="op">-</span>ID<span class="op">&gt;</span>,</span>
 <span id="cb2-5"><a href="#cb2-5"></a>  <span class="dt">client_secret =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>CLIENT<span class="op">-</span>SECRET<span class="op">&gt;</span></span>
 <span id="cb2-6"><a href="#cb2-6"></a><span class="st">  </span><span class="dt">callback =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>REDIRECT<span class="op">-</span>URL<span class="op">&gt;</span></span>
 <span id="cb2-7"><a href="#cb2-7"></a>)</span></code></pre></div>
 <ul>
 <li>If you want to edit the scopes that are enabled, you can do so with the <code>scopes = c('scopes', 'you', 'want', 'enabled')</code> argument. You can find information on the available scope options <a href="https://dev.fitbit.com/build/reference/web-api/oauth2/#scope">here</a>.</li>
-<li>If you want to use a file other than <code>~/.fitbitr-oauth</code> to cache your credentials, you can do so by specifying a file path with <code>path = &lt;your-file_path&gt;</code>.</li>
+<li>If you want to cache your token, you can do so by specifying either <code>cache = TRUE</code> or <code>cache = &lt;some-file-path&gt;</code>. See the docs on <code><a href="https://httr.r-lib.org/reference/oauth2.0_token.html">httr::oauth2.0_token()</a></code> for details.</li>
 </ul>
 </li>
-<li><p><code>initial_setup()</code> will send you to a page in your browser with a code in the URL. Copy the code into the prompt in your R session.</p></li>
-<li><p>And that’s it! You now have your Fitbit API credentials set up in the file you specified, and you can use <code>fitbitr_setup()</code> to set them as env vars to make calling individual functions easier.</p></li>
+<li><p>And that’s it! You now have your Fitbit API credentials set up. <code>fitbitr</code> tracks them behind the scenes for you, so all that you need to do at the start of each R session is either <code><a href="reference/generate_token.html">generate_token()</a></code> or <code><a href="reference/load_cached_token.html">load_cached_token()</a></code>, and you’ll be off and running.</p></li>
 </ol>
-</div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
-<p>See the vignettes for details on how to use <code>fitbitr</code></p>
 </div>
 </div>
   </div>
