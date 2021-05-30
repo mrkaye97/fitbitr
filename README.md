@@ -41,12 +41,12 @@ your Fitbit data:
     them to finish the setup process**. You can always refer back to
     [the apps page](https://dev.fitbit.com/apps) to find them again.
 
-4.  Run the following command:
+4.  Generate a token:
 
     ``` r
     library(fitbitr)
 
-    initial_setup(
+    generate_token(
       client_id = <YOUR-CLIENT-ID>,
       client_secret = <YOUR-CLIENT-SECRET>
       callback = <YOUR-REDIRECT-URL>
@@ -58,17 +58,12 @@ your Fitbit data:
         argument. You can find information on the available scope
         options
         [here](https://dev.fitbit.com/build/reference/web-api/oauth2/#scope).
-    -   If you want to use a file other than `~/.fitbitr-oauth` to cache
-        your credentials, you can do so by specifying a file path with
-        `path = <your-file_path>`.
+    -   If you want to cache your token, you can do so by specifying
+        either `cache = TRUE` or `cache = <some-file-path>`. See the
+        docs on `httr::oauth2.0_token()` for details.
 
-5.  `initial_setup()` will send you to a page in your browser with a
-    code in the URL. Copy the code into the prompt in your R session.
-
-6.  And that’s it! You now have your Fitbit API credentials set up in
-    the file you specified, and you can use `fitbitr_setup()` to set
-    them as env vars to make calling individual functions easier.
-
-## Usage
-
-See the vignettes for details on how to use `fitbitr`
+5.  And that’s it! You now have your Fitbit API credentials set up.
+    `fitbitr` tracks them behind the scenes for you, so all that you
+    need to do at the start of each R session is either
+    `generate_token()` or `load_cached_token()`, and you’ll be off and
+    running.

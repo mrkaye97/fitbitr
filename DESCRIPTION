@@ -8,21 +8,19 @@ Authors@R:
            family = "Kaye",
            role = c("aut", "cre"),
            email = "mrkaye97@gmail.com")
-Description: 'fitbitr' is an R package that makes it easy
-    to interface with the 'Fitbit' API. Many 'Fitbit' users, and
-    R-friendly 'Fitbit' users especially, have found themselves curious
-    about their 'Fitbit' data. Since 'Fitbit' aggregates a large amount of
-    personal data, much of this data is interesting for persoanl research
-    (and to satisfy curiosity), personal projects, and even potentially in
-    medical settings. The goal of 'fitbitr` is to make interfacing with
-    the 'Fitbit' API as streamlined as possible, to make it simple for R
-    users of all backgrounds and comfort levels to analyze their 'Fitbit'
-    data, and do whatever they want with it! Currently, 'fitbitr` includes
-    methods for pulling data on activity, sleep, and heart rate, but this
-    list is likely to grow in the future as the package gains more
-    traction and more requests for new methods to be implemented come in.
-    You can find details on the 'Fitbit' API at
-    <https://dev.fitbit.com/build/reference/web-api/> 
+Description: Many 'Fitbit' users, and R-friendly 'Fitbit'
+    users especially, have found themselves curious about their 'Fitbit'
+    data. 'Fitbit' aggregates a large amount of personal data, much of
+    which is interesting for personal research and to satisfy curiosity,
+    and is even potentially useful in medical settings. The goal of
+    'fitbitr` is to make interfacing with the 'Fitbit' API as streamlined
+    as possible, to make it simple for R users of all backgrounds and
+    comfort levels to analyze their 'Fitbit' data and do whatever they
+    want with it! Currently, 'fitbitr` includes methods for pulling data
+    on activity, sleep, and heart rate, but this list is likely to grow in
+    the future as the package gains more traction and more requests for
+    new methods to be implemented come in.  You can find details on the
+    'Fitbit' API at <https://dev.fitbit.com/build/reference/web-api/>.
 License: GPL (>= 3)
 URL: https://github.com/mrkaye97/fitbitr,
     https://mrkaye97.github.io/fitbitr/

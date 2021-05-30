@@ -5,7 +5,7 @@
 #' @importFrom dplyr bind_rows mutate select everything
 #' @importFrom httr content
 #' @importFrom janitor clean_names
-#' @return A tibble with the `date` and a number of actvity summary metrics for the day.
+#' @return A tibble with the `date` and a number of activity summary metrics for the day.
 #' @export
 activity_summary <- function(date) {
   check_token_exists()

@@ -12,7 +12,23 @@ get <- function(url) {
   )
 
   if (check_token_expiry(r)) {
-    .fitbitr_token$refresh()
+    message("Token expired. Trying to refresh...")
+
+    tryCatch(
+      .fitbitr_token$refresh(),
+      finally = function(e) {
+        do_refresh <- askYesNo(
+          "Could not refresh your token. Would you like to generate a new one?",
+          default = FALSE,
+          prompts = c('y', 'n', 'c')
+        )
+
+        if (do_refresh) {
+          message("Trying to generate a new token...")
+          .fitbitr_token$init_credentials()
+        }
+    })
+
     get(url)
   }
 
