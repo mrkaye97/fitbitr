@@ -1,5 +1,4 @@
-test_that('Token loads', {
-
+test_that("Token loads", {
   skip_on_cran()
   skip_on_ci()
 

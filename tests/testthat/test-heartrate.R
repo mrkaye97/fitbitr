@@ -1,8 +1,7 @@
-date <- start_date <- '2021-05-20'
-end_date <- '2021-05-21'
+date <- start_date <- "2021-05-20"
+end_date <- "2021-05-21"
 
 test_that("Heart rate by minute works", {
-
   skip_on_ci()
   skip_on_cran()
 
@@ -11,13 +10,12 @@ test_that("Heart rate by minute works", {
     minutes = TRUE
   )
 
-  expect_equal(colnames(tmp), c('time', 'heart_rate'))
+  expect_equal(colnames(tmp), c("time", "heart_rate"))
   expect_gt(nrow(tmp), 100)
   checkmate::expect_posixct(tmp$time)
 })
 
 test_that("Heart rate by second works", {
-
   skip_on_ci()
   skip_on_cran()
 
@@ -26,13 +24,12 @@ test_that("Heart rate by second works", {
     minutes = FALSE
   )
 
-  expect_equal(colnames(tmp), c('time', 'heart_rate'))
+  expect_equal(colnames(tmp), c("time", "heart_rate"))
   expect_gt(nrow(tmp), 100)
   checkmate::expect_posixct(tmp$time)
 })
 
 test_that("Heart rate zones works", {
-
   skip_on_ci()
   skip_on_cran()
 
@@ -42,4 +39,3 @@ test_that("Heart rate zones works", {
   expect_equal(colnames(tmp), c("date", "zone", "min_hr", "max_hr", "minutes_in_zone", "calories_out"))
   checkmate::expect_date(tmp$date)
 })
-

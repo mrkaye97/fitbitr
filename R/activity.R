@@ -134,7 +134,8 @@ floors <- function(start_date, end_date) {
   activity_time_series(
     start_date,
     end_date,
-    resource_path = "floors"  )
+    resource_path = "floors"
+  )
 }
 
 #' Elevation Time Series
@@ -189,7 +190,8 @@ minutes_fairly_active <- function(start_date, end_date) {
   activity_time_series(
     start_date,
     end_date,
-    resource_path = "minutesFairlyActive"  )
+    resource_path = "minutesFairlyActive"
+  )
 }
 
 #' Minutes Very Active Time Series
@@ -222,7 +224,6 @@ activity_calories <- function(start_date, end_date) {
 
 #' @noRd
 get_bests_and_totals <- function(best, tracker) {
-
   check_token_exists()
 
   url <- sprintf(
@@ -237,8 +238,8 @@ get_bests_and_totals <- function(best, tracker) {
 
   r %>%
     content() %>%
-    pluck(ifelse(best, 'best', 'lifetime')) %>%
-    pluck(ifelse(tracker, 'tracker', 'total'))
+    pluck(ifelse(best, "best", "lifetime")) %>%
+    pluck(ifelse(tracker, "tracker", "total"))
 }
 #' Tracker Totals
 #'
@@ -266,7 +267,8 @@ tracker_totals <- function() {
 lifetime_totals <- function() {
   get_bests_and_totals(
     best = FALSE,
-    tracker = FALSE  ) %>%
+    tracker = FALSE
+  ) %>%
     bind_rows() %>%
     select(
       .data$distance,
@@ -275,7 +277,6 @@ lifetime_totals <- function() {
       active_score = .data$activeScore,
       calories_out = .data$caloriesOut
     )
-
 }
 
 #' Tracker Bests

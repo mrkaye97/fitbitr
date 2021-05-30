@@ -13,15 +13,13 @@
 #' @return No return value. This function generates a token and saves it (hidden) in the global environment to be used for the remainder of the R session. You can cache this token with `cache = TRUE` or explicitly setting a filepath to cache to. See \link[httr]{oauth2.0_token} for details.
 #' @export
 generate_token <- function(
-                          client_id,
-                          client_secret,
-                          callback = 'http://localhost:1410/',
-                          scope = c("sleep", "activity", "heartrate", "location", "nutrition", "profile", "settings", "social", "weight"),
-                          cache = FALSE,
-                          use_basic_auth = TRUE,
-                          ...
-                          ) {
-
+                           client_id,
+                           client_secret,
+                           callback = "http://localhost:1410/",
+                           scope = c("sleep", "activity", "heartrate", "location", "nutrition", "profile", "settings", "social", "weight"),
+                           cache = FALSE,
+                           use_basic_auth = TRUE,
+                           ...) {
   endpoint <- create_endpoint()
   myapp <- oauth_app("r-package-test", key = client_id, secret = client_secret, redirect_uri = callback)
 
@@ -43,7 +41,7 @@ generate_token <- function(
 #' @param path the path to the file where the token is stored
 #' @return No return value. The token is stored in the global environment as a hidden variable named `.fitbitr_token`
 #' @export
-load_cached_token <- function(path = '.httr-oauth') {
+load_cached_token <- function(path = ".httr-oauth") {
   .fitbitr_token <<- path %>%
     readRDS() %>%
     keep(

@@ -82,10 +82,10 @@ sleep_stage_summary <- function(start_date, end_date = start_date) {
 
   sleep <- r %>%
     map(
-      pluck, 'levels'
+      pluck, "levels"
     ) %>%
     map(
-      pluck, 'summary'
+      pluck, "summary"
     ) %>%
     flatten() %>%
     enframe() %>%
@@ -93,7 +93,7 @@ sleep_stage_summary <- function(start_date, end_date = start_date) {
 
   dates <- r %>%
     map_chr(
-      pluck, 'dateOfSleep'
+      pluck, "dateOfSleep"
     ) %>%
     map(
       rep, 4
@@ -146,10 +146,10 @@ sleep_stage_granular <- function(start_date, end_date = start_date) {
 
   r %>%
     map(
-      pluck, 'levels'
+      pluck, "levels"
     ) %>%
     map(
-      pluck, 'data'
+      pluck, "data"
     ) %>%
     bind_rows() %>%
     rename(

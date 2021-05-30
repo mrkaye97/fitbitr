@@ -64,20 +64,20 @@ heart_rate_zones <- function(start_date, end_date = start_date) {
 
   hr_data <- r %>%
     content() %>%
-    pluck('activities-heart') %>%
+    pluck("activities-heart") %>%
     map(
-      pluck, 'value'
+      pluck, "value"
     ) %>%
     map(
-      pluck, 'heartRateZones'
+      pluck, "heartRateZones"
     ) %>%
     bind_rows()
 
   dates <- r %>%
     content() %>%
-    pluck('activities-heart') %>%
+    pluck("activities-heart") %>%
     map_chr(
-      pluck, 'dateTime'
+      pluck, "dateTime"
     )
 
   hr_data %>%

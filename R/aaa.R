@@ -1,5 +1,4 @@
 .onLoad <- function(libname, pkgname) {
-
   .fitbitr_token <<- NULL
 
   invisible()
