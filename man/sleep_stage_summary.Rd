@@ -18,3 +18,11 @@ A tibble of a variety of sleep stage summary data, by day
 Returns a tibble of nightly sleep stage data.
 Minutes in each stage, count of times in each stage, and a thirty day average for the number of minutes in each stage.
 }
+\examples{
+\dontrun{
+start_date <- lubridate::today() - lubridate::weeks(1)
+end_date <- lubridate::today()
+
+sleep_stage_summary(start_date, end_date)
+}
+}

@@ -17,3 +17,11 @@ A tibble of the date, the heart rate zone (\code{zone}), the minimum heart rate 
 \description{
 See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
 }
+\examples{
+\dontrun{
+start_date <- lubridate::today() - lubridate::weeks(1)
+end_date <- lubridate::today()
+
+heart_rate_zones(start_date, end_date)
+}
+}

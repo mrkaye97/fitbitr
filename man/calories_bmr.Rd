@@ -17,3 +17,10 @@ A tibble with two columns: \code{date} and \code{calories_bmr}
 \description{
 Resource path /activities/caloriesBMR
 }
+\examples{
+\dontrun{
+start_date <- lubridate::today() - lubridate::weeks(1)
+end_date <- lubridate::today()
+calories_bmr(date)
+}
+}

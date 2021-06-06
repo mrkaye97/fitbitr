@@ -11,11 +11,11 @@ Description: Many 'Fitbit' users, and R-friendly 'Fitbit' users
     especially, have found themselves curious about their 'Fitbit' data.
     'Fitbit' aggregates a large amount of personal data, much of which is
     interesting for personal research and to satisfy curiosity, and is
-    even potentially useful in medical settings. The goal of 'fitbitr` is
+    even potentially useful in medical settings. The goal of 'fitbitr' is
     to make interfacing with the 'Fitbit' API as streamlined as possible,
     to make it simple for R users of all backgrounds and comfort levels to
     analyze their 'Fitbit' data and do whatever they want with it!
-    Currently, 'fitbitr` includes methods for pulling data on activity,
+    Currently, 'fitbitr' includes methods for pulling data on activity,
     sleep, and heart rate, but this list is likely to grow in the future
     as the package gains more traction and more requests for new methods
     to be implemented come in.  You can find details on the 'Fitbit' API
@@ -36,6 +36,7 @@ Imports:
     tibble (>= 2.0.0),
     tidyr
 Suggests:
+    covr,
     checkmate (>= 2.0.0),
     spelling,
     testthat (>= 3.0.0)

@@ -15,3 +15,8 @@ No return value. The token is stored in the global environment as a hidden varia
 \description{
 Load a token from the cache
 }
+\examples{
+\dontrun{
+load_cached_token()
+}
+}

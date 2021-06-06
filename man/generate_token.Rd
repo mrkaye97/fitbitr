@@ -36,3 +36,12 @@ No return value. This function generates a token and saves it (hidden) in the gl
 \description{
 Simplify the setup process by persisting your Fitbit client_id and secret in the \code{.fitbitr-oauth} file.
 }
+\examples{
+\dontrun{
+generate_token(
+  client_id = <YOUR-CLIENT-ID>
+  client_secret = <YOUR-CLIENT-SECRET>,
+  cache = TRUE
+)
+}
+}

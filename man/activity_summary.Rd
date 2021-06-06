@@ -15,3 +15,9 @@ A tibble with the \code{date} and a number of activity summary metrics for the d
 \description{
 See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
 }
+\examples{
+\dontrun{
+date <- lubridate::today()
+activity_summary(date)
+}
+}
