@@ -20,3 +20,15 @@ Returns heart rate data for the specified day
 \details{
 See \url{https://dev.fitbit.com/reference/web-api/heart-rate/#get-heart-rate-time-series} for more details.
 }
+\examples{
+\dontrun{
+date <- lubridate::today()
+
+## get minute by minute data
+heart_rate_intraday(date, minutes = TRUE)
+
+## get more granular data
+##  (not necessarily by second, but more granular than minutes)
+heart_rate_intraday(date, minutes = FALSE)
+}
+}

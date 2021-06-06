@@ -17,3 +17,11 @@ A tibble of a variety of sleep summary data by day
 \description{
 Returns a tibble of summary by night
 }
+\examples{
+\dontrun{
+start_date <- lubridate::today() - lubridate::weeks(1)
+end_date <- lubridate::today()
+
+sleep_summary(start_date, end_date)
+}
+}

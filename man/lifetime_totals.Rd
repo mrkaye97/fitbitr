@@ -7,8 +7,13 @@
 lifetime_totals()
 }
 \value{
-A tibble of all-time totals across trackers (i.e. the total \code{distance}, \code{floors}, \code{steps}, \code{active_score}, and \code{calories_out} tracked across all of your trackers)
+A tibble of all-time totals across trackers (i.e. the total \code{distance}, \code{floors}, and \code{steps} tracked across all of your trackers)
 }
 \description{
-Retrieve lifetime total distance, floors, steps calories, and active score
+Retrieve lifetime total distance, floors, and steps
+}
+\examples{
+\dontrun{
+lifetime_totals()
+}
 }

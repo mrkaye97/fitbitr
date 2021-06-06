@@ -7,6 +7,13 @@
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
 #' @importFrom dplyr arrange
+#' @examples
+#' \dontrun{
+#' start_date <- lubridate::today() - lubridate::weeks(1)
+#' end_date <- lubridate::today()
+#'
+#' sleep_summary(start_date, end_date)
+#' }
 #' @return A tibble of a variety of sleep summary data by day
 #' @export
 sleep_summary <- function(start_date, end_date = start_date) {
@@ -21,11 +28,12 @@ sleep_summary <- function(start_date, end_date = start_date) {
   )
 
   r <- get(
-    url = url
+    url = url,
+    .example_identifier = "sleep summary"
   )
 
   r %>%
-    content() %>%
+    content(as = "parsed", type = "application/json") %>%
     pluck("sleep") %>%
     map(
       function(x) list_modify(x, "levels" = NULL)
@@ -61,6 +69,13 @@ sleep_summary <- function(start_date, end_date = start_date) {
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
 #' @importFrom dplyr arrange
+#' @examples
+#' \dontrun{
+#' start_date <- lubridate::today() - lubridate::weeks(1)
+#' end_date <- lubridate::today()
+#'
+#' sleep_stage_summary(start_date, end_date)
+#' }
 #' @return A tibble of a variety of sleep stage summary data, by day
 #' @export
 sleep_stage_summary <- function(start_date, end_date = start_date) {
@@ -75,9 +90,10 @@ sleep_stage_summary <- function(start_date, end_date = start_date) {
   )
 
   r <- get(
-    url = url
+    url = url,
+    .example_identifier = "sleep stage"
   ) %>%
-    content() %>%
+    content(as = "parsed", type = "application/json") %>%
     pluck("sleep")
 
 
@@ -125,6 +141,13 @@ sleep_stage_summary <- function(start_date, end_date = start_date) {
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
 #' @importFrom dplyr arrange
+#' @examples
+#' \dontrun{
+#' start_date <- lubridate::today() - lubridate::weeks(1)
+#' end_date <- lubridate::today()
+#'
+#' sleep_stage_granular(start_date, end_date)
+#' }
 #' @return A tibble of granular sleep stage data. This method is more granular than \link[fitbitr]{sleep_stage_summary}, and returns blocks of time that you spent in each zone throughout the night.
 #' @export
 sleep_stage_granular <- function(start_date, end_date = start_date) {
@@ -139,9 +162,10 @@ sleep_stage_granular <- function(start_date, end_date = start_date) {
   )
 
   r <- get(
-    url = url
+    url = url,
+    .example_identifier = "sleep stage"
   ) %>%
-    content() %>%
+    content(as = "parsed", type = "application/json") %>%
     pluck("sleep")
 
 

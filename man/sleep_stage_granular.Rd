@@ -18,3 +18,11 @@ A tibble of granular sleep stage data. This method is more granular than \link[f
 Returns a tibble of nightly sleep stage data.
 Very granular. Returns blocks of time spent in each phase.
 }
+\examples{
+\dontrun{
+start_date <- lubridate::today() - lubridate::weeks(1)
+end_date <- lubridate::today()
+
+sleep_stage_granular(start_date, end_date)
+}
+}
