@@ -1,5 +1,6 @@
 BMR
 CMD
+Codecov
 Fitbit
 Github
 Intraday
@@ -7,7 +8,6 @@ Lifecycle
 activityCalories
 auth
 caloriesBMR
-env
 filepath
 magrittr
 minutesFairlyActive
