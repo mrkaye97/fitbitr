@@ -3,7 +3,7 @@ end_date <- "2021-05-22"
 
 test_that("Activites summary downloads", {
   skip_on_cran()
-  
+
 
   tmp <- activity_summary(date)
 
@@ -15,7 +15,7 @@ test_that("Activites summary downloads", {
 
 test_that("Activity calories downloads", {
   skip_on_cran()
-  
+
 
   tmp <- activity_calories(start_date, end_date)
 
@@ -27,7 +27,7 @@ test_that("Activity calories downloads", {
 
 test_that("BMR calories downloads", {
   skip_on_cran()
-  
+
 
   tmp <- calories_bmr(start_date, end_date)
 
@@ -39,7 +39,7 @@ test_that("BMR calories downloads", {
 
 test_that("Total calories downloads", {
   skip_on_cran()
-  
+
 
   tmp <- calories(start_date, end_date)
 
@@ -51,7 +51,7 @@ test_that("Total calories downloads", {
 
 test_that("Distance downloads", {
   skip_on_cran()
-  
+
 
   tmp <- distance(start_date, end_date)
 
@@ -63,7 +63,7 @@ test_that("Distance downloads", {
 
 test_that("Elevation downloads", {
   skip_on_cran()
-  
+
 
   tmp <- elevation(start_date, end_date)
 
@@ -75,7 +75,7 @@ test_that("Elevation downloads", {
 
 test_that("Floors downloads", {
   skip_on_cran()
-  
+
 
   tmp <- floors(start_date, end_date)
 
@@ -87,7 +87,7 @@ test_that("Floors downloads", {
 
 test_that("Minutes downloads", {
   skip_on_cran()
-  
+
 
   sedentary <- minutes_sedentary(start_date, end_date)
   lightly <- minutes_lightly_active(start_date, end_date)

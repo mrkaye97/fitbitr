@@ -12,8 +12,7 @@
 #' @param ... additional arguments to be passed to \link[httr]{oauth2.0_token}
 #' @return No return value. This function generates a token and saves it (hidden) in the global environment to be used for the remainder of the R session. You can cache this token with `cache = TRUE` or explicitly setting a filepath to cache to. See \link[httr]{oauth2.0_token} for details.
 #' @export
-generate_token <- function(
-                           client_id,
+generate_token <- function(client_id,
                            client_secret,
                            callback = "http://localhost:1410/",
                            scope = c("sleep", "activity", "heartrate", "location", "nutrition", "profile", "settings", "social", "weight"),

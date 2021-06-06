@@ -4,7 +4,6 @@
 #' @param .example_identifier An internal identifier to choose which example to run
 #' @noRd
 get <- function(url, .example_identifier) {
-
   if (Sys.getenv("FITBITR_ENVIRONMENT") == "testing mode") {
     r <- get_example_response(url, .example_identifier)
   } else {

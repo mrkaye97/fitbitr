@@ -339,8 +339,8 @@ get_bests_and_totals <- function(best, tracker) {
   r %>%
     content(as = "parsed", type = "application/json") %>%
     pluck(
-      ifelse(best, "best", "lifetime"),    ## pluck best or lifetime
-      ifelse(tracker, "tracker", "total")  ## pluck tracker or total
+      ifelse(best, "best", "lifetime"), ## pluck best or lifetime
+      ifelse(tracker, "tracker", "total") ## pluck tracker or total
     )
 }
 #' Tracker Totals
