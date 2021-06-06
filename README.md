@@ -10,6 +10,8 @@
 Version](http://www.r-pkg.org/badges/version/fitbitr)](https://CRAN.R-project.org/package=fitbitr)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/fitbitr) [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Codecov test
+coverage](https://codecov.io/gh/mrkaye97/fitbitr/branch/master/graph/badge.svg)](https://codecov.io/gh/mrkaye97/fitbitr?branch=master)
 <!-- badges: end -->
 
 `fitbitr` makes it easy to interface with Fitbit data in R.

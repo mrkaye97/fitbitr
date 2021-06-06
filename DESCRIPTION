@@ -36,6 +36,7 @@ Imports:
     tibble (>= 2.0.0),
     tidyr
 Suggests:
+    covr,
     checkmate (>= 2.0.0),
     spelling,
     testthat (>= 3.0.0)
