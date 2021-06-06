@@ -10,6 +10,14 @@
 #' @param cache Do you want to cache your token? See \link[httr]{oauth2.0_token} for details
 #' @param use_basic_auth A boolean for whether or not to use basic auth in \link[httr]{oauth2.0_token}. Defaults to `TRUE`
 #' @param ... additional arguments to be passed to \link[httr]{oauth2.0_token}
+#' @examples
+#' \dontrun{
+#' generate_token(
+#'   client_id = <YOUR-CLIENT-ID>
+#'   client_secret = <YOUR-CLIENT-SECRET>,
+#'   cache = TRUE
+#' )
+#' }
 #' @return No return value. This function generates a token and saves it (hidden) in the global environment to be used for the remainder of the R session. You can cache this token with `cache = TRUE` or explicitly setting a filepath to cache to. See \link[httr]{oauth2.0_token} for details.
 #' @export
 generate_token <- function(client_id,
@@ -38,6 +46,10 @@ generate_token <- function(client_id,
 #'
 #' @importFrom purrr keep
 #' @param path the path to the file where the token is stored
+#' @examples
+#' \dontrun{
+#' load_cached_token()
+#' }
 #' @return No return value. The token is stored in the global environment as a hidden variable named `.fitbitr_token`
 #' @export
 load_cached_token <- function(path = ".httr-oauth") {
