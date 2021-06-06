@@ -36,45 +36,6 @@ get <- function(url, .example_identifier) {
   }
 }
 
-#' @importFrom httr POST
-#' @param url the endpoint
-#' @param body the post body
-#' @param .example_identifier An internal identifier to choose which example to run
-#' @noRd
-post <- function(url, body, .example_identifier) {
-
-  if (Sys.getenv("FITBITR_ENVIRONMENT") == "testing mode") {
-    r <- post_example_response(url, body, .example_identifier)
-  } else {
-    r <- POST(
-      url,
-      body = body,
-      add_headers(
-        .headers = c(
-          Authorization = paste0("Bearer ", .fitbitr_token$credentials$access_token)
-        )
-      )
-    )
-
-    if (check_token_expiry(r)) {
-      message("Token expired. Trying to refresh...")
-      tryCatch(
-        .fitbitr_token$refresh(),
-        error = function(e) ask_refresh("refresh", e)
-      )
-
-      post(url, body)
-    }
-
-    tryCatch(
-      stop_for_status(r),
-      error = function(e) {
-        ask_refresh("successfully query the API with", e)
-      }
-    )
-  }
-}
-
 #' @noRd
 #' @param r the API response
 #' @return `TRUE` if the token is expired, `FALSE` otherwise

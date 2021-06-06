@@ -6,6 +6,7 @@ response_class <- utils::getFromNamespace("response", "httr")
 #' @param url the url to get an example response for
 #' @param .example_identifier An internal identifier to choose which example to run
 #' @importFrom lubridate today
+#' @importFrom rlang warn
 get_example_response <- function(url, .example_identifier) {
   warn(
     "Heads up: You're in `fitbitr` testing mode. \n\nYou're seeing this message because you have the `FITBITR_ENVIRONMENT` env var set to 'testing mode'. \nIf you don't want to be in testing mode, please change the value of this environment variable.",
@@ -42,46 +43,6 @@ get_example_response <- function(url, .example_identifier) {
     ) %>% charToRaw()
   )
 }
-
-#' POST example response, given a URL
-#'
-#' @noRd
-#' @importFrom rlang warn
-#' @param url the url to get an example response for
-#' @param body the post body
-#' @param .example_identifier An internal identifier to choose which example to run
-post_example_response <- function(url, body, .example_identifier) {
-  warn(
-    "Heads up: You're in `fitbitr` testing mode. \n\nYou're seeing this message because you have the `FITBITR_ENVIRONMENT` env var set to 'testing mode'. \nIf you don't want to be in testing mode, please change the value of this environment variable.",
-    .frequency = "once",
-    .frequency_id = "0b69edb2-1c01-4014-8954-1a65136647cf"
-  )
-
-  response_class(
-    url = 'test',
-    status_code = 200,
-    cookies = NULL,
-    header = list(
-      date = today(),
-      `content-type` = "application/octet-stream",
-      `content-length` = "1",
-      `www-authenticate` = "local",
-      `x-frame-options` = "SAMEORIGIN",
-      via = "1.1 google",
-      `cf-cache-status` = "DYNAMIC",
-      `cf-request-id` = "xxxxxxxxxxxxxxxx",
-      `expect-ct` = "max-age=604800, report-uri=\"testing",
-      server = "local",
-      `cf-ray` = "xxxxxxxx"
-    ),
-    content = switch(
-      .example_identifier,
-      "activity summary" = activity_summary_example_response,
-      "activity time series" = activity_ts_example_response
-    )
-  )
-}
-
 
 ## Example responses
 activity_summary_example_response <- '
