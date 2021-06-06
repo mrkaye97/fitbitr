@@ -7,7 +7,11 @@ response_class <- utils::getFromNamespace("response", "httr")
 #' @param .example_identifier An internal identifier to choose which example to run
 #' @importFrom lubridate today
 get_example_response <- function(url, .example_identifier) {
-  message("Heads up: You're in `fitbitr` testing mode. \n\nYou're seeing this message because you have the `FITBITR_ENVIRONMENT` env var set to 'testing mode'. \nIf you don't want to be in testing mode, please change the value of this environment variable.")
+  warn(
+    "Heads up: You're in `fitbitr` testing mode. \n\nYou're seeing this message because you have the `FITBITR_ENVIRONMENT` env var set to 'testing mode'. \nIf you don't want to be in testing mode, please change the value of this environment variable.",
+    .frequency = "once",
+    .frequency_id = "0b69edb2-1c01-4014-8954-1a65136647cf"
+  )
 
   response_class(
     url = 'test',
@@ -30,7 +34,11 @@ get_example_response <- function(url, .example_identifier) {
       .example_identifier,
       "activity summary" = activity_summary_example_response,
       "activity time series" = activity_ts_example_response,
-      "bests and totals" = bests_and_totals_example_response
+      "bests and totals" = bests_and_totals_example_response,
+      "hr zones" = hr_zones_example,
+      "hr intraday" = hr_intraday_example,
+      "sleep summary" = sleep_summary_example,
+      "sleep stage" = sleep_stage_example
     ) %>% charToRaw()
   )
 }
@@ -38,12 +46,16 @@ get_example_response <- function(url, .example_identifier) {
 #' POST example response, given a URL
 #'
 #' @noRd
+#' @importFrom rlang warn
 #' @param url the url to get an example response for
 #' @param body the post body
 #' @param .example_identifier An internal identifier to choose which example to run
 post_example_response <- function(url, body, .example_identifier) {
-  message("Heads up: You're in `fitbitr` testing mode. \n\nYou're seeing this message because you have the `FITBITR_ENVIRONMENT` env var set to 'testing mode'. \nIf you don't want to be in testing mode, please change the value of this environment variable.")
-
+  warn(
+    "Heads up: You're in `fitbitr` testing mode. \n\nYou're seeing this message because you have the `FITBITR_ENVIRONMENT` env var set to 'testing mode'. \nIf you don't want to be in testing mode, please change the value of this environment variable.",
+    .frequency = "once",
+    .frequency_id = "0b69edb2-1c01-4014-8954-1a65136647cf"
+  )
 
   response_class(
     url = 'test',
@@ -180,5 +192,303 @@ bests_and_totals_example_response <- '
       "steps": 106934
     }
   }
+}
+'
+
+hr_zones_example <- '
+{
+    "activities-heart": [
+        {
+            "dateTime": "2015-08-04",
+            "value": {
+                "customHeartRateZones": [],
+                "heartRateZones": [
+                    {
+                        "caloriesOut": 740.15264,
+                        "max": 94,
+                        "min": 30,
+                        "minutes": 593,
+                        "name": "Out of Range"
+                    },
+                    {
+                        "caloriesOut": 249.66204,
+                        "max": 132,
+                        "min": 94,
+                        "minutes": 46,
+                        "name": "Fat Burn"
+                    },
+                    {
+                        "caloriesOut": 0,
+                        "max": 160,
+                        "min": 132,
+                        "minutes": 0,
+                        "name": "Cardio"
+                    },
+                    {
+                        "caloriesOut": 0,
+                        "max": 220,
+                        "min": 160,
+                        "minutes": 0,
+                        "name": "Peak"
+                    }
+                ],
+                "restingHeartRate": 68
+            }
+        }
+    ]
+}
+'
+
+hr_intraday_example <- '
+{
+    "activities-heart": [
+        {
+            "customHeartRateZones": [],
+            "dateTime": "today",
+            "heartRateZones": [
+                {
+                    "caloriesOut": 2.3246,
+                    "max": 94,
+                    "min": 30,
+                    "minutes": 2,
+                    "name": "Out of Range"
+                },
+                {
+                    "caloriesOut": 0,
+                    "max": 132,
+                    "min": 94,
+                    "minutes": 0,
+                    "name": "Fat Burn"
+                },
+                {
+                    "caloriesOut": 0,
+                    "max": 160,
+                    "min": 132,
+                    "minutes": 0,
+                    "name": "Cardio"
+                },
+                {
+                    "caloriesOut": 0,
+                    "max": 220,
+                    "min": 160,
+                    "minutes": 0,
+                    "name": "Peak"
+                }
+            ],
+            "value": "64.2"
+        }
+    ],
+    "activities-heart-intraday": {
+        "dataset": [
+            {
+                "time": "00:00:00",
+                "value": 64
+            },
+            {
+                "time": "00:00:10",
+                "value": 63
+            },
+            {
+                "time": "00:00:20",
+                "value": 64
+            },
+            {
+                "time": "00:00:30",
+                "value": 65
+            },
+            {
+                "time": "00:00:45",
+                "value": 65
+            }
+        ],
+        "datasetInterval": 1,
+        "datasetType": "second"
+    }
+}
+'
+
+sleep_summary_example <- '
+{
+    "sleep": [
+        {
+            "dateOfSleep": "2017-04-02",
+            "duration": 100,
+            "efficiency": 50,
+            "isMainSleep": true,
+            "levels": {
+                "summary": {
+                    "deep": {
+                        "count": 50,
+                        "minutes": 50,
+                        "thirtyDayAvgMinutes": 50
+                    },
+                    "light": {
+                        "count": 50,
+                        "minutes": 50,
+                        "thirtyDayAvgMinutes": 50
+                    },
+                    "rem": {
+                        "count": 50,
+                        "minutes": 50,
+                        "thirtyDayAvgMinutes": 50
+                    },
+                    "wake": {
+                        "count": 50,
+                        "minutes": 50,
+                        "thirtyDayAvgMinutes": 50
+                    }
+                },
+                "data": [
+                    {
+                        "datetime": "2017-04-01T23:58:30.000",
+                        "level": "wake",
+                        "seconds": 50
+                    },
+                    {
+                        "datetime": "2017-04-02T00:16:30.000",
+                        "level": "rem",
+                        "seconds": 50
+                    }
+                ],
+                "shortData": [
+                    {
+                        "datetime": "2017-04-02T05:58:30.000",
+                        "level": "wake",
+                        "seconds": 50
+                    },
+                    {
+                        "datetime": "2017-04-02T06:58:30.000",
+                        "level": "wake",
+                        "seconds": 50
+                    }
+                ]
+            },
+            "logId": 50,
+            "minutesAfterWakeup": 50,
+            "minutesAsleep": 50,
+            "minutesAwake": 50,
+            "minutesToFallAsleep": 50, // this is generally 0 for autosleep created sleep logs
+            "startTime": "2017-04-01T23:58:30.000",
+            "endTime": "2017-04-01T08:18:30.000",
+            "timeInBed": 2,
+            "type": "stages"
+        },
+        {
+            "dateOfSleep": "2017-04-02",
+            "duration": 100,
+            "efficiency": 50,
+            "isMainSleep": false,
+            "levels": {
+                "data": [
+                    {
+                        "dateTime": "2017-04-02T12:06:00.000",
+                        "level": "asleep",
+                        "seconds": 50
+                    },
+                    {
+                        "dateTime": "2017-04-02T12:13:00.000",
+                        "level": "restless",
+                        "seconds": 50
+                    },
+                    {
+                        "dateTime": "2017-04-02T12:14:00.000",
+                        "level": "awake",
+                        "seconds": 50
+                    }
+                ],
+                "summary": {
+                    "asleep": {
+                        "count": 0, // this field should not be used for "asleep" summary info
+                        "minutes": 50
+                    },
+                    "awake": {
+                        "count": 50,
+                        "minutes": 50
+                    },
+                    "restless": {
+                        "count": 50,
+                        "minutes": 50
+                    }
+                }
+            },
+            "logId": 50,
+            "minutesAfterWakeup": 50,
+            "minutesAsleep": 50,
+            "minutesAwake": 50,
+            "minutesToFallAsleep": 50, // this is generally 0 for autosleep created sleep logs
+            "startTime": "2017-04-02T12:06:00.000",
+            "timeInBed": 2,
+            "type": "classic"
+        }
+    ],
+    "summary": {
+        "totalMinutesAsleep": 50,
+        "totalSleepRecords": 2,
+        "totalTimeInBed": 2
+    }
+}
+'
+
+sleep_stage_example <- '
+{
+    "sleep": [
+        {
+            "dateOfSleep": "2017-04-02",
+            "duration": 100,
+            "efficiency": 50,
+            "isMainSleep": <true|false>,
+            "levels": {
+                "summary": {
+                    "deep": {
+                        "count": 50,
+                        "minutes": 50,
+                        "thirtyDayAvgMinutes": 50
+                    },
+                    "light": {
+                        "count": 50,
+                        "minutes": 50,
+                        "thirtyDayAvgMinutes": 50
+                    },
+                    "rem": {
+                        "count": 50,
+                        "minutes": 50,
+                        "thirtyDayAvgMinutes": 50
+                    },
+                    "wake": {
+                        "count": 50,
+                        "minutes": 50,
+                        "thirtyDayAvgMinutes": 50
+                    }
+                },
+                "data": [
+                    {
+                        "datetime": "2017-04-01T23:58:30.000",
+                        "level": "wake",
+                        "seconds": 50
+                    },
+                    {
+                        "datetime": "2017-04-02T00:16:30.000",
+                        "level": "light",
+                        "seconds": 50
+                    }
+                ],
+                "shortData": [
+                    {
+                        "datetime": "2017-04-02T05:58:30.000",
+                        "level": "wake",
+                        "seconds": 50
+                    }
+                ]
+            },
+            "logId": 50,
+            "minutesAfterWakeup": 50,
+            "minutesAsleep": 50,
+            "minutesAwake": 50,
+            "minutesToFallAsleep": 50, // this is generally 0 for autosleep created sleep logs
+            "startTime": "2017-04-01T23:58:30.000",
+            "timeInBed": 2,
+            "type": "stages"
+        }
+    ]
 }
 '

@@ -24,7 +24,8 @@ heart_rate_intraday <- function(date, minutes = TRUE) {
   )
 
   r <- get(
-    url = url
+    url = url,
+    .example_identifier = "hr intraday"
   )
 
   r %>%
@@ -61,7 +62,8 @@ heart_rate_zones <- function(start_date, end_date = start_date) {
   )
 
   r <- get(
-    url = url
+    url = url,
+    .example_identifier = "hr zones"
   )
 
   hr_data <- r %>%

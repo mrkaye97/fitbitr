@@ -3,23 +3,23 @@ end_date <- "2021-05-22"
 
 test_that("Activites summary downloads", {
   skip_on_cran()
-  skip_on_ci()
+  
 
   tmp <- activity_summary(date)
 
   expect_equal(nrow(tmp), 1)
-  expect_equal(ncol(tmp), 14)
+  expect_equal(ncol(tmp), 12)
   expect_equal(colnames(tmp)[1], "date")
   checkmate::expect_date(tmp$date)
 })
 
 test_that("Activity calories downloads", {
   skip_on_cran()
-  skip_on_ci()
+  
 
   tmp <- activity_calories(start_date, end_date)
 
-  expect_equal(nrow(tmp), 2)
+  expect_equal(nrow(tmp), 7)
   expect_equal(ncol(tmp), 2)
   expect_equal(colnames(tmp), c("date", "activity_calories"))
   checkmate::expect_date(tmp$date)
@@ -27,11 +27,11 @@ test_that("Activity calories downloads", {
 
 test_that("BMR calories downloads", {
   skip_on_cran()
-  skip_on_ci()
+  
 
   tmp <- calories_bmr(start_date, end_date)
 
-  expect_equal(nrow(tmp), 2)
+  expect_equal(nrow(tmp), 7)
   expect_equal(ncol(tmp), 2)
   expect_equal(colnames(tmp), c("date", "calories_bmr"))
   checkmate::expect_date(tmp$date)
@@ -39,11 +39,11 @@ test_that("BMR calories downloads", {
 
 test_that("Total calories downloads", {
   skip_on_cran()
-  skip_on_ci()
+  
 
   tmp <- calories(start_date, end_date)
 
-  expect_equal(nrow(tmp), 2)
+  expect_equal(nrow(tmp), 7)
   expect_equal(ncol(tmp), 2)
   expect_equal(colnames(tmp), c("date", "calories"))
   checkmate::expect_date(tmp$date)
@@ -51,11 +51,11 @@ test_that("Total calories downloads", {
 
 test_that("Distance downloads", {
   skip_on_cran()
-  skip_on_ci()
+  
 
   tmp <- distance(start_date, end_date)
 
-  expect_equal(nrow(tmp), 2)
+  expect_equal(nrow(tmp), 7)
   expect_equal(ncol(tmp), 2)
   expect_equal(colnames(tmp), c("date", "distance"))
   checkmate::expect_date(tmp$date)
@@ -63,11 +63,11 @@ test_that("Distance downloads", {
 
 test_that("Elevation downloads", {
   skip_on_cran()
-  skip_on_ci()
+  
 
   tmp <- elevation(start_date, end_date)
 
-  expect_equal(nrow(tmp), 2)
+  expect_equal(nrow(tmp), 7)
   expect_equal(ncol(tmp), 2)
   expect_equal(colnames(tmp), c("date", "elevation"))
   checkmate::expect_date(tmp$date)
@@ -75,11 +75,11 @@ test_that("Elevation downloads", {
 
 test_that("Floors downloads", {
   skip_on_cran()
-  skip_on_ci()
+  
 
   tmp <- floors(start_date, end_date)
 
-  expect_equal(nrow(tmp), 2)
+  expect_equal(nrow(tmp), 7)
   expect_equal(ncol(tmp), 2)
   expect_equal(colnames(tmp), c("date", "floors"))
   checkmate::expect_date(tmp$date)
@@ -87,7 +87,7 @@ test_that("Floors downloads", {
 
 test_that("Minutes downloads", {
   skip_on_cran()
-  skip_on_ci()
+  
 
   sedentary <- minutes_sedentary(start_date, end_date)
   lightly <- minutes_lightly_active(start_date, end_date)
@@ -103,7 +103,7 @@ test_that("Minutes downloads", {
 
   all_data %>%
     purrr::map(
-      ~ expect_equal(nrow(.x), 2)
+      ~ expect_equal(nrow(.x), 7)
     )
 
   all_data %>%
