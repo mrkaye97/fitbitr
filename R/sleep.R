@@ -25,7 +25,7 @@ sleep_summary <- function(start_date, end_date = start_date) {
   )
 
   r %>%
-    content() %>%
+    content(as = "parsed", type = "application/json") %>%
     pluck("sleep") %>%
     map(
       function(x) list_modify(x, "levels" = NULL)
@@ -77,7 +77,7 @@ sleep_stage_summary <- function(start_date, end_date = start_date) {
   r <- get(
     url = url
   ) %>%
-    content() %>%
+    content(as = "parsed", type = "application/json") %>%
     pluck("sleep")
 
 
@@ -141,7 +141,7 @@ sleep_stage_granular <- function(start_date, end_date = start_date) {
   r <- get(
     url = url
   ) %>%
-    content() %>%
+    content(as = "parsed", type = "application/json") %>%
     pluck("sleep")
 
 

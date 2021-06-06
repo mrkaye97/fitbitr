@@ -28,7 +28,7 @@ heart_rate_intraday <- function(date, minutes = TRUE) {
   )
 
   r %>%
-    content() %>%
+    content(as = "parsed", type = "application/json") %>%
     pluck("activities-heart-intraday") %>%
     pluck("dataset") %>%
     bind_rows() %>%
@@ -65,7 +65,7 @@ heart_rate_zones <- function(start_date, end_date = start_date) {
   )
 
   hr_data <- r %>%
-    content() %>%
+    content(as = "parsed", type = "application/json") %>%
     pluck("activities-heart") %>%
     map(
       pluck, "value"
@@ -76,7 +76,7 @@ heart_rate_zones <- function(start_date, end_date = start_date) {
     bind_rows()
 
   dates <- r %>%
-    content() %>%
+    content(as = "parsed", type = "application/json") %>%
     pluck("activities-heart") %>%
     map_chr(
       pluck, "dateTime"

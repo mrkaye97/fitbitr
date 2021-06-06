@@ -17,3 +17,10 @@ A tibble with two columns: \code{date} and \code{minutes_fairly_active}
 \description{
 Resource path /activities/minutesFairlyActive
 }
+\examples{
+\dontrun{
+start_date <- lubridate::today() - lubridate::weeks(1)
+end_date <- lubridate::today()
+minutes_fairly_active(date)
+}
+}

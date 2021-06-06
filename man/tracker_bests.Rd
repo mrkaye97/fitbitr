@@ -12,3 +12,8 @@ A tibble the best \code{distance}, \code{floors}, and \code{steps} (by date) tra
 \description{
 Retrieve tracker best distance, floors, and steps
 }
+\examples{
+\dontrun{
+tracker_bests()
+}
+}

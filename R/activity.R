@@ -5,6 +5,11 @@
 #' @importFrom dplyr bind_rows mutate select everything
 #' @importFrom httr content
 #' @importFrom janitor clean_names
+#' @examples
+#' \dontrun{
+#' date <- lubridate::today()
+#' activity_summary(date)
+#' }
 #' @return A tibble with the `date` and a number of activity summary metrics for the day.
 #' @export
 activity_summary <- function(date) {
@@ -18,11 +23,12 @@ activity_summary <- function(date) {
   )
 
   r <- get(
-    url = url
+    url = url,
+    .example_identifier = "activity summary"
   )
 
   r %>%
-    content() %>%
+    content(as = "parsed", type = "application/json") %>%
     pluck("summary") %>%
     list_modify("heartRateZones" = NULL) %>%
     list_modify("distances" = NULL) %>%
@@ -43,7 +49,7 @@ activity_summary <- function(date) {
 #' @importFrom purrr flatten_dfr
 #' @importFrom rlang :=
 #' @noRd
-activity_time_series <- function(start_date, end_date, resource_path) {
+activity_time_series <- function(start_date, end_date, resource_path, .example_identifier) {
   check_token_exists()
 
   url <- sprintf(
@@ -56,11 +62,12 @@ activity_time_series <- function(start_date, end_date, resource_path) {
   )
 
   r <- get(
-    url = url
+    url = url,
+    .example_identifier = .example_identifier
   )
 
   r %>%
-    content() %>%
+    content(as = "parsed", type = "application/json") %>%
     flatten_dfr() %>%
     rename(
       date = .data$dateTime,
@@ -77,13 +84,20 @@ activity_time_series <- function(start_date, end_date, resource_path) {
 #' Resource path /activities/calories
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @examples
+#' \dontrun{
+#' start_date <- lubridate::today() - lubridate::weeks(1)
+#' end_date <- lubridate::today()
+#' calories(date)
+#' }
 #' @return A tibble with two columns: `date` and `calories`
 #' @export
 calories <- function(start_date, end_date) {
   activity_time_series(
     start_date,
     end_date,
-    resource_path = "calories"
+    resource_path = "calories",
+    .example_identifier = "activity time series"
   )
 }
 
@@ -92,13 +106,20 @@ calories <- function(start_date, end_date) {
 #' Resource path /activities/caloriesBMR
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @examples
+#' \dontrun{
+#' start_date <- lubridate::today() - lubridate::weeks(1)
+#' end_date <- lubridate::today()
+#' calories_bmr(date)
+#' }
 #' @return A tibble with two columns: `date` and `calories_bmr`
 #' @export
 calories_bmr <- function(start_date, end_date) {
   activity_time_series(
     start_date,
     end_date,
-    resource_path = "caloriesBMR"
+    resource_path = "caloriesBMR",
+    .example_identifier = "activity time series"
   )
 }
 
@@ -107,13 +128,20 @@ calories_bmr <- function(start_date, end_date) {
 #' Resource path /activities/steps
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @examples
+#' \dontrun{
+#' start_date <- lubridate::today() - lubridate::weeks(1)
+#' end_date <- lubridate::today()
+#' steps(date)
+#' }
 #' @return A tibble with two columns: `date` and `steps`
 #' @export
 steps <- function(start_date, end_date) {
   activity_time_series(
     start_date,
     end_date,
-    resource_path = "steps"
+    resource_path = "steps",
+    .example_identifier = "activity time series"
   )
 }
 
@@ -122,13 +150,20 @@ steps <- function(start_date, end_date) {
 #' Resource path /activities/distance
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @examples
+#' \dontrun{
+#' start_date <- lubridate::today() - lubridate::weeks(1)
+#' end_date <- lubridate::today()
+#' distance(date)
+#' }
 #' @return A tibble with two columns: `date` and `distance`
 #' @export
 distance <- function(start_date, end_date) {
   activity_time_series(
     start_date,
     end_date,
-    resource_path = "distance"
+    resource_path = "distance",
+    .example_identifier = "activity time series"
   )
 }
 
@@ -137,13 +172,20 @@ distance <- function(start_date, end_date) {
 #' Resource path /activities/floors
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @examples
+#' \dontrun{
+#' start_date <- lubridate::today() - lubridate::weeks(1)
+#' end_date <- lubridate::today()
+#' floors(date)
+#' }
 #' @return A tibble with two columns: `date` and `floors`
 #' @export
 floors <- function(start_date, end_date) {
   activity_time_series(
     start_date,
     end_date,
-    resource_path = "floors"
+    resource_path = "floors",
+    .example_identifier = "activity time series"
   )
 }
 
@@ -152,13 +194,20 @@ floors <- function(start_date, end_date) {
 #' Resource path /activities/elevation
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @examples
+#' \dontrun{
+#' start_date <- lubridate::today() - lubridate::weeks(1)
+#' end_date <- lubridate::today()
+#' elevation(date)
+#' }
 #' @return A tibble with two columns: `date` and `elevation`
 #' @export
 elevation <- function(start_date, end_date) {
   activity_time_series(
     start_date,
     end_date,
-    resource_path = "elevation"
+    resource_path = "elevation",
+    .example_identifier = "activity time series"
   )
 }
 
@@ -167,13 +216,20 @@ elevation <- function(start_date, end_date) {
 #' Resource path /activities/minutesSedentary
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @examples
+#' \dontrun{
+#' start_date <- lubridate::today() - lubridate::weeks(1)
+#' end_date <- lubridate::today()
+#' minutes_sedentary(date)
+#' }
 #' @return A tibble with two columns: `date` and `minutes_sedentary`
 #' @export
 minutes_sedentary <- function(start_date, end_date) {
   activity_time_series(
     start_date,
     end_date,
-    resource_path = "minutesSedentary"
+    resource_path = "minutesSedentary",
+    .example_identifier = "activity time series"
   )
 }
 
@@ -182,13 +238,20 @@ minutes_sedentary <- function(start_date, end_date) {
 #' Resource path /activities/minutesLightlyActive
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @examples
+#' \dontrun{
+#' start_date <- lubridate::today() - lubridate::weeks(1)
+#' end_date <- lubridate::today()
+#' minutes_lightly_active(date)
+#' }
 #' @return A tibble with two columns: `date` and `minutes_lightly_active`
 #' @export
 minutes_lightly_active <- function(start_date, end_date) {
   activity_time_series(
     start_date,
     end_date,
-    resource_path = "minutesLightlyActive"
+    resource_path = "minutesLightlyActive",
+    .example_identifier = "activity time series"
   )
 }
 
@@ -197,13 +260,20 @@ minutes_lightly_active <- function(start_date, end_date) {
 #' Resource path /activities/minutesFairlyActive
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @examples
+#' \dontrun{
+#' start_date <- lubridate::today() - lubridate::weeks(1)
+#' end_date <- lubridate::today()
+#' minutes_fairly_active(date)
+#' }
 #' @return A tibble with two columns: `date` and `minutes_fairly_active`
 #' @export
 minutes_fairly_active <- function(start_date, end_date) {
   activity_time_series(
     start_date,
     end_date,
-    resource_path = "minutesFairlyActive"
+    resource_path = "minutesFairlyActive",
+    .example_identifier = "activity time series"
   )
 }
 
@@ -212,13 +282,20 @@ minutes_fairly_active <- function(start_date, end_date) {
 #' Resource path /activities/minutesVeryActive
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @examples
+#' \dontrun{
+#' start_date <- lubridate::today() - lubridate::weeks(1)
+#' end_date <- lubridate::today()
+#' minutes_very_active(date)
+#' }
 #' @return A tibble with two columns: `date` and `minutes_very_active`
 #' @export
 minutes_very_active <- function(start_date, end_date) {
   activity_time_series(
     start_date,
     end_date,
-    resource_path = "minutesVeryActive"
+    resource_path = "minutesVeryActive",
+    .example_identifier = "activity time series"
   )
 }
 
@@ -227,13 +304,20 @@ minutes_very_active <- function(start_date, end_date) {
 #' Resource path /activities/activityCalories
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#' @examples
+#' \dontrun{
+#' start_date <- lubridate::today() - lubridate::weeks(1)
+#' end_date <- lubridate::today()
+#' activity_calories(date)
+#' }
 #' @return A tibble with two columns: `date` and `activity_calories`
 #' @export
 activity_calories <- function(start_date, end_date) {
   activity_time_series(
     start_date,
     end_date,
-    resource_path = "activityCalories"
+    resource_path = "activityCalories",
+    .example_identifier = "activity time series"
   )
 }
 
@@ -248,19 +332,26 @@ get_bests_and_totals <- function(best, tracker) {
   )
 
   r <- get(
-    url = url
+    url = url,
+    .example_identifier = "bests and totals"
   )
 
   r %>%
-    content() %>%
-    pluck(ifelse(best, "best", "lifetime")) %>%
-    pluck(ifelse(tracker, "tracker", "total"))
+    content(as = "parsed", type = "application/json") %>%
+    pluck(
+      ifelse(best, "best", "lifetime"),    ## pluck best or lifetime
+      ifelse(tracker, "tracker", "total")  ## pluck tracker or total
+    )
 }
 #' Tracker Totals
 #'
-#' Retrieve tracker total distance, floors, steps calories, and active score
+#' Retrieve tracker total distance, floors, and steps
+#' @examples
+#' \dontrun{
+#' tracker_totals()
+#' }
 #' @export
-#' @return A tibble of all-time tracker totals (i.e. the total `distance`, `floors`, `steps`, `active_score`, and `calories_out` tracked by your tracker)
+#' @return A tibble of all-time tracker totals (i.e. the total `distance`, `floors`, and `steps` tracked by your tracker)
 tracker_totals <- function() {
   get_bests_and_totals(
     best = FALSE,
@@ -270,16 +361,18 @@ tracker_totals <- function() {
     select(
       .data$distance,
       .data$floors,
-      .data$steps,
-      active_score = .data$activeScore,
-      calories_out = .data$caloriesOut
+      .data$steps
     )
 }
 
 #' Lifetime Totals
 #'
-#' Retrieve lifetime total distance, floors, steps calories, and active score
-#' @return A tibble of all-time totals across trackers (i.e. the total `distance`, `floors`, `steps`, `active_score`, and `calories_out` tracked across all of your trackers)
+#' Retrieve lifetime total distance, floors, and steps
+#' @examples
+#' \dontrun{
+#' lifetime_totals()
+#' }
+#' @return A tibble of all-time totals across trackers (i.e. the total `distance`, `floors`, and `steps` tracked across all of your trackers)
 #' @export
 lifetime_totals <- function() {
   get_bests_and_totals(
@@ -290,15 +383,17 @@ lifetime_totals <- function() {
     select(
       .data$distance,
       .data$floors,
-      .data$steps,
-      active_score = .data$activeScore,
-      calories_out = .data$caloriesOut
+      .data$steps
     )
 }
 
 #' Tracker Bests
 #'
 #' Retrieve tracker best distance, floors, and steps
+#' @examples
+#' \dontrun{
+#' tracker_bests()
+#' }
 #' @importFrom tidyr unnest_wider
 #' @importFrom tibble enframe
 #' @return A tibble the best `distance`, `floors`, and `steps` (by date) tracked on your tracker
@@ -318,6 +413,10 @@ tracker_bests <- function() {
 #' Lifetime Bests
 #'
 #' Retrieve lifetime best distance, floors, and steps
+#' @examples
+#' \dontrun{
+#' lifetime_bests()
+#' }
 #' @return A tibble the best `distance`, `floors`, and `steps` (by date) tracked on any of your trackers
 #' @export
 lifetime_bests <- function() {
