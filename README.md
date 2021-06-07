@@ -18,14 +18,18 @@ coverage](https://codecov.io/gh/mrkaye97/fitbitr/branch/master/graph/badge.svg)]
 
 ## Installation
 
-You can download `fitbitr` from Github:
+You can install the CRAN version of `fitbitr` with:
+
+``` r
+install.packages("fitbitr")
+```
+
+Or you can install the latest dev version from Github:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("mrkaye97/fitbitr")
 ```
-
-CRAN release coming soon!
 
 ## Setup
 
