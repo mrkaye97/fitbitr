@@ -87,11 +87,13 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can download <code>fitbitr</code> from Github:</p>
+<p>You can install the CRAN version of <code>fitbitr</code> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"fitbitr"</span><span class="op">)</span></code></pre></div>
+<p>Or you can install the latest dev version from Github:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mrkaye97/fitbitr"</span><span class="op">)</span></code></pre></div>
-<p>CRAN release coming soon!</p>
 </div>
 <div id="setup" class="section level2">
 <h2 class="hasAnchor">
@@ -106,13 +108,13 @@
 <li><p>You’ll be redirected to a page with your credentials. <strong>Make sure you keep the Client ID, Client Secret, and Redirect URL. You’ll need them to finish the setup process</strong>. You can always refer back to <a href="https://dev.fitbit.com/apps">the apps page</a> to find them again.</p></li>
 <li>
 <p>Generate a token:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(fitbitr)</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">generate_token</span>(</span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="dt">client_id =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>CLIENT<span class="op">-</span>ID<span class="op">&gt;</span>,</span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="dt">client_secret =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>CLIENT<span class="op">-</span>SECRET<span class="op">&gt;</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="st">  </span><span class="dt">callback =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>REDIRECT<span class="op">-</span>URL<span class="op">&gt;</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(fitbitr)</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">generate_token</span>(</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">client_id =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>CLIENT<span class="op">-</span>ID<span class="op">&gt;</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="dt">client_secret =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>CLIENT<span class="op">-</span>SECRET<span class="op">&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="st">  </span><span class="dt">callback =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>REDIRECT<span class="op">-</span>URL<span class="op">&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>)</span></code></pre></div>
 <ul>
 <li>If you want to edit the scopes that are enabled, you can do so with the <code>scopes = c('scopes', 'you', 'want', 'enabled')</code> argument. You can find information on the available scope options <a href="https://dev.fitbit.com/build/reference/web-api/oauth2/#scope">here</a>.</li>
 <li>If you want to cache your token, you can do so by specifying either <code>cache = TRUE</code> or <code>cache = &lt;some-file-path&gt;</code>. See the docs on <code><a href="https://httr.r-lib.org/reference/oauth2.0_token.html">httr::oauth2.0_token()</a></code> for details.</li>
@@ -128,6 +130,8 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=fitbitr">https://​cloud.r-project.org/​package=fitbitr</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/mrkaye97/fitbitr/">https://​github.com/​mrkaye97/​fitbitr/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/mrkaye97/fitbitr/issues">https://​github.com/​mrkaye97/​fitbitr/​issues</a>
