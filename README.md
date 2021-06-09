@@ -24,7 +24,7 @@ You can install the CRAN version of `fitbitr` with:
 install.packages("fitbitr")
 ```
 
-Or you can install the latest dev version from Github:
+Or you can install the latest development version from Github:
 
 ``` r
 # install.packages("devtools")
