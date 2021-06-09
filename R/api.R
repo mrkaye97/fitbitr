@@ -25,6 +25,10 @@ get <- function(url, .example_identifier) {
       get(url)
     }
 
+    if (check_rate_limit(r)) {
+      stop("Fitbit API rate limit exceeded. For details, see https://dev.fitbit.com/build/reference/web-api/basics/#rate-limits.")
+    }
+
     tryCatch(
       stop_for_status(r),
       error = function(e) {
@@ -46,11 +50,22 @@ check_token_expiry <- function(r) {
 }
 
 #' @noRd
+#' @param r the API response
+#' @return `TRUE` if the token is expired, `FALSE` otherwise
+check_rate_limit <- function(r) {
+  if (r$status_code == 429 && grepl("Too Many Requests", content(r, as = "parsed", type = "application/json")$errors[[1]]$message)) {
+    TRUE
+  } else {
+    FALSE
+  }
+}
+
+#' @noRd
 #' @param reason A string reason for why the request failed
 #' @param error_message the error message
 #' @return No return value. Called for side effects
 ask_refresh <- function(reason, error_message) {
-  message(sprintf("%s. Error message: \n\n"))
+  message(sprintf("%s. Error message: \n\n", error_message))
   message(error_message)
   message("\n")
 
