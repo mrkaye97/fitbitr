@@ -6,7 +6,7 @@
 #' @importFrom purrr pluck list_modify map flatten
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
-#' @importFrom dplyr arrange
+#' @importFrom dplyr arrange across
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
@@ -56,6 +56,9 @@ sleep_summary <- function(start_date, end_date = start_date) {
       .data$minutes_awake,
       .data$minutes_after_wakeup,
       .data$time_in_bed
+    ) %>%
+    mutate(
+      across(c(.data$start_time, .data$end_time), as_datetime)
     )
 }
 
