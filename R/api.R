@@ -17,12 +17,16 @@ get <- function(url, .example_identifier) {
     )
 
     if (check_token_expiry(r)) {
-      tryCatch(
-        .fitbitr_token$refresh(),
-        error = function(e) ask_refresh("Token expired. Trying to refresh...", e)
+      tryCatch({
+        inform("Token expired. Trying to refresh...\n\n ...\n")
+        .fitbitr_token$refresh()
+      },
+        error = function(e) {
+          ask_refresh("Refresh failed", e)
+        }
       )
 
-      get(url)
+      return(get(url, .example_identifier))
     }
 
     if (check_rate_limit(r)) {
@@ -66,8 +70,8 @@ check_rate_limit <- function(r) {
 #' @importFrom rlang inform
 #' @return No return value. Called for side effects
 ask_refresh <- function(reason, error_message) {
-  inform(sprintf("%s. Error message: \n\n", error_message))
-  inform(error_message)
+  inform(sprintf("%s. Error message: \n\n", reason))
+  inform(error_message$message)
   inform("\n")
 
   do_refresh <- askYesNo(
