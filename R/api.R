@@ -17,10 +17,9 @@ get <- function(url, .example_identifier) {
     )
 
     if (check_token_expiry(r)) {
-      message("Token expired. Trying to refresh...")
       tryCatch(
         .fitbitr_token$refresh(),
-        error = function(e) ask_refresh("refresh", e)
+        error = function(e) ask_refresh("Token expired. Trying to refresh...", e)
       )
 
       get(url)
@@ -29,7 +28,7 @@ get <- function(url, .example_identifier) {
     tryCatch(
       stop_for_status(r),
       error = function(e) {
-        ask_refresh("successfully query the API with", e)
+        ask_refresh("Failed to query the API with your token", e)
       }
     )
   }
@@ -51,7 +50,7 @@ check_token_expiry <- function(r) {
 #' @param error_message the error message
 #' @return No return value. Called for side effects
 ask_refresh <- function(reason, error_message) {
-  message(sprintf("Could not %s your token. Error message:\n", reason))
+  message(sprintf("%s. Error message: \n\n"))
   message(error_message)
   message("\n")
 
