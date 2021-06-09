@@ -26,7 +26,7 @@ get <- function(url, .example_identifier) {
     }
 
     if (check_rate_limit(r)) {
-      stop("Fitbit API rate limit exceeded. For details, see https://dev.fitbit.com/build/reference/web-api/basics/#rate-limits.")
+      abort("Fitbit API rate limit exceeded. For details, see https://dev.fitbit.com/build/reference/web-api/basics/#rate-limits.")
     }
 
     tryCatch(
@@ -63,11 +63,12 @@ check_rate_limit <- function(r) {
 #' @noRd
 #' @param reason A string reason for why the request failed
 #' @param error_message the error message
+#' @importFrom rlang inform
 #' @return No return value. Called for side effects
 ask_refresh <- function(reason, error_message) {
-  message(sprintf("%s. Error message: \n\n", error_message))
-  message(error_message)
-  message("\n")
+  inform(sprintf("%s. Error message: \n\n", error_message))
+  inform(error_message)
+  inform("\n")
 
   do_refresh <- askYesNo(
     "Would you like to generate a new token?",
@@ -76,7 +77,7 @@ ask_refresh <- function(reason, error_message) {
   )
 
   if (do_refresh & !is.na(do_refresh)) {
-    message("Trying to generate a new token...")
+    inform("Trying to generate a new token...")
     .fitbitr_token$init_credentials()
   }
 
