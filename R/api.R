@@ -46,6 +46,7 @@ get <- function(url, .example_identifier) {
 #' @param r the API response
 #' @return `TRUE` if the token is expired, `FALSE` otherwise
 check_token_expiry <- function(r) {
+
   if (r$status_code == 401 && grepl("expired", content(r, as = "parsed", type = "application/json")$errors[[1]]$message)) {
     TRUE
   } else {
@@ -57,6 +58,7 @@ check_token_expiry <- function(r) {
 #' @param r the API response
 #' @return `TRUE` if the token is expired, `FALSE` otherwise
 check_rate_limit <- function(r) {
+
   if (r$status_code == 429 && grepl("Too Many Requests", content(r, as = "parsed", type = "application/json")$errors[[1]]$message)) {
     TRUE
   } else {
@@ -70,6 +72,7 @@ check_rate_limit <- function(r) {
 #' @importFrom rlang inform
 #' @return No return value. Called for side effects
 ask_refresh <- function(reason, error_message) {
+
   inform(sprintf("%s. Error message: \n\n", reason))
   inform(error_message$message)
   inform("\n")
@@ -83,6 +86,8 @@ ask_refresh <- function(reason, error_message) {
   if (do_refresh & !is.na(do_refresh)) {
     inform("Trying to generate a new token...")
     .fitbitr_token$init_credentials()
+  } else {
+    abort("No token was found, and a new one was not generated.")
   }
 
   invisible()
