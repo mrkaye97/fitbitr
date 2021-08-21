@@ -17,10 +17,11 @@ get <- function(url, .example_identifier) {
     )
 
     if (check_token_expiry(r)) {
-      tryCatch({
-        inform("Token expired. Trying to refresh...\n\n ...\n")
-        .fitbitr_token$refresh()
-      },
+      tryCatch(
+        {
+          inform("Token expired. Trying to refresh...\n\n ...\n")
+          .fitbitr_token$refresh()
+        },
         error = function(e) {
           ask_refresh("Refresh failed", e)
         }
@@ -46,7 +47,6 @@ get <- function(url, .example_identifier) {
 #' @param r the API response
 #' @return `TRUE` if the token is expired, `FALSE` otherwise
 check_token_expiry <- function(r) {
-
   if (r$status_code == 401 && grepl("expired", content(r, as = "parsed", type = "application/json")$errors[[1]]$message)) {
     TRUE
   } else {
@@ -58,7 +58,6 @@ check_token_expiry <- function(r) {
 #' @param r the API response
 #' @return `TRUE` if the token is expired, `FALSE` otherwise
 check_rate_limit <- function(r) {
-
   if (r$status_code == 429 && grepl("Too Many Requests", content(r, as = "parsed", type = "application/json")$errors[[1]]$message)) {
     TRUE
   } else {
@@ -72,7 +71,6 @@ check_rate_limit <- function(r) {
 #' @importFrom rlang inform
 #' @return No return value. Called for side effects
 ask_refresh <- function(reason, error_message) {
-
   inform(sprintf("%s. Error message: \n\n", reason))
   inform(error_message$message)
   inform("\n")
