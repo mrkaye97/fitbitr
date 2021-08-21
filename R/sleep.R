@@ -68,7 +68,7 @@ sleep_summary <- function(start_date, end_date = start_date) {
 #' Minutes in each stage, count of times in each stage, and a thirty day average for the number of minutes in each stage.
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
-#' @importFrom purrr pluck list_modify
+#' @importFrom purrr pluck list_modify map_dfr
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
 #' @importFrom dplyr arrange
@@ -99,35 +99,25 @@ sleep_stage_summary <- function(start_date, end_date = start_date) {
     content(as = "parsed", type = "application/json") %>%
     pluck("sleep")
 
+  r %>%
+    map_dfr(
+      function(x) {
+        values <- x %>%
+          pluck("levels", "summary")
 
-  sleep <- r %>%
-    map(
-      pluck, "levels"
-    ) %>%
-    map(
-      pluck, "summary"
-    ) %>%
-    flatten() %>%
-    enframe() %>%
-    unnest_wider(.data$value)
+        n <- names(values)
 
-  dates <- r %>%
-    map_chr(
-      pluck, "dateOfSleep"
-    ) %>%
-    map(
-      rep, 4
-    ) %>%
-    unlist() %>%
-    as.Date()
-
-  sleep %>%
-    mutate(
-      date = dates
+        values %>%
+          bind_rows() %>%
+          mutate(
+            stage = n,
+            date = x$dateOfSleep
+          )
+      }
     ) %>%
     select(
       .data$date,
-      stage = .data$name,
+      .data$stage,
       .data$count,
       .data$minutes,
       thirty_day_avg_minutes = .data$thirtyDayAvgMinutes
