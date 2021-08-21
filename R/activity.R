@@ -34,7 +34,8 @@ activity_summary <- function(date) {
     list_modify("distances" = NULL) %>%
     bind_rows() %>%
     mutate(
-      date = as.Date(date)
+      date = as.Date(date),
+      across(-.data$date, as.numeric)
     ) %>%
     select(date, everything()) %>%
     clean_names()
@@ -74,7 +75,8 @@ activity_time_series <- function(start_date, end_date, resource_path, .example_i
       !!resource_path := .data$value
     ) %>%
     mutate(
-      date = as.Date(.data$date)
+      date = as.Date(.data$date),
+      across(-.data$date, as.numeric)
     ) %>%
     clean_names()
 }

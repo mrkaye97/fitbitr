@@ -17,19 +17,27 @@ get <- function(url, .example_identifier) {
     )
 
     if (check_token_expiry(r)) {
-      message("Token expired. Trying to refresh...")
       tryCatch(
-        .fitbitr_token$refresh(),
-        error = function(e) ask_refresh("refresh", e)
+        {
+          inform("Token expired. Trying to refresh...\n\n ...\n")
+          .fitbitr_token$refresh()
+        },
+        error = function(e) {
+          ask_refresh("Refresh failed", e)
+        }
       )
 
-      get(url)
+      return(get(url, .example_identifier))
+    }
+
+    if (check_rate_limit(r)) {
+      abort("Fitbit API rate limit exceeded. For details, see https://dev.fitbit.com/build/reference/web-api/basics/#rate-limits.")
     }
 
     tryCatch(
       stop_for_status(r),
       error = function(e) {
-        ask_refresh("successfully query the API with", e)
+        ask_refresh("Failed to query the API with your token", e)
       }
     )
   }
@@ -47,13 +55,25 @@ check_token_expiry <- function(r) {
 }
 
 #' @noRd
+#' @param r the API response
+#' @return `TRUE` if the token is expired, `FALSE` otherwise
+check_rate_limit <- function(r) {
+  if (r$status_code == 429 && grepl("Too Many Requests", content(r, as = "parsed", type = "application/json")$errors[[1]]$message)) {
+    TRUE
+  } else {
+    FALSE
+  }
+}
+
+#' @noRd
 #' @param reason A string reason for why the request failed
 #' @param error_message the error message
+#' @importFrom rlang inform
 #' @return No return value. Called for side effects
 ask_refresh <- function(reason, error_message) {
-  message(sprintf("Could not %s your token. Error message:\n", reason))
-  message(error_message)
-  message("\n")
+  inform(sprintf("%s. Error message: \n\n", reason))
+  inform(error_message$message)
+  inform("\n")
 
   do_refresh <- askYesNo(
     "Would you like to generate a new token?",
@@ -62,8 +82,10 @@ ask_refresh <- function(reason, error_message) {
   )
 
   if (do_refresh & !is.na(do_refresh)) {
-    message("Trying to generate a new token...")
+    inform("Trying to generate a new token...")
     .fitbitr_token$init_credentials()
+  } else {
+    abort("No token was found, and a new one was not generated.")
   }
 
   invisible()
