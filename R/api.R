@@ -77,7 +77,7 @@ ask_refresh <- function(reason, error_message) {
 
   do_refresh <- askYesNo(
     "Would you like to generate a new token?",
-    default = FALSE,
+    default = TRUE,
     prompts = c("y", "n", "c")
   )
 
