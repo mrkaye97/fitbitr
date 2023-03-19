@@ -1,4 +1,22 @@
-#' @importFrom httr GET add_headers stop_for_status
+#' @importFrom jsonlite toJSON
+stop_for_status <- function(response) {
+  status_code <- response$status_code
+  if (status_code == 200) {
+    return(invisible())
+  } else {
+    response <- content(response)
+
+    abort(
+      c(
+        sprintf("Fitbit API request failed with status code %s", status_code),
+        "*" = "Error text below:",
+        toJSON(response$errors, pretty = TRUE, auto_unbox = TRUE)
+      )
+    )
+  }
+}
+
+#' @importFrom httr GET add_headers
 #' @importFrom utils askYesNo
 #' @param url the endpoint
 #' @param .example_identifier An internal identifier to choose which example to run
