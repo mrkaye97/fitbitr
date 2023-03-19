@@ -4,7 +4,6 @@ end_date <- "2021-05-22"
 test_that("Activites summary downloads", {
   skip_on_cran()
 
-
   tmp <- get_activity_summary(date)
 
   expect_equal(nrow(tmp), 1)
@@ -116,3 +115,4 @@ test_that("Minutes downloads", {
       ~ checkmate::expect_date(.x$date)
     )
 })
+
