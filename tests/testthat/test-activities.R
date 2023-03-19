@@ -15,7 +15,6 @@ test_that("Activites summary downloads", {
 test_that("Activity calories downloads", {
   skip_on_cran()
 
-
   tmp <- get_activity_calories(start_date, end_date)
 
   expect_equal(nrow(tmp), 7)
