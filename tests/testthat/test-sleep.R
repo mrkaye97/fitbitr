@@ -4,7 +4,7 @@ end_date <- "2021-05-21"
 test_that("Sleep works", {
   skip_on_cran()
 
-  tmp <- sleep_summary(
+  tmp <- get_sleep_summary(
     start_date = start_date,
     end_date = end_date
   )

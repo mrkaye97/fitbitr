@@ -37,7 +37,7 @@ get_example_response <- function(url, .example_identifier) {
       "bests and totals" = bests_and_totals_example_response,
       "hr zones" = hr_zones_example,
       "hr intraday" = hr_intraday_example,
-      "sleep summary" = sleep_summary_example,
+      "sleep summary" = get_sleep_summary_example,
       "sleep stage" = sleep_stage_example
     ) %>% charToRaw()
   )
@@ -267,7 +267,7 @@ hr_intraday_example <- '
 }
 '
 
-sleep_summary_example <- '
+get_sleep_summary_example <- '
 {
     "sleep": [
         {

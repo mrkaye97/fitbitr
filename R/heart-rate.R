@@ -16,14 +16,14 @@
 #' date <- lubridate::today()
 #'
 #' ## get minute by minute data
-#' heart_rate_intraday(date, minutes = TRUE)
+#' get_heart_rate_intraday(date, minutes = TRUE)
 #'
 #' ## get more granular data
 #' ##  (not necessarily by second, but more granular than minutes)
-#' heart_rate_intraday(date, minutes = FALSE)
+#' get_heart_rate_intraday(date, minutes = FALSE)
 #' }
 #' @export
-heart_rate_intraday <- function(date, minutes = TRUE) {
+get_heart_rate_intraday <- function(date, minutes = TRUE) {
   check_token_exists()
 
   url <- sprintf(
@@ -64,11 +64,11 @@ heart_rate_intraday <- function(date, minutes = TRUE) {
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
 #'
-#' heart_rate_zones(start_date, end_date)
+#' get_heart_rate_zones(start_date, end_date)
 #' }
 #' @return A tibble of the date, the heart rate zone (`zone`), the minimum heart rate in that zone (`min_hr`), the maximum heart rate in that zone (`max_hr`), the minutes in that zone (`minutes_in_zone`), and the calories burned in that zone (`calories_out`)
 #' @export
-heart_rate_zones <- function(start_date, end_date = start_date) {
+get_heart_rate_zones <- function(start_date, end_date = start_date) {
   check_token_exists()
 
   url <- sprintf(
