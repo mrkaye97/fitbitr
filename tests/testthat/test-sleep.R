@@ -16,3 +16,55 @@ test_that("Sleep works", {
 
   checkmate::expect_date(tmp$date)
 })
+
+test_that("Sleep stage granular works", {
+  skip_on_cran()
+
+  sleep <- get_sleep_stage_granular(
+    start_date,
+    end_date
+  )
+
+  expected <- jsonlite::fromJSON(sleep_stage_example)
+
+  expect_identical(
+    sleep$time,
+    lubridate::as_datetime(expected$sleep$levels$data[[1]]$dateTime)
+  )
+
+  expect_identical(
+    sleep$seconds,
+    expected$sleep$levels$data[[1]]$seconds
+  )
+
+  expect_identical(
+    sleep$level,
+    expected$sleep$levels$data[[1]]$level
+  )
+})
+
+test_that("Sleep stage summary works", {
+  skip_on_cran()
+
+  sleep <- get_sleep_stage_summary(
+    start_date,
+    end_date
+  )
+
+  expected <- jsonlite::fromJSON(sleep_stage_example)$sleep$levels$summary
+
+  expect_identical(
+    sleep$count,
+    c(
+      expected$deep$count,
+      expected$light$count,
+      expected$rem$count,
+      expected$wake$count
+    )
+  )
+
+  expect_identical(
+    sleep$stage,
+    c("deep", "light", "rem", "wake")
+  )
+})

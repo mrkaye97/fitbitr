@@ -125,19 +125,21 @@ test_that("Steps downloads", {
     7
   )
 
+  expected <- jsonlite::fromJSON(activity_ts_example_response)
+
   expect_equal(
     min(steps$date),
-    as.Date("2011-04-27")
+    as.Date(min(expected$example$dateTime))
   )
 
   expect_equal(
     max(steps$date),
-    as.Date("2011-05-03")
+    as.Date(max(expected$example$dateTime))
   )
 
   expect_equal(
     max(steps$steps),
-    15828
+    max(expected$example$value)
   )
 
   expect_identical(
@@ -181,5 +183,47 @@ test_that("Activity TS schemas match", {
         ncol(series)
       )
     }
+  )
+})
+
+test_that("Bests and totals", {
+  tracker_best <- get_bests_and_totals(TRUE, TRUE)
+  tracker_total <- get_bests_and_totals(FALSE, TRUE)
+  lifetime_best <- get_bests_and_totals(TRUE, FALSE)
+  lifetime_total <- get_bests_and_totals(FALSE, FALSE)
+
+  expect_identical(
+    names(tracker_best),
+    names(tracker_total)
+  )
+  expect_identical(
+    names(lifetime_best),
+    names(lifetime_total)
+  )
+  expect_identical(
+    names(tracker_best),
+    names(lifetime_best)
+  )
+
+  expected <- jsonlite::fromJSON(bests_and_totals_example_response)
+
+  expect_identical(
+    lifetime_total,
+    expected$lifetime$total
+  )
+
+  expect_identical(
+    lifetime_best,
+    expected$best$total
+  )
+
+  expect_identical(
+    tracker_total,
+    expected$lifetime$tracker
+  )
+
+  expect_identical(
+    tracker_best,
+    expected$best$tracker
   )
 })

@@ -163,13 +163,9 @@ get_sleep_stage_granular <- function(start_date, end_date = start_date) {
 
 
   r %>%
-    map(
-      pluck, "levels"
+    map_dfr(
+      pluck, "levels", "data"
     ) %>%
-    map(
-      pluck, "data"
-    ) %>%
-    bind_rows() %>%
     rename(
       time = "dateTime"
     ) %>%

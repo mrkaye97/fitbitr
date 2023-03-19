@@ -35,6 +35,7 @@ get_activity_summary <- function(date) {
     bind_rows() %>%
     mutate(
       date = as.Date(date),
+      across(-"date", as.numeric)
     ) %>%
     select("date", everything()) %>%
     clean_names()

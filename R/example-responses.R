@@ -300,24 +300,24 @@ get_sleep_summary_example <- '
                 },
                 "data": [
                     {
-                        "datetime": "2017-04-01T23:58:30.000",
+                        "dateTime": "2017-04-01T23:58:30.000",
                         "level": "wake",
                         "seconds": 50
                     },
                     {
-                        "datetime": "2017-04-02T00:16:30.000",
+                        "dateTime": "2017-04-02T00:16:30.000",
                         "level": "rem",
                         "seconds": 50
                     }
                 ],
                 "shortData": [
                     {
-                        "datetime": "2017-04-02T05:58:30.000",
+                        "dateTime": "2017-04-02T05:58:30.000",
                         "level": "wake",
                         "seconds": 50
                     },
                     {
-                        "datetime": "2017-04-02T06:58:30.000",
+                        "dateTime": "2017-04-02T06:58:30.000",
                         "level": "wake",
                         "seconds": 50
                     }
@@ -396,7 +396,7 @@ sleep_stage_example <- '
             "dateOfSleep": "2017-04-02",
             "duration": 100,
             "efficiency": 50,
-            "isMainSleep": <true|false>,
+            "isMainSleep": true,
             "levels": {
                 "summary": {
                     "deep": {
@@ -422,19 +422,19 @@ sleep_stage_example <- '
                 },
                 "data": [
                     {
-                        "datetime": "2017-04-01T23:58:30.000",
+                        "dateTime": "2017-04-01T23:58:30.000",
                         "level": "wake",
                         "seconds": 50
                     },
                     {
-                        "datetime": "2017-04-02T00:16:30.000",
+                        "dateTime": "2017-04-02T00:16:30.000",
                         "level": "light",
                         "seconds": 50
                     }
                 ],
                 "shortData": [
                     {
-                        "datetime": "2017-04-02T05:58:30.000",
+                        "dateTime": "2017-04-02T05:58:30.000",
                         "level": "wake",
                         "seconds": 50
                     }

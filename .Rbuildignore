@@ -11,3 +11,4 @@
 ^CRAN-RELEASE$
 ^\.httr-oauth$
 ^codecov\.yml$
+.httr-oauth

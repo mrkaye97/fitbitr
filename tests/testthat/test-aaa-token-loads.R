@@ -9,3 +9,10 @@ test_that("Token loads", {
 
   expect_true(tmp)
 })
+
+test_that("Testing mode warns", {
+  expect_warning(
+    get_steps('2020-01-01', '2020-01-03'),
+    "Heads up: You're in"
+  )
+})
