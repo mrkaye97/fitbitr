@@ -5,9 +5,9 @@
 \title{Generate a Fitbit API token}
 \usage{
 generate_token(
-  client_id,
-  client_secret,
-  callback = "http://localhost:1410/",
+  client_id = Sys.getenv("FITBIT_CLIENT_ID"),
+  client_secret = Sys.getenv("FITBIT_CLIENT_SECRET"),
+  callback = Sys.getenv("FITBIT_CALLBACK", "http://localhost:1410/"),
   scope = c("sleep", "activity", "heartrate", "location", "nutrition", "profile",
     "settings", "social", "weight"),
   cache = FALSE,

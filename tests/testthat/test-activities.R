@@ -5,7 +5,7 @@ test_that("Activites summary downloads", {
   skip_on_cran()
 
 
-  tmp <- activity_summary(date)
+  tmp <- get_activity_summary(date)
 
   expect_equal(nrow(tmp), 1)
   expect_equal(ncol(tmp), 12)
@@ -17,7 +17,7 @@ test_that("Activity calories downloads", {
   skip_on_cran()
 
 
-  tmp <- activity_calories(start_date, end_date)
+  tmp <- get_activity_calories(start_date, end_date)
 
   expect_equal(nrow(tmp), 7)
   expect_equal(ncol(tmp), 2)
@@ -41,7 +41,7 @@ test_that("Total calories downloads", {
   skip_on_cran()
 
 
-  tmp <- calories(start_date, end_date)
+  tmp <- get_calories(start_date, end_date)
 
   expect_equal(nrow(tmp), 7)
   expect_equal(ncol(tmp), 2)

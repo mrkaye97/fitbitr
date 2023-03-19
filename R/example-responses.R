@@ -32,7 +32,7 @@ get_example_response <- function(url, .example_identifier) {
       `cf-ray` = "xxxxxxxx"
     ),
     content = switch(.example_identifier,
-      "activity summary" = activity_summary_example_response,
+      "activity summary" = get_activity_summary_example_response,
       "activity time series" = activity_ts_example_response,
       "bests and totals" = bests_and_totals_example_response,
       "hr zones" = hr_zones_example,
@@ -44,7 +44,7 @@ get_example_response <- function(url, .example_identifier) {
 }
 
 ## Example responses
-activity_summary_example_response <- '
+get_activity_summary_example_response <- '
 {
   "activities": [
     {

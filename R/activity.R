@@ -8,11 +8,11 @@
 #' @examples
 #' \dontrun{
 #' date <- lubridate::today()
-#' activity_summary(date)
+#' get_activity_summary(date)
 #' }
 #' @return A tibble with the `date` and a number of activity summary metrics for the day.
 #' @export
-activity_summary <- function(date) {
+get_activity_summary <- function(date) {
   check_token_exists()
 
   url <- sprintf(
@@ -50,7 +50,7 @@ activity_summary <- function(date) {
 #' @importFrom purrr flatten_dfr
 #' @importFrom rlang :=
 #' @noRd
-activity_time_series <- function(start_date, end_date, resource_path, .example_identifier) {
+get_activity_time_series <- function(start_date, end_date, resource_path, .example_identifier) {
   check_token_exists()
 
   url <- sprintf(
@@ -94,8 +94,8 @@ activity_time_series <- function(start_date, end_date, resource_path, .example_i
 #' }
 #' @return A tibble with two columns: `date` and `calories`
 #' @export
-calories <- function(start_date, end_date) {
-  activity_time_series(
+get_calories <- function(start_date, end_date) {
+  get_activity_time_series(
     start_date,
     end_date,
     resource_path = "calories",
@@ -117,7 +117,7 @@ calories <- function(start_date, end_date) {
 #' @return A tibble with two columns: `date` and `calories_bmr`
 #' @export
 calories_bmr <- function(start_date, end_date) {
-  activity_time_series(
+  get_activity_time_series(
     start_date,
     end_date,
     resource_path = "caloriesBMR",
@@ -139,7 +139,7 @@ calories_bmr <- function(start_date, end_date) {
 #' @return A tibble with two columns: `date` and `steps`
 #' @export
 steps <- function(start_date, end_date) {
-  activity_time_series(
+  get_activity_time_series(
     start_date,
     end_date,
     resource_path = "steps",
@@ -161,7 +161,7 @@ steps <- function(start_date, end_date) {
 #' @return A tibble with two columns: `date` and `distance`
 #' @export
 distance <- function(start_date, end_date) {
-  activity_time_series(
+  get_activity_time_series(
     start_date,
     end_date,
     resource_path = "distance",
@@ -183,7 +183,7 @@ distance <- function(start_date, end_date) {
 #' @return A tibble with two columns: `date` and `floors`
 #' @export
 floors <- function(start_date, end_date) {
-  activity_time_series(
+  get_activity_time_series(
     start_date,
     end_date,
     resource_path = "floors",
@@ -205,7 +205,7 @@ floors <- function(start_date, end_date) {
 #' @return A tibble with two columns: `date` and `elevation`
 #' @export
 elevation <- function(start_date, end_date) {
-  activity_time_series(
+  get_activity_time_series(
     start_date,
     end_date,
     resource_path = "elevation",
@@ -227,7 +227,7 @@ elevation <- function(start_date, end_date) {
 #' @return A tibble with two columns: `date` and `minutes_sedentary`
 #' @export
 minutes_sedentary <- function(start_date, end_date) {
-  activity_time_series(
+  get_activity_time_series(
     start_date,
     end_date,
     resource_path = "minutesSedentary",
@@ -249,7 +249,7 @@ minutes_sedentary <- function(start_date, end_date) {
 #' @return A tibble with two columns: `date` and `minutes_lightly_active`
 #' @export
 minutes_lightly_active <- function(start_date, end_date) {
-  activity_time_series(
+  get_activity_time_series(
     start_date,
     end_date,
     resource_path = "minutesLightlyActive",
@@ -271,7 +271,7 @@ minutes_lightly_active <- function(start_date, end_date) {
 #' @return A tibble with two columns: `date` and `minutes_fairly_active`
 #' @export
 minutes_fairly_active <- function(start_date, end_date) {
-  activity_time_series(
+  get_activity_time_series(
     start_date,
     end_date,
     resource_path = "minutesFairlyActive",
@@ -293,7 +293,7 @@ minutes_fairly_active <- function(start_date, end_date) {
 #' @return A tibble with two columns: `date` and `minutes_very_active`
 #' @export
 minutes_very_active <- function(start_date, end_date) {
-  activity_time_series(
+  get_activity_time_series(
     start_date,
     end_date,
     resource_path = "minutesVeryActive",
@@ -310,12 +310,12 @@ minutes_very_active <- function(start_date, end_date) {
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
-#' activity_calories(date)
+#' get_activity_calories(date)
 #' }
 #' @return A tibble with two columns: `date` and `activity_calories`
 #' @export
-activity_calories <- function(start_date, end_date) {
-  activity_time_series(
+get_activity_calories <- function(start_date, end_date) {
+  get_activity_time_series(
     start_date,
     end_date,
     resource_path = "activityCalories",
@@ -350,11 +350,11 @@ get_bests_and_totals <- function(best, tracker) {
 #' Retrieve tracker total distance, floors, and steps
 #' @examples
 #' \dontrun{
-#' tracker_totals()
+#' get_tracker_totals()
 #' }
 #' @export
 #' @return A tibble of all-time tracker totals (i.e. the total `distance`, `floors`, and `steps` tracked by your tracker)
-tracker_totals <- function() {
+get_tracker_totals <- function() {
   get_bests_and_totals(
     best = FALSE,
     tracker = TRUE
@@ -372,11 +372,11 @@ tracker_totals <- function() {
 #' Retrieve lifetime total distance, floors, and steps
 #' @examples
 #' \dontrun{
-#' lifetime_totals()
+#' get_lifetime_totals()
 #' }
 #' @return A tibble of all-time totals across trackers (i.e. the total `distance`, `floors`, and `steps` tracked across all of your trackers)
 #' @export
-lifetime_totals <- function() {
+get_lifetime_totals <- function() {
   get_bests_and_totals(
     best = FALSE,
     tracker = FALSE
@@ -394,13 +394,13 @@ lifetime_totals <- function() {
 #' Retrieve tracker best distance, floors, and steps
 #' @examples
 #' \dontrun{
-#' tracker_bests()
+#' get_tracker_bests()
 #' }
 #' @importFrom tidyr unnest_wider
 #' @importFrom tibble enframe
 #' @return A tibble the best `distance`, `floors`, and `steps` (by date) tracked on your tracker
 #' @export
-tracker_bests <- function() {
+get_tracker_bests <- function() {
   get_bests_and_totals(
     best = TRUE,
     tracker = TRUE
@@ -417,11 +417,11 @@ tracker_bests <- function() {
 #' Retrieve lifetime best distance, floors, and steps
 #' @examples
 #' \dontrun{
-#' lifetime_bests()
+#' get_lifetime_bests()
 #' }
 #' @return A tibble the best `distance`, `floors`, and `steps` (by date) tracked on any of your trackers
 #' @export
-lifetime_bests <- function() {
+get_lifetime_bests <- function() {
   get_bests_and_totals(
     best = TRUE,
     tracker = FALSE
