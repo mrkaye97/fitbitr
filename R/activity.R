@@ -35,9 +35,8 @@ get_activity_summary <- function(date) {
     bind_rows() %>%
     mutate(
       date = as.Date(date),
-      across(-.data$date, as.numeric)
     ) %>%
-    select(date, everything()) %>%
+    select("date", everything()) %>%
     clean_names()
 }
 
@@ -71,12 +70,12 @@ get_activity_time_series <- function(start_date, end_date, resource_path, .examp
     content(as = "parsed", type = "application/json") %>%
     flatten_dfr() %>%
     rename(
-      date = .data$dateTime,
-      !!resource_path := .data$value
+      date = "dateTime",
+      !!resource_path := "value"
     ) %>%
     mutate(
       date = as.Date(.data$date),
-      across(-.data$date, as.numeric)
+      across(-"date", as.numeric)
     ) %>%
     clean_names()
 }
@@ -112,11 +111,11 @@ get_calories <- function(start_date, end_date) {
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
-#' calories_bmr(date)
+#' get_calories_bmr(date)
 #' }
 #' @return A tibble with two columns: `date` and `calories_bmr`
 #' @export
-calories_bmr <- function(start_date, end_date) {
+get_calories_bmr <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -134,11 +133,11 @@ calories_bmr <- function(start_date, end_date) {
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
-#' steps(date)
+#' get_steps(date)
 #' }
 #' @return A tibble with two columns: `date` and `steps`
 #' @export
-steps <- function(start_date, end_date) {
+get_steps <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -156,11 +155,11 @@ steps <- function(start_date, end_date) {
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
-#' distance(date)
+#' get_distance(date)
 #' }
 #' @return A tibble with two columns: `date` and `distance`
 #' @export
-distance <- function(start_date, end_date) {
+get_distance <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -178,11 +177,11 @@ distance <- function(start_date, end_date) {
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
-#' floors(date)
+#' get_floors(date)
 #' }
 #' @return A tibble with two columns: `date` and `floors`
 #' @export
-floors <- function(start_date, end_date) {
+get_floors <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -200,11 +199,11 @@ floors <- function(start_date, end_date) {
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
-#' elevation(date)
+#' get_elevation(date)
 #' }
 #' @return A tibble with two columns: `date` and `elevation`
 #' @export
-elevation <- function(start_date, end_date) {
+get_elevation <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -222,11 +221,11 @@ elevation <- function(start_date, end_date) {
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
-#' minutes_sedentary(date)
+#' get_minutes_sedentary(date)
 #' }
 #' @return A tibble with two columns: `date` and `minutes_sedentary`
 #' @export
-minutes_sedentary <- function(start_date, end_date) {
+get_minutes_sedentary <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -244,11 +243,11 @@ minutes_sedentary <- function(start_date, end_date) {
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
-#' minutes_lightly_active(date)
+#' get_minutes_lightly_active(date)
 #' }
 #' @return A tibble with two columns: `date` and `minutes_lightly_active`
 #' @export
-minutes_lightly_active <- function(start_date, end_date) {
+get_minutes_lightly_active <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -266,11 +265,11 @@ minutes_lightly_active <- function(start_date, end_date) {
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
-#' minutes_fairly_active(date)
+#' get_minutes_fairly_active(date)
 #' }
 #' @return A tibble with two columns: `date` and `minutes_fairly_active`
 #' @export
-minutes_fairly_active <- function(start_date, end_date) {
+get_minutes_fairly_active <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -288,11 +287,11 @@ minutes_fairly_active <- function(start_date, end_date) {
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
-#' minutes_very_active(date)
+#' get_minutes_very_active(date)
 #' }
 #' @return A tibble with two columns: `date` and `minutes_very_active`
 #' @export
-minutes_very_active <- function(start_date, end_date) {
+get_minutes_very_active <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -361,9 +360,9 @@ get_tracker_totals <- function() {
   ) %>%
     bind_rows() %>%
     select(
-      .data$distance,
-      .data$floors,
-      .data$steps
+      "distance",
+      "floors",
+      "steps"
     )
 }
 
@@ -383,9 +382,9 @@ get_lifetime_totals <- function() {
   ) %>%
     bind_rows() %>%
     select(
-      .data$distance,
-      .data$floors,
-      .data$steps
+      "distance",
+      "floors",
+      "steps"
     )
 }
 
@@ -406,9 +405,9 @@ get_tracker_bests <- function() {
     tracker = TRUE
   ) %>%
     enframe() %>%
-    unnest_wider(.data$value) %>%
+    unnest_wider("value") %>%
     rename(
-      metric = .data$name
+      metric = "name"
     )
 }
 
@@ -427,8 +426,8 @@ get_lifetime_bests <- function() {
     tracker = FALSE
   ) %>%
     enframe() %>%
-    unnest_wider(.data$value) %>%
+    unnest_wider("value") %>%
     rename(
-      metric = .data$name
+      metric = "name"
     )
 }

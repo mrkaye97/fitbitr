@@ -39,26 +39,26 @@ get_sleep_summary <- function(start_date, end_date = start_date) {
       function(x) list_modify(x, "levels" = NULL)
     ) %>%
     bind_rows() %>%
-    arrange(.data$dateOfSleep) %>%
+    arrange("dateOfSleep") %>%
     mutate(
       date = as.Date(.data$dateOfSleep)
     ) %>%
     clean_names() %>%
     select(
-      .data$log_id,
-      .data$date,
-      .data$start_time,
-      .data$end_time,
-      .data$duration,
-      .data$efficiency,
-      .data$minutes_to_fall_asleep,
-      .data$minutes_asleep,
-      .data$minutes_awake,
-      .data$minutes_after_wakeup,
-      .data$time_in_bed
+      "log_id",
+      "date",
+      "start_time",
+      "end_time",
+      "duration",
+      "efficiency",
+      "minutes_to_fall_asleep",
+      "minutes_asleep",
+      "minutes_awake",
+      "minutes_after_wakeup",
+      "time_in_bed"
     ) %>%
     mutate(
-      across(c(.data$start_time, .data$end_time), as_datetime)
+      across(c("start_time", "end_time"), as_datetime)
     )
 }
 
@@ -116,11 +116,11 @@ get_sleep_stage_summary <- function(start_date, end_date = start_date) {
       }
     ) %>%
     select(
-      .data$date,
-      .data$stage,
-      .data$count,
-      .data$minutes,
-      thirty_day_avg_minutes = .data$thirtyDayAvgMinutes
+      "date",
+      "stage",
+      "count",
+      "minutes",
+      thirty_day_avg_minutes = "thirtyDayAvgMinutes"
     )
 }
 
@@ -171,7 +171,7 @@ get_sleep_stage_granular <- function(start_date, end_date = start_date) {
     ) %>%
     bind_rows() %>%
     rename(
-      time = .data$dateTime
+      time = "dateTime"
     ) %>%
     mutate(
       time = as_datetime(.data$time)

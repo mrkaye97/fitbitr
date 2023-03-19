@@ -41,14 +41,13 @@ get_heart_rate_intraday <- function(date, minutes = TRUE) {
 
   r %>%
     content(as = "parsed", type = "application/json") %>%
-    pluck("activities-heart-intraday") %>%
-    pluck("dataset") %>%
+    pluck("activities-heart-intraday", "dataset") %>%
     bind_rows() %>%
     mutate(
-      time = as_datetime(paste0(date, .data$time))
+      time = as_datetime(paste0(date, "time"))
     ) %>%
     rename(
-      heart_rate = .data$value
+      heart_rate = "value"
     ) %>%
     clean_names()
 }
@@ -107,11 +106,11 @@ get_heart_rate_zones <- function(start_date, end_date = start_date) {
       date = dates %>% map(rep, 4) %>% unlist() %>% as.Date()
     ) %>%
     select(
-      date,
-      zone = .data$name,
-      min_hr = .data$min,
-      max_hr = .data$max,
-      minutes_in_zone = .data$minutes,
-      calories_out = .data$caloriesOut
+      "date",
+      zone = "name",
+      min_hr = "min",
+      max_hr = "max",
+      minutes_in_zone = "minutes",
+      calories_out = "caloriesOut"
     )
 }
