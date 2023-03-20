@@ -57,7 +57,7 @@ get_intraday_time_series <- function(
     bind_rows() %>%
     dplyr::transmute(
       time = as_datetime(paste(date, .data$time)),
-      !!resource := value
+      !!resource := .data$value
     ) %>%
     arrange("time")
 }
