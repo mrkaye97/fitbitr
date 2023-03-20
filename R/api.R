@@ -2,7 +2,7 @@
 stop_for_status <- function(response) {
   status_code <- response$status_code
   if (status_code == 200) {
-    return(invisible())
+    response
   } else {
     response <- content(response)
 
