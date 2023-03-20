@@ -16,6 +16,9 @@ stop_for_one_sided_interval <- function(start_time, end_time) {
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
 #' @param end_time The end time of the time window. Default: `NULL` gets the whole day
 #'
+#' @importFrom lubridate as_datetime
+#' @importFrom rlang .data
+#'
 #' @return A tibble with two columns: `time` and `{{resource}}`
 get_intraday_time_series <- function(
     user_id,

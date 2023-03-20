@@ -39,6 +39,7 @@ Suggests:
     covr,
     checkmate (>= 2.0.0),
     devtools,
+    rprojroot,
     spelling,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

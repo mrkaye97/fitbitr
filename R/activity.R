@@ -49,6 +49,7 @@ get_activity_summary <- function(date) {
 #' @param resource_path The resource path. See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for options
 #' @importFrom purrr flatten_dfr
 #' @importFrom rlang :=
+#' @importFrom dplyr rename
 #' @noRd
 get_activity_time_series <- function(start_date, end_date, resource_path, .example_identifier) {
   check_token_exists()
