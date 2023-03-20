@@ -21,43 +21,39 @@ stop_for_status <- function(response) {
 #' @param url the endpoint
 #' @noRd
 get <- function(url) {
-  if (Sys.getenv("FITBITR_ENVIRONMENT") == "testing mode") {
-    r <- get_example_response(url)
-  } else {
-    r <- GET(
-      url,
-      add_headers(
-        .headers = c(
-          Authorization = paste0("Bearer ", .fitbitr_token$credentials$access_token)
-        )
+  r <- GET(
+    url,
+    add_headers(
+      .headers = c(
+        Authorization = paste0("Bearer ", .fitbitr_token$credentials$access_token)
       )
     )
+  )
 
-    if (check_token_expiry(r)) {
-      tryCatch(
-        {
-          inform("Token expired. Trying to refresh...\n\n ...\n")
-          .fitbitr_token$refresh()
-        },
-        error = function(e) {
-          ask_refresh("Refresh failed", e)
-        }
-      )
-
-      return(get(url))
-    }
-
-    if (check_rate_limit(r)) {
-      abort("Fitbit API rate limit exceeded. For details, see https://dev.fitbit.com/build/reference/web-api/basics/#rate-limits.")
-    }
-
+  if (check_token_expiry(r)) {
     tryCatch(
-      stop_for_status(r),
+      {
+        inform("Token expired. Trying to refresh...\n\n ...\n")
+        .fitbitr_token$refresh()
+      },
       error = function(e) {
-        ask_refresh("Failed to query the API with your token", e)
+        ask_refresh("Refresh failed", e)
       }
     )
+
+    return(get(url))
   }
+
+  if (check_rate_limit(r)) {
+    abort("Fitbit API rate limit exceeded. For details, see https://dev.fitbit.com/build/reference/web-api/basics/#rate-limits.")
+  }
+
+  tryCatch(
+    stop_for_status(r),
+    error = function(e) {
+      ask_refresh("Failed to query the API with your token", e)
+    }
+  )
 }
 
 #' @noRd

@@ -29,8 +29,6 @@ test_that("Intradays work", {
   skip_on_cran()
   skip_on_ci()
 
-  Sys.setenv("FITBITR_ENVIRONMENT" = "foobar")
-
   load_cached_token(Sys.getenv("FITBITR_CACHE_LOC"))
 
   one_min_granularity <- get_heart_rate_intraday(
@@ -72,6 +70,4 @@ test_that("Intradays work", {
   expect_gt(nrow(get_elevation_intraday(date, detail_level = "1min")), 1000)
   expect_gt(nrow(get_calories_intraday(date, detail_level = "1min")), 1000)
   expect_gt(nrow(get_distance_intraday(date, detail_level = "1min")), 1000)
-
-  Sys.setenv("FITBITR_ENVIRONMENT" = "testing mode")
 })
