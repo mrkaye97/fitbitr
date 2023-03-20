@@ -45,11 +45,11 @@ get_intraday_time_series <- function(
 
   r <- get(
     url = url,
-    .example_identifier = "activity summary"
+    .example_identifier = "hr intraday"
   )
 
   r %>%
-    content() %>%
+    content(as = "parsed", type = "application/json") %>%
     pluck(
       sprintf("activities-%s-intraday", resource),
       "dataset"
@@ -339,7 +339,8 @@ get_heart_rate_intraday <- function(
     detail_level = detail_level,
     start_time = start_time,
     end_time = end_time
-  )
+  ) %>%
+    rename(heart_rate = "heart")
 }
 
 #' Get intraday active zone minutes time series
