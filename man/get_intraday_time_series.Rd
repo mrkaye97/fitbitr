@@ -6,7 +6,8 @@
 \usage{
 get_intraday_time_series(
   user_id,
-  resource = c("calories", "distance", "elevation", "floors", "steps"),
+  resource = c("active-zone-minutes", "calories", "distance", "elevation", "floors",
+    "heart", "steps"),
   date,
   detail_level,
   start_time,

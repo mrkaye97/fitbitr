@@ -2,7 +2,7 @@
 % Please edit documentation in R/intraday.R
 \name{get_elevation_intraday}
 \alias{get_elevation_intraday}
-\title{Get intraday elevationd time series}
+\title{Get intraday elevation time series}
 \usage{
 get_elevation_intraday(
   user_id = .fitbitr_token$credentials$user_id,
@@ -30,11 +30,25 @@ A tibble with two columns: \code{time} and \code{elevation}
 See the \href{https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-date/}{API documentation} for
 more detailed explanations of parameters and more usage information and examples.
 }
+\examples{
+\dontrun{
+date <- lubridate::today()
+
+## get minute by minute data
+get_elevation_intraday(detail_level = "15min")
+
+## get more granular data
+get_elevation_intraday(detail_level = "1min")
+}
+
+}
 \seealso{
 Other intraday: 
+\code{\link{get_active_zone_minutes_intraday}()},
 \code{\link{get_calories_intraday}()},
 \code{\link{get_distance_intraday}()},
 \code{\link{get_floors_intraday}()},
+\code{\link{get_heart_rate_intraday}()},
 \code{\link{get_steps_intraday}()}
 }
 \concept{intraday}

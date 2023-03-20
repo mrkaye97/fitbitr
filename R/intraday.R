@@ -19,7 +19,7 @@ stop_for_one_sided_interval <- function(start_time, end_time) {
 #' @return A tibble with two columns: `time` and `{{resource}}`
 get_intraday_time_series <- function(
     user_id,
-    resource = c("calories", "distance", "elevation", "floors", "steps"),
+    resource = c("active-zone-minutes", "calories", "distance", "elevation", "floors", "heart", "steps"),
     date,
     detail_level,
     start_time,
@@ -75,6 +75,17 @@ get_intraday_time_series <- function(
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
 #' @param end_time The end time of the time window. Default: `NULL` gets the whole day
 #'
+#' @examples
+#' \dontrun{
+#' date <- lubridate::today()
+#'
+#' ## get minute by minute data
+#' get_calories_intraday(detail_level = "15min")
+#'
+#' ## get more granular data
+#' get_calories_intraday(detail_level = "1min")
+#' }
+#'
 #' @return A tibble with two columns: `time` and `calories`
 #' @export
 get_calories_intraday <- function(
@@ -110,6 +121,17 @@ get_calories_intraday <- function(
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
 #' @param end_time The end time of the time window. Default: `NULL` gets the whole day
+#'
+#' @examples
+#' \dontrun{
+#' date <- lubridate::today()
+#'
+#' ## get minute by minute data
+#' get_distance_intraday(detail_level = "15min")
+#'
+#' ## get more granular data
+#' get_distance_intraday(detail_level = "1min")
+#' }
 #'
 #' @return A tibble with two columns: `time` and `distance`
 #' @export
@@ -147,6 +169,17 @@ get_distance_intraday <- function(
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
 #' @param end_time The end time of the time window. Default: `NULL` gets the whole day
 #'
+#' @examples
+#' \dontrun{
+#' date <- lubridate::today()
+#'
+#' ## get minute by minute data
+#' get_floors_intraday(detail_level = "15min")
+#'
+#' ## get more granular data
+#' get_floors_intraday(detail_level = "1min")
+#' }
+#'
 #' @return A tibble with two columns: `time` and `floors`
 #' @export
 get_floors_intraday <- function(
@@ -183,6 +216,17 @@ get_floors_intraday <- function(
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
 #' @param end_time The end time of the time window. Default: `NULL` gets the whole day
 #'
+#' @examples
+#' \dontrun{
+#' date <- lubridate::today()
+#'
+#' ## get minute by minute data
+#' get_steps_intraday(detail_level = "15min")
+#'
+#' ## get more granular data
+#' get_steps_intraday(detail_level = "1min")
+#' }
+#'
 #' @return A tibble with two columns: `time` and `steps`
 #' @export
 get_steps_intraday <- function(
@@ -206,7 +250,7 @@ get_steps_intraday <- function(
   )
 }
 
-#' Get intraday elevationd time series
+#' Get intraday elevation time series
 #'
 #' See the \href{https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-date/}{API documentation} for
 #' more detailed explanations of parameters and more usage information and examples.
@@ -218,6 +262,17 @@ get_steps_intraday <- function(
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
 #' @param end_time The end time of the time window. Default: `NULL` gets the whole day
+#'
+#' @examples
+#' \dontrun{
+#' date <- lubridate::today()
+#'
+#' ## get minute by minute data
+#' get_elevation_intraday(detail_level = "15min")
+#'
+#' ## get more granular data
+#' get_elevation_intraday(detail_level = "1min")
+#' }
 #'
 #' @return A tibble with two columns: `time` and `elevation`
 #' @export
@@ -240,4 +295,95 @@ get_elevation_intraday <- function(
     start_time = start_time,
     end_time = end_time
   )
+}
+
+#' Get intraday heart time series
+#'
+#' See the \href{https://dev.fitbit.com/reference/web-api/heart-rate/#get-heart-rate-time-series}{API documentation} for
+#' more detailed explanations of parameters and more usage information and examples.
+#'
+#' @family intraday
+#'
+#' @param user_id The fitbitr client's user id
+#' @param date A date to get data for
+#' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
+#' @param start_time The start time of the time window. Default: `NULL` gets the whole day
+#' @param end_time The end time of the time window. Default: `NULL` gets the whole day
+#'
+#' @examples
+#' \dontrun{
+#' date <- lubridate::today()
+#'
+#' ## get minute by minute data
+#' get_heart_rate_intraday(detail_level = "15min")
+#'
+#' ## get more granular data
+#' get_heart_rate_intraday(detail_level = "1min")
+#' }
+#' @export
+get_heart_rate_intraday <- function(
+  user_id = .fitbitr_token$credentials$user_id,
+  date = lubridate::today(),
+  detail_level = c("1min", "5min", "15min"),
+  start_time = NULL,
+  end_time = NULL
+) {
+  check_token_exists()
+  detail_level <- match.arg(detail_level)
+  stop_for_one_sided_interval(start_time, end_time)
+
+  get_intraday_time_series(
+    user_id = user_id,
+    resource = "heart",
+    date = date,
+    detail_level = detail_level,
+    start_time = start_time,
+    end_time = end_time
+  )
+}
+
+#' Get intraday active zone minutes time series
+#'
+#' See the \href{https://dev.fitbit.com/build/reference/web-api/intraday/get-azm-intraday-by-date/}{API documentation} for
+#' more detailed explanations of parameters and more usage information and examples.
+#'
+#' @family intraday
+#'
+#' @param user_id The fitbitr client's user id
+#' @param date A date to get data for
+#' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
+#' @param start_time The start time of the time window. Default: `NULL` gets the whole day
+#' @param end_time The end time of the time window. Default: `NULL` gets the whole day
+#'
+#' @examples
+#' \dontrun{
+#' date <- lubridate::today()
+#'
+#' ## get minute by minute data
+#' get_active_zone_minutes_intraday(detail_level = "15min")
+#'
+#' ## get more granular data
+#' get_active_zone_minutes_intraday(detail_level = "1min")
+#' }
+#' @export
+get_active_zone_minutes_intraday <- function(
+  user_id = .fitbitr_token$credentials$user_id,
+  date = lubridate::today(),
+  detail_level = c("1min", "5min", "15min"),
+  start_time = NULL,
+  end_time = NULL
+) {
+  check_token_exists()
+  detail_level <- match.arg(detail_level)
+  stop_for_one_sided_interval(start_time, end_time)
+
+  get_intraday_time_series(
+    user_id = user_id,
+    resource = "active-zone-minutes",
+    date = date,
+    detail_level = detail_level,
+    start_time = start_time,
+    end_time = end_time
+  ) %>%
+    clean_names()
 }

@@ -30,11 +30,25 @@ A tibble with two columns: \code{time} and \code{steps}
 See the \href{https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-date/}{API documentation} for
 more detailed explanations of parameters and more usage information and examples.
 }
+\examples{
+\dontrun{
+date <- lubridate::today()
+
+## get minute by minute data
+get_steps_intraday(detail_level = "15min")
+
+## get more granular data
+get_steps_intraday(detail_level = "1min")
+}
+
+}
 \seealso{
 Other intraday: 
+\code{\link{get_active_zone_minutes_intraday}()},
 \code{\link{get_calories_intraday}()},
 \code{\link{get_distance_intraday}()},
 \code{\link{get_elevation_intraday}()},
-\code{\link{get_floors_intraday}()}
+\code{\link{get_floors_intraday}()},
+\code{\link{get_heart_rate_intraday}()}
 }
 \concept{intraday}

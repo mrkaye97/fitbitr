@@ -8,8 +8,9 @@ generate_token(
   client_id = Sys.getenv("FITBIT_CLIENT_ID"),
   client_secret = Sys.getenv("FITBIT_CLIENT_SECRET"),
   callback = Sys.getenv("FITBIT_CALLBACK", "http://localhost:1410/"),
-  scope = c("sleep", "activity", "heartrate", "location", "nutrition", "profile",
-    "settings", "social", "weight"),
+  scope = c("activity", "cardio_fitness", "electrocardiogram", "heartrate", "location",
+    "nutrition", "oxygen_saturation", "profile", "respiratory_rate", "settings", "sleep",
+    "social", "temperature", "weight"),
   cache = FALSE,
   use_basic_auth = TRUE,
   ...
