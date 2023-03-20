@@ -19,11 +19,10 @@ stop_for_status <- function(response) {
 #' @importFrom httr GET add_headers
 #' @importFrom utils askYesNo
 #' @param url the endpoint
-#' @param .example_identifier An internal identifier to choose which example to run
 #' @noRd
-get <- function(url, .example_identifier) {
+get <- function(url) {
   if (Sys.getenv("FITBITR_ENVIRONMENT") == "testing mode") {
-    r <- get_example_response(url, .example_identifier)
+    r <- get_example_response(url)
   } else {
     r <- GET(
       url,
@@ -45,7 +44,7 @@ get <- function(url, .example_identifier) {
         }
       )
 
-      return(get(url, .example_identifier))
+      return(get(url))
     }
 
     if (check_rate_limit(r)) {

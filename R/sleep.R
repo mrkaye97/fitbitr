@@ -27,10 +27,7 @@ get_sleep_summary <- function(start_date, end_date = start_date) {
     end_date
   )
 
-  r <- get(
-    url = url,
-    .example_identifier = "sleep summary"
-  )
+  r <- get(url)
 
   r %>%
     content(as = "parsed", type = "application/json") %>%
@@ -92,10 +89,7 @@ get_sleep_stage_summary <- function(start_date, end_date = start_date) {
     end_date
   )
 
-  r <- get(
-    url = url,
-    .example_identifier = "sleep stage"
-  ) %>%
+  r <- get(url) %>%
     content(as = "parsed", type = "application/json") %>%
     pluck("sleep")
 
@@ -154,10 +148,7 @@ get_sleep_stage_granular <- function(start_date, end_date = start_date) {
     end_date
   )
 
-  r <- get(
-    url = url,
-    .example_identifier = "sleep stage"
-  ) %>%
+  r <- get(url) %>%
     content(as = "parsed", type = "application/json") %>%
     pluck("sleep")
 

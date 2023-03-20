@@ -22,10 +22,7 @@ get_activity_summary <- function(date) {
     date
   )
 
-  r <- get(
-    url = url,
-    .example_identifier = "activity summary"
-  )
+  r <- get(url)
 
   r %>%
     content(as = "parsed", type = "application/json") %>%
@@ -51,7 +48,7 @@ get_activity_summary <- function(date) {
 #' @importFrom rlang :=
 #' @importFrom dplyr rename
 #' @noRd
-get_activity_time_series <- function(start_date, end_date, resource_path, .example_identifier) {
+get_activity_time_series <- function(start_date, end_date, resource_path) {
   check_token_exists()
 
   url <- sprintf(
@@ -63,10 +60,7 @@ get_activity_time_series <- function(start_date, end_date, resource_path, .examp
     end_date
   )
 
-  r <- get(
-    url = url,
-    .example_identifier = .example_identifier
-  )
+  r <- get(url)
 
   r %>%
     content(as = "parsed", type = "application/json") %>%
@@ -99,8 +93,7 @@ get_calories <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = "calories",
-    .example_identifier = "activity time series"
+    resource_path = "calories"
   )
 }
 
@@ -121,8 +114,7 @@ get_calories_bmr <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = "caloriesBMR",
-    .example_identifier = "activity time series"
+    resource_path = "caloriesBMR"
   )
 }
 
@@ -143,8 +135,7 @@ get_steps <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = "steps",
-    .example_identifier = "activity time series"
+    resource_path = "steps"
   )
 }
 
@@ -165,8 +156,7 @@ get_distance <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = "distance",
-    .example_identifier = "activity time series"
+    resource_path = "distance"
   )
 }
 
@@ -187,8 +177,7 @@ get_floors <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = "floors",
-    .example_identifier = "activity time series"
+    resource_path = "floors"
   )
 }
 
@@ -209,8 +198,7 @@ get_elevation <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = "elevation",
-    .example_identifier = "activity time series"
+    resource_path = "elevation"
   )
 }
 
@@ -231,8 +219,7 @@ get_minutes_sedentary <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = "minutesSedentary",
-    .example_identifier = "activity time series"
+    resource_path = "minutesSedentary"
   )
 }
 
@@ -253,8 +240,7 @@ get_minutes_lightly_active <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = "minutesLightlyActive",
-    .example_identifier = "activity time series"
+    resource_path = "minutesLightlyActive"
   )
 }
 
@@ -275,8 +261,7 @@ get_minutes_fairly_active <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = "minutesFairlyActive",
-    .example_identifier = "activity time series"
+    resource_path = "minutesFairlyActive"
   )
 }
 
@@ -297,8 +282,7 @@ get_minutes_very_active <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = "minutesVeryActive",
-    .example_identifier = "activity time series"
+    resource_path = "minutesVeryActive"
   )
 }
 
@@ -319,8 +303,7 @@ get_activity_calories <- function(start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
-    resource_path = "activityCalories",
-    .example_identifier = "activity time series"
+    resource_path = "activityCalories"
   )
 }
 
@@ -334,10 +317,7 @@ get_bests_and_totals <- function(best, tracker) {
     .fitbitr_token$credentials$user_id
   )
 
-  r <- get(
-    url = url,
-    .example_identifier = "bests and totals"
-  )
+  r <- get(url)
 
   r %>%
     content(as = "parsed", type = "application/json") %>%
