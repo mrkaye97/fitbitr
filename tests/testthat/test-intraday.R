@@ -42,9 +42,9 @@ test_that("Intradays work", {
     detail_level = "15min"
   )
 
-  expect_equal(colnames(tmp), c("time", "heart_rate"))
-  expect_equal(nrow(tmp), 1348)
-  checkmate::expect_posixct(tmp$time)
+  expect_equal(colnames(one_min_granularity), c("time", "heart_rate"))
+  expect_equal(nrow(one_min_granularity), 1348)
+  checkmate::expect_posixct(one_min_granularity$time)
 
   expect_gt(
     nrow(one_min_granularity),
