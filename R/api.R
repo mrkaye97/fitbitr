@@ -39,7 +39,7 @@ stop_for_status <- function(response) {
 #'
 #' @importFrom httr GET add_headers
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param url The URL to make the request to
 #' @param \dots Additional arguments (not currently used)
 #'
@@ -113,7 +113,7 @@ check_rate_limit <- function(r) {
 
 #' @noRd
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param reason A string reason for why the request failed
 #' @param error_message the error message
 #'

@@ -2,7 +2,7 @@
 #'
 #' See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param date The date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
 #' @importFrom dplyr bind_rows mutate select everything
@@ -44,7 +44,7 @@ get_activity_summary <- function(date) {
 #'
 #' See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param resource_path The resource path. See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for options
@@ -84,7 +84,7 @@ get_activity_time_series <- function(start_date, end_date, resource_path) {
 #'
 #' Resource path /activities/calories
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -110,7 +110,7 @@ get_calories <- function(start_date, end_date) {
 #'
 #' Resource path /activities/caloriesBMR
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -136,7 +136,7 @@ get_calories_bmr <- function(start_date, end_date) {
 #'
 #' Resource path /activities/steps
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -162,7 +162,7 @@ get_steps <- function(start_date, end_date) {
 #'
 #' Resource path /activities/distance
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -188,7 +188,7 @@ get_distance <- function(start_date, end_date) {
 #'
 #' Resource path /activities/floors
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -214,7 +214,7 @@ get_floors <- function(start_date, end_date) {
 #'
 #' Resource path /activities/elevation
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -240,7 +240,7 @@ get_elevation <- function(start_date, end_date) {
 #'
 #' Resource path /activities/minutesSedentary
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -266,7 +266,7 @@ get_minutes_sedentary <- function(start_date, end_date) {
 #'
 #' Resource path /activities/minutesLightlyActive
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -292,7 +292,7 @@ get_minutes_lightly_active <- function(start_date, end_date) {
 #'
 #' Resource path /activities/minutesFairlyActive
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -318,7 +318,7 @@ get_minutes_fairly_active <- function(start_date, end_date) {
 #'
 #' Resource path /activities/minutesVeryActive
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -344,7 +344,7 @@ get_minutes_very_active <- function(start_date, end_date) {
 #'
 #' Resource path /activities/activityCalories
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -387,7 +387,7 @@ get_bests_and_totals <- function(best, tracker) {
 #'
 #' Retrieve tracker total distance, floors, and steps
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #'
 #' @examples
 #' \dontrun{
@@ -414,7 +414,7 @@ get_tracker_totals <- function.fitbitr_token {
 #'
 #' Retrieve lifetime total distance, floors, and steps
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #'
 #' @examples
 #' \dontrun{
@@ -441,7 +441,7 @@ get_lifetime_totals <- function.fitbitr_token {
 #'
 #' Retrieve tracker best distance, floors, and steps
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #'
 #' @examples
 #' \dontrun{
@@ -470,7 +470,7 @@ get_tracker_bests <- function.fitbitr_token {
 #'
 #' Retrieve lifetime best distance, floors, and steps
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #'
 #' @examples
 #' \dontrun{

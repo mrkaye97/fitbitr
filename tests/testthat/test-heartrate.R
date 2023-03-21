@@ -8,4 +8,3 @@ test_that("Heart rate zones works", {
   expect_equal(colnames(tmp), c("date", "zone", "min_hr", "max_hr", "minutes_in_zone", "calories_out"))
   checkmate::expect_date(tmp$date)
 })
-

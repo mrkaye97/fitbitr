@@ -2,7 +2,7 @@
 #'
 #' Returns a tibble of summary by night
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -67,7 +67,7 @@ get_sleep_summary <- function(start_date, end_date = start_date) {
 #' Returns a tibble of nightly sleep stage data.
 #' Minutes in each stage, count of times in each stage, and a thirty day average for the number of minutes in each stage.
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -129,7 +129,7 @@ get_sleep_stage_summary <- function(start_date, end_date = start_date) {
 #' Returns a tibble of nightly sleep stage data.
 #' Very granular. Returns blocks of time spent in each phase.
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'

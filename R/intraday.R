@@ -9,7 +9,7 @@ stop_for_one_sided_interval <- function(start_time, end_time) {
 #' See the \href{https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-date/}{API documentation} for
 #' more detailed explanations of parameters and more usage information and examples.
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param resource The resource to get
 #' @param date A date to get data for
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
@@ -21,13 +21,12 @@ stop_for_one_sided_interval <- function(start_time, end_time) {
 #'
 #' @return A tibble with two columns: `time` and `{{resource}}`
 get_intraday_time_series <- function(
-  token,
-  resource = c("active-zone-minutes", "calories", "distance", "elevation", "floors", "heart", "steps"),
-  date,
-  detail_level,
-  start_time,
-  end_time
-) {
+    token,
+    resource = c("active-zone-minutes", "calories", "distance", "elevation", "floors", "heart", "steps"),
+    date,
+    detail_level,
+    start_time,
+    end_time) {
   resource <- match.arg(resource)
 
   if (!is.null(start_time)) {
@@ -69,7 +68,7 @@ get_intraday_time_series <- function(
 #'
 #' @family intraday
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param date A date to get data for
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
@@ -89,12 +88,11 @@ get_intraday_time_series <- function(
 #' @return A tibble with two columns: `time` and `calories`
 #' @export
 get_calories_intraday <- function(
-  token,
-  date = lubridate::today(),
-  detail_level = c("1min", "5min", "15min"),
-  start_time = NULL,
-  end_time = NULL
-) {
+    token,
+    date = lubridate::today(),
+    detail_level = c("1min", "5min", "15min"),
+    start_time = NULL,
+    end_time = NULL) {
   detail_level <- match.arg(detail_level)
   stop_for_one_sided_interval(start_time, end_time)
 
@@ -115,7 +113,7 @@ get_calories_intraday <- function(
 #'
 #' @family intraday
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param date A date to get data for
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
@@ -135,12 +133,11 @@ get_calories_intraday <- function(
 #' @return A tibble with two columns: `time` and `distance`
 #' @export
 get_distance_intraday <- function(
-  token,
-  date = lubridate::today(),
-  detail_level = c("1min", "5min", "15min"),
-  start_time = NULL,
-  end_time = NULL
-) {
+    token,
+    date = lubridate::today(),
+    detail_level = c("1min", "5min", "15min"),
+    start_time = NULL,
+    end_time = NULL) {
   detail_level <- match.arg(detail_level)
   stop_for_one_sided_interval(start_time, end_time)
 
@@ -161,7 +158,7 @@ get_distance_intraday <- function(
 #'
 #' @family intraday
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param date A date to get data for
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
@@ -181,12 +178,11 @@ get_distance_intraday <- function(
 #' @return A tibble with two columns: `time` and `floors`
 #' @export
 get_floors_intraday <- function(
-  token,
-  date = lubridate::today(),
-  detail_level = c("1min", "5min", "15min"),
-  start_time = NULL,
-  end_time = NULL
-) {
+    token,
+    date = lubridate::today(),
+    detail_level = c("1min", "5min", "15min"),
+    start_time = NULL,
+    end_time = NULL) {
   detail_level <- match.arg(detail_level)
   stop_for_one_sided_interval(start_time, end_time)
 
@@ -207,7 +203,7 @@ get_floors_intraday <- function(
 #'
 #' @family intraday
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param date A date to get data for
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
@@ -227,12 +223,11 @@ get_floors_intraday <- function(
 #' @return A tibble with two columns: `time` and `steps`
 #' @export
 get_steps_intraday <- function(
-  token,
-  date = lubridate::today(),
-  detail_level = c("1min", "5min", "15min"),
-  start_time = NULL,
-  end_time = NULL
-) {
+    token,
+    date = lubridate::today(),
+    detail_level = c("1min", "5min", "15min"),
+    start_time = NULL,
+    end_time = NULL) {
   detail_level <- match.arg(detail_level)
   stop_for_one_sided_interval(start_time, end_time)
 
@@ -253,7 +248,7 @@ get_steps_intraday <- function(
 #'
 #' @family intraday
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param date A date to get data for
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
@@ -273,12 +268,11 @@ get_steps_intraday <- function(
 #' @return A tibble with two columns: `time` and `elevation`
 #' @export
 get_elevation_intraday <- function(
-  token,
-  date = lubridate::today(),
-  detail_level = c("1min", "5min", "15min"),
-  start_time = NULL,
-  end_time = NULL
-) {
+    token,
+    date = lubridate::today(),
+    detail_level = c("1min", "5min", "15min"),
+    start_time = NULL,
+    end_time = NULL) {
   detail_level <- match.arg(detail_level)
   stop_for_one_sided_interval(start_time, end_time)
 
@@ -299,7 +293,7 @@ get_elevation_intraday <- function(
 #'
 #' @family intraday
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param date A date to get data for
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
@@ -317,12 +311,11 @@ get_elevation_intraday <- function(
 #' }
 #' @export
 get_heart_rate_intraday <- function(
-  token,
-  date = lubridate::today(),
-  detail_level = c("1min", "5min", "15min"),
-  start_time = NULL,
-  end_time = NULL
-) {
+    token,
+    date = lubridate::today(),
+    detail_level = c("1min", "5min", "15min"),
+    start_time = NULL,
+    end_time = NULL) {
   detail_level <- match.arg(detail_level)
   stop_for_one_sided_interval(start_time, end_time)
 
@@ -344,7 +337,7 @@ get_heart_rate_intraday <- function(
 #'
 #' @family intraday
 #'
-#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+
 #' @param date A date to get data for
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
@@ -362,12 +355,11 @@ get_heart_rate_intraday <- function(
 #' }
 #' @export
 get_active_zone_minutes_intraday <- function(
-  token,
-  date = lubridate::today(),
-  detail_level = c("1min", "5min", "15min"),
-  start_time = NULL,
-  end_time = NULL
-) {
+    token,
+    date = lubridate::today(),
+    detail_level = c("1min", "5min", "15min"),
+    start_time = NULL,
+    end_time = NULL) {
   detail_level <- match.arg(detail_level)
   stop_for_one_sided_interval(start_time, end_time)
 
