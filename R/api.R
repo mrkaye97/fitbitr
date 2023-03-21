@@ -29,6 +29,10 @@ stop_for_status <- function(response) {
 #' @return The response
 #' @export
 get <- function(token, url, ...) {
+  if (is.null(token) || !(class(token)[1] %in% c("fitbitr_token", "Token2.0"))) {
+    abort("You must supply a valid token.")
+  }
+
   response <- GET(
     url,
     add_headers(
