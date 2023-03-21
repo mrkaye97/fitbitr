@@ -1,6 +1,10 @@
 extract_user_id <- function(token) {
-  if (is.null(token)) {
+  if (missing(token) || is.null(token)) {
     abort("No token provided.")
+  }
+
+  if (!class(token)[1] %in% c("fitbitr_token", "Token2.0")) {
+    abort("You must provide a token of class `fitbitr_token` or `httr::Token2.0.")
   }
 
   user_id <- pluck(token, "credentials", "user_id", .default = NULL)
