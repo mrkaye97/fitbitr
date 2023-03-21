@@ -3,16 +3,16 @@ extract_user_id <- function(token) {
     abort("No token provided.")
   }
 
-  if (!class(token)[1] %in% c("fitbitr_token", "Token2.0")) {
-    abort("You must provide a token of class `fitbitr_token` or `httr::Token2.0.")
+  if (class(token) != "httr2_token") {
+    abort("You must provide a token of class `httr2_token`")
   }
 
-  user_id <- pluck(token, "credentials", "user_id", .default = NULL)
+  user_id <- pluck(token, "user_id", .default = NULL)
   if (is.null(user_id)) {
     abort("The token you provided had no associated `user_id`. Maybe it was empty? Please supply a valid token.")
   }
 
-  token$credentials$user_id
+  user_id
 }
 
 #' @importFrom jsonlite toJSON
@@ -46,15 +46,19 @@ stop_for_status <- function(response) {
 #' @return The response
 #' @export
 perform_get <- function(token, url, ...) {
-  if (is.null(token) || !(class(token)[1] %in% c("fitbitr_token", "Token2.0"))) {
-    abort("You must supply a valid token.")
+  if (missing(token) || is.null(token)) {
+    abort("No token provided.")
+  }
+
+  if (class(token) != "httr2_token") {
+    abort("You must provide a token of class `httr2_token`")
   }
 
   response <- GET(
     url,
     add_headers(
       .headers = c(
-        Authorization = paste0("Bearer ", token$credentials$access_token)
+        Authorization = paste0("Bearer ", token$access_token)
       )
     )
   )

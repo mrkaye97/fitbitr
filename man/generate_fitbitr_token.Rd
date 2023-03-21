@@ -2,29 +2,52 @@
 % Please edit documentation in R/setup.R
 \name{generate_fitbitr_token}
 \alias{generate_fitbitr_token}
-\title{Create an object of class \code{fitbitr_token}}
+\title{Generate an Oauth token}
 \usage{
 generate_fitbitr_token(
+  app_name = "fitbitr",
+  client_id = Sys.getenv("FITBIT_CLIENT_ID"),
+  client_secret = Sys.getenv("FITBIT_CLIENT_SECRET"),
+  callback = Sys.getenv("FITBIT_CALLBACK", "http://localhost:1410/"),
+  scope = c("activity", "cardio_fitness", "electrocardiogram", "heartrate", "location",
+    "nutrition", "oxygen_saturation", "profile", "respiratory_rate", "settings", "sleep",
+    "social", "temperature", "weight"),
   refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN"),
-  access_token = NULL,
-  user_id = Sys.getenv("FITBIT_CLIENT_ID")
+  cache = FALSE,
+  use_basic_auth = TRUE,
+  ...
 )
 }
 \arguments{
-\item{refresh_token}{A refresh token. Defaults to the value of the \code{FITBIT_REFRESH_TOKEN} env var.}
+\item{app_name}{The name of your OAuth app. Default: \code{fitbitr}}
 
-\item{access_token}{An access token. Default: \code{NULL}}
+\item{client_id}{Your Fitbit client ID}
 
-\item{user_id}{A Fitbit API client ID}
+\item{client_secret}{Your Fitbit client secret}
+
+\item{callback}{Your Fitbit redirect URL}
+
+\item{scope}{The scopes to enable}
+
+\item{cache}{Do you want to cache your token? See \link[httr]{oauth2.0_token} for details}
+
+\item{use_basic_auth}{A boolean for whether or not to use basic auth in \link[httr]{oauth2.0_token}. Defaults to \code{TRUE}}
+
+\item{...}{Additional arguments to be passed to \link[httr]{oauth2.0_token}}
 }
 \value{
-A \code{fitbitr_token} object. Contains a single element \code{credentials} with its own two elements: \code{access_token} and \code{refresh_token}
+Returns an OAuth 2.0 token that can be used to authorize requests to the Fitbit API
 }
 \description{
-This type of object can be used in place of a genuine OAuth 2.0
-token for authorizing requests to the API in non-interactive sessions.
+Performs the OAuth 2.0 dance to create a token to use with the Fitbit API.
 }
-\details{
-The class itself is quite minimal: It's just a list with two
-elements: the access token (used for authorizing requests), and a refresh token.
+\examples{
+\dontrun{
+generate_oauth_token(
+  client_id = <YOUR-CLIENT-ID>
+  client_secret = <YOUR-CLIENT-SECRET>,
+  cache = TRUE
+)
+}
+
 }

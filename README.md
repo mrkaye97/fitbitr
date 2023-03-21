@@ -52,24 +52,45 @@ your Fitbit data:
     ``` r
     library(fitbitr)
 
-    generate_token(
+    token <- generate_oauth_token(
+      oauth_app_name = <YOUR-APP-NAME>,
       client_id = <YOUR-CLIENT-ID>,
       client_secret = <YOUR-CLIENT-SECRET>
       callback = <YOUR-REDIRECT-URL>
     )
     ```
 
-    -   If you want to edit the scopes that are enabled, you can do so
-        with the `scopes = c('scopes', 'you', 'want', 'enabled')`
-        argument. You can find information on the available scope
-        options
-        [here](https://dev.fitbit.com/build/reference/web-api/oauth2/#scope).
-    -   If you want to cache your token, you can do so by specifying
-        either `cache = TRUE` or `cache = <some-file-path>`. See the
-        docs on `httr::oauth2.0_token()` for details.
+    - If you want to edit the scopes that are enabled, you can do so
+      with the `scopes = c('scopes', 'you', 'want', 'enabled')`
+      argument. You can find information on the available scope options
+      [here](https://dev.fitbit.com/build/reference/web-api/oauth2/#scope).
+    - If you want to cache your token, you can do so by specifying
+      either `cache = TRUE` or `cache = <some-file-path>`. See the docs
+      on `httr::oauth2.0_token()` for details.
 
 5.  And that’s it! You now have your Fitbit API credentials set up.
     `fitbitr` tracks them behind the scenes for you, so all that you
     need to do at the start of each R session is either
     `generate_token()` or `load_cached_token()`, and you’ll be off and
     running.
+
+## Non-Interactive Use
+
+`fitbitr` also provides a way to do the OAuth dance without being able
+to open a browser (e.g. from inside of a job, a Shiny app, etc. on a
+remote server).
+
+To do this, you can follow a similar process to how you generated an
+OAuth token above. But the key is that you need to extract your OAuth
+token’s `refresh_token` and save it as an environment variable. Then you
+can do something like this:
+
+``` r
+## Create an empty token of class `fitbitr_token`
+empty_token <- generate_fitbitr_token()
+
+token <- refresh_api_token(empty_token)
+```
+
+Now you can use `token` as you would otherwise to make requests to the
+Fitbit API.
