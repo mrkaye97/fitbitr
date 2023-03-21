@@ -6,16 +6,19 @@
 \usage{
 generate_fitbitr_token(
   refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN"),
-  access_token = NULL
+  access_token = NULL,
+  user_id = Sys.getenv("FITBIT_CLIENT_ID")
 )
 }
 \arguments{
 \item{refresh_token}{A refresh token. Defaults to the value of the \code{FITBIT_REFRESH_TOKEN} env var.}
 
 \item{access_token}{An access token. Default: \code{NULL}}
+
+\item{user_id}{A Fitbit API client ID}
 }
 \value{
-A \code{fitbitr_token} object
+A \code{fitbitr_token} object. Contains a single element \code{credentials} with its own two elements: \code{access_token} and \code{refresh_token}
 }
 \description{
 This type of object can be used in place of a genuine OAuth 2.0

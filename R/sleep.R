@@ -1,6 +1,7 @@
 #' Nightly Sleep Summary
 #'
 #' Returns a tibble of summary by night
+#'
 #' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
@@ -24,12 +25,12 @@ get_sleep_summary <- function(token, start_date, end_date = start_date) {
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
-    .fitbitr_token$credentials$user_id,
+    token$credentials$user_id,
     start_date,
     end_date
   )
 
-  r <- get(url)
+  r <- get(token, url)
 
   r %>%
     content(as = "parsed", type = "application/json") %>%
@@ -89,7 +90,7 @@ get_sleep_stage_summary <- function(token, start_date, end_date = start_date) {
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
-    .fitbitr_token$credentials$user_id,
+    tokencredentials$user_id,
     start_date,
     end_date
   )
@@ -151,7 +152,7 @@ get_sleep_stage_granular <- function(token, start_date, end_date = start_date) {
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
-    .fitbitr_token$credentials$user_id,
+    tokencredentials$user_id,
     start_date,
     end_date
   )

@@ -8,12 +8,16 @@
 #'
 #' @param refresh_token A refresh token. Defaults to the value of the `FITBIT_REFRESH_TOKEN` env var.
 #' @param access_token An access token. Default: `NULL`
+#' @param user_id A Fitbit API client ID
 #'
-#' @return A `fitbitr_token` object
-generate_fitbitr_token <- function(refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN"), access_token = NULL) {
+#' @return A `fitbitr_token` object. Contains a single element `credentials` with its own two elements: `access_token` and `refresh_token`
+generate_fitbitr_token <- function(refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN"), access_token = NULL, user_id = Sys.getenv("FITBIT_CLIENT_ID")) {
   token <- list(
-    access_token = access_token,
-    refresh_token = refresh_token
+    credentials = list(
+      user_id = user_id,
+      access_token = access_token,
+      refresh_token = refresh_token
+    )
   )
 
   class(token) <- "fitbitr_token"
@@ -117,12 +121,16 @@ generate_oauth_token <- function(
 #' A token can be either of class `Token2.0` (from `httr`) or of class
 #' `fitbitr_token` (from `fitbitr`).
 #'
+#' @rdname refresh_api_token
+#'
 #' @export
 refresh_api_token <- function(x, ...) {
   UseMethod("refresh_api_token", x)
 }
 
 #' Refresh api token
+#'
+#' @rdname refresh_api_token
 #'
 #' @export
 refresh_api_token.fitbitr_token <- function(
@@ -145,18 +153,21 @@ refresh_api_token.fitbitr_token <- function(
     endpoint = endpoint,
     app = oauth_app,
     credentials = list(
-      refresh_token = x$refresh_token
+      refresh_token = x$credentials$refresh_token
     ),
     use_basic_auth = use_basic_auth
   )
 
   generate_fitbitr_token(
     access_token = token$access_token,
-    refresh_token = token$refresh_token
+    refresh_token = token$refresh_token,
+    user_id = client_id
   )
 }
 
 #' @importFrom httr Token2.0
+#'
+#' @rdname refresh_api_token
 #'
 #' @export
 refresh_api_token.Token2.0 <- function(x) {

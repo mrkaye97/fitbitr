@@ -1,10 +1,3 @@
-#' @noRd
-.onLoad <- function(libname, pkgname) {
-  .fitbitr_token <<- NULL
-
-  invisible()
-}
-
 ## package constants
 base_url <- "https://api.fitbit.com"
 

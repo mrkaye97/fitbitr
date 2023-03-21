@@ -8,7 +8,7 @@ if (interactive()) {
   )
 
   rlang::inform(Sys.getenv("FITBITR_CACHE_LOC"))
-  .fitbitr_token <- load_cached_token(
+  token <- load_cached_token(
     Sys.getenv("FITBITR_CACHE_LOC")
   )
 }

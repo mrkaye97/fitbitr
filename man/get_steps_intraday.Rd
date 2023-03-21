@@ -6,7 +6,7 @@
 \usage{
 get_steps_intraday(
   token,
-  user_id = .fitbitr_token$credentials$user_id,
+  user_id = tokencredentials$user_id,
   date = lubridate::today(),
   detail_level = c("1min", "5min", "15min"),
   start_time = NULL,

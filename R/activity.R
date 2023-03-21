@@ -20,7 +20,7 @@ get_activity_summary <- function(token, date) {
   url <- sprintf(
     "%s/1/user/%s/activities/date/%s.json",
     base_url,
-    .fitbitr_token$credentials$user_id,
+    tokencredentials$user_id,
     date
   )
 
@@ -58,7 +58,7 @@ get_activity_time_series <- function(token, start_date, end_date, resource_path)
   url <- sprintf(
     "%s/1/user/%s/activities/%s/date/%s/%s.json",
     base_url,
-    .fitbitr_token$credentials$user_id,
+    tokencredentials$user_id,
     resource_path,
     start_date,
     end_date
@@ -360,7 +360,7 @@ get_bests_and_totals <- function(token, best, tracker) {
   url <- sprintf(
     "%s/1/user/%s/activities.json",
     base_url,
-    .fitbitr_token$credentials$user_id
+    tokencredentials$user_id
   )
 
   r <- get(url)

@@ -16,40 +16,48 @@ stop_for_status <- function(response) {
   }
 }
 
+#' Perform a GET request
+#'
+#' @rdname get
+#'
 #' @importFrom httr GET add_headers
-#' @importFrom utils askYesNo
-#' @param url the endpoint
-#' @noRd
-get <- function(url) {
-  r <- GET(
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+#' @param url The URL to make the request to
+#' @param \dots Additional arguments (not currently used)
+#'
+#' @return The response
+#' @export
+get <- function(token, url, ...) {
+  response <- GET(
     url,
     add_headers(
       .headers = c(
-        Authorization = paste0("Bearer ", .fitbitr_token$credentials$access_token)
+        Authorization = paste0("Bearer ", token$credentials$access_token)
       )
     )
   )
 
-  if (check_token_expiry(r)) {
+  if (check_token_expiry(response)) {
     tryCatch(
       {
         inform("Token expired. Trying to refresh...\n\n ...\n")
-        .fitbitr_token$refresh()
+        token <- refresh_api_token(token)
       },
       error = function(e) {
         ask_refresh("Refresh failed", e)
       }
     )
 
-    return(get(url))
+    return(get(token, url))
   }
 
-  if (check_rate_limit(r)) {
+  if (check_rate_limit(response)) {
     abort("Fitbit API rate limit exceeded. For details, see https://dev.fitbit.com/build/reference/web-api/basics/#rate-limits.")
   }
 
   tryCatch(
-    stop_for_status(r),
+    stop_for_status(response),
     error = function(e) {
       ask_refresh("Failed to query the API with your token", e)
     }
@@ -96,7 +104,7 @@ ask_refresh <- function(reason, error_message) {
 
   if (do_refresh & !is.na(do_refresh)) {
     inform("Trying to generate a new token...")
-    .fitbitr_token$init_credentials()
+    refresh_api_token(token)
   } else {
     abort("No token was found, and a new one was not generated.")
   }

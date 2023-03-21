@@ -2,10 +2,23 @@
 % Please edit documentation in R/setup.R
 \name{refresh_api_token}
 \alias{refresh_api_token}
+\alias{refresh_api_token.fitbitr_token}
+\alias{refresh_api_token.Token2.0}
 \alias{refresh_fitbitr_token.default}
 \title{Refresh an existing Fitbit API token}
 \usage{
 refresh_api_token(x, ...)
+
+\method{refresh_api_token}{fitbitr_token}(
+  x,
+  oauth_app_name = "fitbitr",
+  client_id = Sys.getenv("FITBIT_CLIENT_ID"),
+  client_secret = Sys.getenv("FITBIT_CLIENT_SECRET"),
+  callback = Sys.getenv("FITBIT_CALLBACK", "http://localhost:1410/"),
+  use_basic_auth = TRUE
+)
+
+\method{refresh_api_token}{Token2.0}(x)
 
 refresh_fitbitr_token.default(x, ...)
 }
