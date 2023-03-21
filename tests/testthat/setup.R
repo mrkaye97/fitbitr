@@ -1,16 +1,8 @@
-if (interactive()) {
-  Sys.setenv(
-    FITBITR_CACHE_LOC = paste(
-      rprojroot::find_package_root_file(),
-      ".httr-oauth",
-      sep = "/"
-    )
-  )
+fitbitr_token <- generate_fitbitr_token(
+  refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN")
+)
 
-  token <- load_cached_token(
-    Sys.getenv("FITBITR_CACHE_LOC")
-  )
-}
+token <- refresh_api_token(fitbitr_token)
 
 start_date <- date <- lubridate::as_date("2020-05-21")
 end_date <- start_date + lubridate::days(7)

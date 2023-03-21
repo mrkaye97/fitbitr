@@ -37,8 +37,6 @@ refresh_fitbitr_token.default(x, ...)
 \item{callback}{Your Fitbit redirect URL}
 
 \item{use_basic_auth}{A boolean for whether or not to use basic auth in \link[httr]{oauth2.0_token}. Defaults to \code{TRUE}}
-
-\item{...}{Not currently used}
 }
 \description{
 A token can be either of class \code{Token2.0} (from \code{httr}) or of class

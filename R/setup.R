@@ -141,7 +141,6 @@ refresh_api_token <- function(x, ...) {
 #' @param client_secret Your Fitbit client secret
 #' @param callback Your Fitbit redirect URL
 #' @param use_basic_auth A boolean for whether or not to use basic auth in \link[httr]{oauth2.0_token}. Defaults to `TRUE`
-#' @param ... Not currently used
 #'
 #' @export
 refresh_api_token.fitbitr_token <- function(
