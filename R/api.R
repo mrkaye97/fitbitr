@@ -1,13 +1,13 @@
-extract_user_id <- function(token) {
-  if (missing(token) || is.null(token)) {
+extract_user_id <- function.fitbitr_token {
+  if (missing.fitbitr_token || is.null.fitbitr_token) {
     abort("No token provided.")
   }
 
-  if (class(token) != "httr2_token") {
+  if (class.fitbitr_token != "httr2_token") {
     abort("You must provide a token of class `httr2_token`")
   }
 
-  user_id <- pluck(token, "user_id", .default = NULL)
+  user_id <- pluck("user_id", .default = NULL)
   if (is.null(user_id)) {
     abort("The token you provided had no associated `user_id`. Maybe it was empty? Please supply a valid token.")
   }
@@ -45,12 +45,12 @@ stop_for_status <- function(response) {
 #'
 #' @return The response
 #' @export
-perform_get <- function(token, url, ...) {
-  if (missing(token) || is.null(token)) {
+perform_get <- function(url, ...) {
+  if (missing.fitbitr_token || is.null.fitbitr_token) {
     abort("No token provided.")
   }
 
-  if (class(token) != "httr2_token") {
+  if (class.fitbitr_token != "httr2_token") {
     abort("You must provide a token of class `httr2_token`")
   }
 
@@ -67,14 +67,14 @@ perform_get <- function(token, url, ...) {
     tryCatch(
       {
         inform("Token expired. Trying to refresh...\n\n ...\n")
-        token <- refresh_api_token(token)
+        token <- refresh_api_token.fitbitr_token
       },
       error = function(e) {
         ask_refresh("Refresh failed", e)
       }
     )
 
-    return(perform_get(token, url))
+    return(perform_get(url))
   }
 
   if (check_rate_limit(response)) {
@@ -121,7 +121,7 @@ check_rate_limit <- function(r) {
 #' @importFrom utils askYesNo
 #'
 #' @return No return value. Called for side effects
-ask_refresh <- function(token, reason, error_message) {
+ask_refresh <- function(reason, error_message) {
   inform(sprintf("%s. Error message: \n\n", reason))
   inform(error_message$message)
   inform("\n")
@@ -134,7 +134,7 @@ ask_refresh <- function(token, reason, error_message) {
 
   if (do_refresh & !is.na(do_refresh)) {
     inform("Trying to generate a new token...")
-    refresh_api_token(token)
+    refresh_api_token.fitbitr_token
   } else {
     abort("No token was found, and a new one was not generated.")
   }

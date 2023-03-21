@@ -60,11 +60,13 @@ generate_fitbitr_token <- function(
     auth = "header"
   )
 
-  oauth_flow_auth_code(
+  .fitbitr_token <<- oauth_flow_auth_code(
     client = client,
     auth_url = "https://www.fitbit.com/oauth2/authorize",
     scope = paste(scope, collapse = " "),
     host_name = callback_params$hostname,
     port = as.integer(callback_params$port)
   )
+
+  invisible(.fitbitr_token)
 }

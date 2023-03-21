@@ -1,3 +1,12 @@
+.fitbitr_token <- NULL
+.onLoad <- function(libname, pkgname) {
+
+  utils::assignInMyNamespace(
+    ".fitbitr_token",
+    NULL
+  )
+}
+
 ## package constants
 base_url <- "https://api.fitbit.com"
 

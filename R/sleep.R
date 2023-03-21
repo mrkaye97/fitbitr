@@ -21,16 +21,16 @@
 #'
 #' @return A tibble of a variety of sleep summary data by day
 #' @export
-get_sleep_summary <- function(token, start_date, end_date = start_date) {
+get_sleep_summary <- function(start_date, end_date = start_date) {
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
-    extract_user_id(token),
+    extract_user_id.fitbitr_token,
     start_date,
     end_date
   )
 
-  r <- perform_get(token, url)
+  r <- perform_get(url)
 
   r %>%
     content(as = "parsed", type = "application/json") %>%
@@ -86,16 +86,16 @@ get_sleep_summary <- function(token, start_date, end_date = start_date) {
 #'
 #' @return A tibble of a variety of sleep stage summary data, by day
 #' @export
-get_sleep_stage_summary <- function(token, start_date, end_date = start_date) {
+get_sleep_stage_summary <- function(start_date, end_date = start_date) {
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
-    extract_user_id(token),
+    extract_user_id.fitbitr_token,
     start_date,
     end_date
   )
 
-  r <- perform_get(token, url) %>%
+  r <- perform_get(url) %>%
     content(as = "parsed", type = "application/json") %>%
     pluck("sleep")
 
@@ -148,16 +148,16 @@ get_sleep_stage_summary <- function(token, start_date, end_date = start_date) {
 #'
 #' @return A tibble of granular sleep stage data. This method is more granular than \link[fitbitr]{get_sleep_stage_summary}, and returns blocks of time that you spent in each zone throughout the night.
 #' @export
-get_sleep_stage_granular <- function(token, start_date, end_date = start_date) {
+get_sleep_stage_granular <- function(start_date, end_date = start_date) {
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
-    extract_user_id(token),
+    extract_user_id.fitbitr_token,
     start_date,
     end_date
   )
 
-  r <- perform_get(token, url) %>%
+  r <- perform_get(url) %>%
     content(as = "parsed", type = "application/json") %>%
     pluck("sleep")
 

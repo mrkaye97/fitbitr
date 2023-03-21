@@ -39,14 +39,14 @@ get_intraday_time_series <- function(
   url <- sprintf(
     "%s/1/user/%s/activities/%s/date/%s/1d/%s%s",
     base_url,
-    extract_user_id(token),
+    extract_user_id.fitbitr_token,
     resource,
     date,
     detail_level,
     url_suffix
   )
 
-  r <- perform_get(token, url)
+  r <- perform_get(url)
 
   r %>%
     content(as = "parsed", type = "application/json") %>%

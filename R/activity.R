@@ -16,15 +16,15 @@
 #' }
 #' @return A tibble with the `date` and a number of activity summary metrics for the day.
 #' @export
-get_activity_summary <- function(token, date) {
+get_activity_summary <- function(date) {
   url <- sprintf(
     "%s/1/user/%s/activities/date/%s.json",
     base_url,
-    extract_user_id(token),
+    extract_user_id.fitbitr_token,
     date
   )
 
-  r <- perform_get(token, url)
+  r <- perform_get(url)
 
   r %>%
     content(as = "parsed", type = "application/json") %>%
@@ -54,17 +54,17 @@ get_activity_summary <- function(token, date) {
 #' @importFrom dplyr rename
 #'
 #' @noRd
-get_activity_time_series <- function(token, start_date, end_date, resource_path) {
+get_activity_time_series <- function(start_date, end_date, resource_path) {
   url <- sprintf(
     "%s/1/user/%s/activities/%s/date/%s/%s.json",
     base_url,
-    extract_user_id(token),
+    extract_user_id.fitbitr_token,
     resource_path,
     start_date,
     end_date
   )
 
-  r <- perform_get(token, url)
+  r <- perform_get(url)
 
   r %>%
     content(as = "parsed", type = "application/json") %>%
@@ -97,7 +97,7 @@ get_activity_time_series <- function(token, start_date, end_date, resource_path)
 #'
 #' @return A tibble with two columns: `date` and `calories`
 #' @export
-get_calories <- function(token, start_date, end_date) {
+get_calories <- function(start_date, end_date) {
   get_activity_time_series(
     token,
     start_date,
@@ -123,7 +123,7 @@ get_calories <- function(token, start_date, end_date) {
 #'
 #' @return A tibble with two columns: `date` and `calories_bmr`
 #' @export
-get_calories_bmr <- function(token, start_date, end_date) {
+get_calories_bmr <- function(start_date, end_date) {
   get_activity_time_series(
     token,
     start_date,
@@ -149,7 +149,7 @@ get_calories_bmr <- function(token, start_date, end_date) {
 #'
 #' @return A tibble with two columns: `date` and `steps`
 #' @export
-get_steps <- function(token, start_date, end_date) {
+get_steps <- function(start_date, end_date) {
   get_activity_time_series(
     token,
     start_date,
@@ -175,7 +175,7 @@ get_steps <- function(token, start_date, end_date) {
 #'
 #' @return A tibble with two columns: `date` and `distance`
 #' @export
-get_distance <- function(token, start_date, end_date) {
+get_distance <- function(start_date, end_date) {
   get_activity_time_series(
     token,
     start_date,
@@ -201,7 +201,7 @@ get_distance <- function(token, start_date, end_date) {
 #'
 #' @return A tibble with two columns: `date` and `floors`
 #' @export
-get_floors <- function(token, start_date, end_date) {
+get_floors <- function(start_date, end_date) {
   get_activity_time_series(
     token,
     start_date,
@@ -227,7 +227,7 @@ get_floors <- function(token, start_date, end_date) {
 #'
 #' @return A tibble with two columns: `date` and `elevation`
 #' @export
-get_elevation <- function(token, start_date, end_date) {
+get_elevation <- function(start_date, end_date) {
   get_activity_time_series(
     token,
     start_date,
@@ -253,7 +253,7 @@ get_elevation <- function(token, start_date, end_date) {
 #'
 #' @return A tibble with two columns: `date` and `minutes_sedentary`
 #' @export
-get_minutes_sedentary <- function(token, start_date, end_date) {
+get_minutes_sedentary <- function(start_date, end_date) {
   get_activity_time_series(
     token,
     start_date,
@@ -279,7 +279,7 @@ get_minutes_sedentary <- function(token, start_date, end_date) {
 #'
 #' @return A tibble with two columns: `date` and `minutes_lightly_active`
 #' @export
-get_minutes_lightly_active <- function(token, start_date, end_date) {
+get_minutes_lightly_active <- function(start_date, end_date) {
   get_activity_time_series(
     token,
     start_date,
@@ -305,7 +305,7 @@ get_minutes_lightly_active <- function(token, start_date, end_date) {
 #'
 #' @return A tibble with two columns: `date` and `minutes_fairly_active`
 #' @export
-get_minutes_fairly_active <- function(token, start_date, end_date) {
+get_minutes_fairly_active <- function(start_date, end_date) {
   get_activity_time_series(
     token,
     start_date,
@@ -331,7 +331,7 @@ get_minutes_fairly_active <- function(token, start_date, end_date) {
 #'
 #' @return A tibble with two columns: `date` and `minutes_very_active`
 #' @export
-get_minutes_very_active <- function(token, start_date, end_date) {
+get_minutes_very_active <- function(start_date, end_date) {
   get_activity_time_series(
     token,
     start_date,
@@ -357,7 +357,7 @@ get_minutes_very_active <- function(token, start_date, end_date) {
 #'
 #' @return A tibble with two columns: `date` and `activity_calories`
 #' @export
-get_activity_calories <- function(token, start_date, end_date) {
+get_activity_calories <- function(start_date, end_date) {
   get_activity_time_series(
     token,
     start_date,
@@ -367,14 +367,14 @@ get_activity_calories <- function(token, start_date, end_date) {
 }
 
 #' @noRd
-get_bests_and_totals <- function(token, best, tracker) {
+get_bests_and_totals <- function(best, tracker) {
   url <- sprintf(
     "%s/1/user/%s/activities.json",
     base_url,
-    extract_user_id(token)
+    extract_user_id.fitbitr_token
   )
 
-  r <- perform_get(token, url)
+  r <- perform_get(url)
 
   r %>%
     content(as = "parsed", type = "application/json") %>%
@@ -396,7 +396,7 @@ get_bests_and_totals <- function(token, best, tracker) {
 #'
 #' @export
 #' @return A tibble of all-time tracker totals (i.e. the total `distance`, `floors`, and `steps` tracked by your tracker)
-get_tracker_totals <- function(token) {
+get_tracker_totals <- function.fitbitr_token {
   get_bests_and_totals(
     token,
     best = FALSE,
@@ -423,7 +423,7 @@ get_tracker_totals <- function(token) {
 #'
 #' @return A tibble of all-time totals across trackers (i.e. the total `distance`, `floors`, and `steps` tracked across all of your trackers)
 #' @export
-get_lifetime_totals <- function(token) {
+get_lifetime_totals <- function.fitbitr_token {
   get_bests_and_totals(
     token,
     best = FALSE,
@@ -453,7 +453,7 @@ get_lifetime_totals <- function(token) {
 #'
 #' @return A tibble the best `distance`, `floors`, and `steps` (by date) tracked on your tracker
 #' @export
-get_tracker_bests <- function(token) {
+get_tracker_bests <- function.fitbitr_token {
   get_bests_and_totals(
     token,
     best = TRUE,
@@ -479,7 +479,7 @@ get_tracker_bests <- function(token) {
 #'
 #' @return A tibble the best `distance`, `floors`, and `steps` (by date) tracked on any of your trackers
 #' @export
-get_lifetime_bests <- function(token) {
+get_lifetime_bests <- function.fitbitr_token {
   get_bests_and_totals(
     token,
     best = TRUE,
