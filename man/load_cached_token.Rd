@@ -2,21 +2,22 @@
 % Please edit documentation in R/setup.R
 \name{load_cached_token}
 \alias{load_cached_token}
-\title{Load a token from the cache}
+\title{Load a cached Fitbit API token from a cache}
 \usage{
 load_cached_token(path = ".httr-oauth")
 }
 \arguments{
-\item{path}{the path to the file where the token is stored}
+\item{path}{the path to the file where the token is stored. Default: \code{.httr-oauth}}
 }
 \value{
-No return value. The token is stored in the global environment as a hidden variable named \code{.fitbitr_token}
+Returns an OAuth 2.0 token that can be used to authorize requests to the Fitbit API
 }
 \description{
-Load a token from the cache
+Load a cached Fitbit API token from a cache
 }
 \examples{
 \dontrun{
 load_cached_token()
 }
+
 }
