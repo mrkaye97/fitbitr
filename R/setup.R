@@ -132,6 +132,13 @@ refresh_api_token <- function(x, ...) {
 #'
 #' @rdname refresh_api_token
 #'
+#' @param oauth_app_name The name of your OAuth app. Default: `fitbitr`
+#' @param client_id Your Fitbit client ID
+#' @param client_secret Your Fitbit client secret
+#' @param callback Your Fitbit redirect URL
+#' @param use_basic_auth A boolean for whether or not to use basic auth in \link[httr]{oauth2.0_token}. Defaults to `TRUE`
+#' @param ... Not currently used
+#'
 #' @export
 refresh_api_token.fitbitr_token <- function(
   x,
@@ -139,7 +146,8 @@ refresh_api_token.fitbitr_token <- function(
   client_id = Sys.getenv("FITBIT_CLIENT_ID"),
   client_secret = Sys.getenv("FITBIT_CLIENT_SECRET"),
   callback = Sys.getenv("FITBIT_CALLBACK", "http://localhost:1410/"),
-  use_basic_auth = TRUE
+  use_basic_auth = TRUE,
+  ...
 ) {
   endpoint <- create_endpoint()
   oauth_app <- create_oauth_app(
@@ -183,6 +191,11 @@ refresh_fitbitr_token.default <- function(x, ...) {
 #' Create an OAuth app to use for authorization
 #'
 #' @importFrom httr oauth_app
+#'
+#' @param oauth_app_name The name of your OAuth app. Default: `fitbitr`
+#' @param client_id Your Fitbit client ID
+#' @param client_secret Your Fitbit client secret
+#' @param callback Your Fitbit redirect URL
 create_oauth_app <- function(oauth_app_name, client_id, client_secret, callback) {
   oauth_app(
     appname = oauth_app_name,

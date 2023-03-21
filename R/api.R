@@ -108,11 +108,16 @@ check_rate_limit <- function(r) {
 }
 
 #' @noRd
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param reason A string reason for why the request failed
 #' @param error_message the error message
-#' @importFrom rlang inform
+#'
+#' @importFrom rlang inform abort
+#' @importFrom utils askYesNo
+#'
 #' @return No return value. Called for side effects
-ask_refresh <- function(reason, error_message) {
+ask_refresh <- function(token, reason, error_message) {
   inform(sprintf("%s. Error message: \n\n", reason))
   inform(error_message$message)
   inform("\n")

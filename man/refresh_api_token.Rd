@@ -15,12 +15,26 @@ refresh_api_token(x, ...)
   client_id = Sys.getenv("FITBIT_CLIENT_ID"),
   client_secret = Sys.getenv("FITBIT_CLIENT_SECRET"),
   callback = Sys.getenv("FITBIT_CALLBACK", "http://localhost:1410/"),
-  use_basic_auth = TRUE
+  use_basic_auth = TRUE,
+  ...
 )
 
 \method{refresh_api_token}{Token2.0}(x)
 
 refresh_fitbitr_token.default(x, ...)
+}
+\arguments{
+\item{...}{Not currently used}
+
+\item{oauth_app_name}{The name of your OAuth app. Default: \code{fitbitr}}
+
+\item{client_id}{Your Fitbit client ID}
+
+\item{client_secret}{Your Fitbit client secret}
+
+\item{callback}{Your Fitbit redirect URL}
+
+\item{use_basic_auth}{A boolean for whether or not to use basic auth in \link[httr]{oauth2.0_token}. Defaults to \code{TRUE}}
 }
 \description{
 A token can be either of class \code{Token2.0} (from \code{httr}) or of class

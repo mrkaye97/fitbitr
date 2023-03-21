@@ -6,6 +6,15 @@
 \usage{
 create_oauth_app(oauth_app_name, client_id, client_secret, callback)
 }
+\arguments{
+\item{oauth_app_name}{The name of your OAuth app. Default: \code{fitbitr}}
+
+\item{client_id}{Your Fitbit client ID}
+
+\item{client_secret}{Your Fitbit client secret}
+
+\item{callback}{Your Fitbit redirect URL}
+}
 \description{
 Create an OAuth app to use for authorization
 }
