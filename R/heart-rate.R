@@ -26,7 +26,7 @@ get_heart_rate_zones <- function(token, start_date, end_date = start_date) {
     end_date
   )
 
-  r <- get(token, url)
+  r <- perform_get(token, url)
 
   hr_data <- r %>%
     content(as = "parsed", type = "application/json") %>%

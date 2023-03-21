@@ -46,7 +46,7 @@ get_intraday_time_series <- function(
     url_suffix
   )
 
-  r <- get(token, url)
+  r <- perform_get(token, url)
 
   r %>%
     content(as = "parsed", type = "application/json") %>%

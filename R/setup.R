@@ -121,6 +121,9 @@ generate_oauth_token <- function(
 #' A token can be either of class `Token2.0` (from `httr`) or of class
 #' `fitbitr_token` (from `fitbitr`).
 #'
+#' @param x A token to refresh
+#' @param \dots Arguments passed to other methods
+#'
 #' @rdname refresh_api_token
 #'
 #' @export
@@ -132,6 +135,7 @@ refresh_api_token <- function(x, ...) {
 #'
 #' @rdname refresh_api_token
 #'
+#' @param x A `fitbitr_token` to refresh
 #' @param oauth_app_name The name of your OAuth app. Default: `fitbitr`
 #' @param client_id Your Fitbit client ID
 #' @param client_secret Your Fitbit client secret
@@ -157,7 +161,7 @@ refresh_api_token.fitbitr_token <- function(
     callback = callback
   )
 
-  token <- httr:::refresh_oauth2.0(
+  token <- refresh_oauth2.0(
     endpoint = endpoint,
     app = oauth_app,
     credentials = list(
@@ -177,8 +181,10 @@ refresh_api_token.fitbitr_token <- function(
 #'
 #' @rdname refresh_api_token
 #'
+#' @param x An `httr::Token2.0` token to refresh
+#'
 #' @export
-refresh_api_token.Token2.0 <- function(x) {
+refresh_api_token.Token2.0 <- function(x, ...) {
   x$refresh()
 }
 

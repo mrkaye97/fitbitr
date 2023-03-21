@@ -30,7 +30,7 @@ get_sleep_summary <- function(token, start_date, end_date = start_date) {
     end_date
   )
 
-  r <- get(token, url)
+  r <- perform_get(token, url)
 
   r %>%
     content(as = "parsed", type = "application/json") %>%
@@ -95,7 +95,7 @@ get_sleep_stage_summary <- function(token, start_date, end_date = start_date) {
     end_date
   )
 
-  r <- get(token, url) %>%
+  r <- perform_get(token, url) %>%
     content(as = "parsed", type = "application/json") %>%
     pluck("sleep")
 
@@ -157,7 +157,7 @@ get_sleep_stage_granular <- function(token, start_date, end_date = start_date) {
     end_date
   )
 
-  r <- get(token, url) %>%
+  r <- perform_get(token, url) %>%
     content(as = "parsed", type = "application/json") %>%
     pluck("sleep")
 

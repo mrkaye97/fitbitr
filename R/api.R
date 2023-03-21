@@ -45,7 +45,7 @@ stop_for_status <- function(response) {
 #'
 #' @return The response
 #' @export
-get <- function(token, url, ...) {
+perform_get <- function(token, url, ...) {
   if (is.null(token) || !(class(token)[1] %in% c("fitbitr_token", "Token2.0"))) {
     abort("You must supply a valid token.")
   }
@@ -70,7 +70,7 @@ get <- function(token, url, ...) {
       }
     )
 
-    return(get(token, url))
+    return(perform_get(token, url))
   }
 
   if (check_rate_limit(response)) {

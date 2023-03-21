@@ -24,7 +24,7 @@ get_activity_summary <- function(token, date) {
     date
   )
 
-  r <- get(token, url)
+  r <- perform_get(token, url)
 
   r %>%
     content(as = "parsed", type = "application/json") %>%
@@ -64,7 +64,7 @@ get_activity_time_series <- function(token, start_date, end_date, resource_path)
     end_date
   )
 
-  r <- get(token, url)
+  r <- perform_get(token, url)
 
   r %>%
     content(as = "parsed", type = "application/json") %>%
@@ -374,7 +374,7 @@ get_bests_and_totals <- function(token, best, tracker) {
     extract_user_id(token)
   )
 
-  r <- get(token, url)
+  r <- perform_get(token, url)
 
   r %>%
     content(as = "parsed", type = "application/json") %>%

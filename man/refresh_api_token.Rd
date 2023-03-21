@@ -19,12 +19,14 @@ refresh_api_token(x, ...)
   ...
 )
 
-\method{refresh_api_token}{Token2.0}(x)
+\method{refresh_api_token}{Token2.0}(x, ...)
 
 refresh_fitbitr_token.default(x, ...)
 }
 \arguments{
-\item{...}{Not currently used}
+\item{x}{An \code{httr::Token2.0} token to refresh}
+
+\item{\dots}{Arguments passed to other methods}
 
 \item{oauth_app_name}{The name of your OAuth app. Default: \code{fitbitr}}
 
@@ -35,6 +37,8 @@ refresh_fitbitr_token.default(x, ...)
 \item{callback}{Your Fitbit redirect URL}
 
 \item{use_basic_auth}{A boolean for whether or not to use basic auth in \link[httr]{oauth2.0_token}. Defaults to \code{TRUE}}
+
+\item{...}{Not currently used}
 }
 \description{
 A token can be either of class \code{Token2.0} (from \code{httr}) or of class
