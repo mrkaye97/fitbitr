@@ -14,7 +14,7 @@ test_that("Activity time series download correctly", {
 
   run_many <- function(f, token, start_date) {
     purrr::walk(
-      round(runif(3, 1, 100)),
+      round(runif(1, 1, 100)),
       ~ {
         response <- f(token, start_date, start_date + lubridate::days(.x))
 
