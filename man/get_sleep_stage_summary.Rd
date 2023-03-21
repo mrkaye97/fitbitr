@@ -4,9 +4,11 @@
 \alias{get_sleep_stage_summary}
 \title{Nightly Sleep Stage Summary Data}
 \usage{
-get_sleep_stage_summary(start_date, end_date = start_date)
+get_sleep_stage_summary(token, start_date, end_date = start_date)
 }
 \arguments{
+\item{token}{A \code{fitbitr_token} object or an \code{httr::Token2.0} object a la \link[httr]{Token2.0}}
+
 \item{start_date}{The start date of records to be returned in "yyyy-mm-dd" or date(time) format}
 
 \item{end_date}{The end date of records to be returned in "yyyy-mm-dd" or date(time) format}
@@ -25,4 +27,5 @@ end_date <- lubridate::today()
 
 get_sleep_stage_summary(start_date, end_date)
 }
+
 }

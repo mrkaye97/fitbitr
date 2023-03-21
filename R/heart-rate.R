@@ -1,9 +1,13 @@
 #' Heart Rate Zones
 #'
 #' See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
+#'
 #' @importFrom purrr map_chr
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
@@ -13,9 +17,7 @@
 #' }
 #' @return A tibble of the date, the heart rate zone (`zone`), the minimum heart rate in that zone (`min_hr`), the maximum heart rate in that zone (`max_hr`), the minutes in that zone (`minutes_in_zone`), and the calories burned in that zone (`calories_out`)
 #' @export
-get_heart_rate_zones <- function(start_date, end_date = start_date) {
-  check_token_exists()
-
+get_heart_rate_zones <- function(token, start_date, end_date = start_date) {
   url <- sprintf(
     "%s/1/user/%s/activities/heart/date/%s/%s.json",
     base_url,

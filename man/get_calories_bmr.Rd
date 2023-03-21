@@ -4,9 +4,11 @@
 \alias{get_calories_bmr}
 \title{Calories BMR Time Series}
 \usage{
-get_calories_bmr(start_date, end_date)
+get_calories_bmr(token, start_date, end_date)
 }
 \arguments{
+\item{token}{A \code{fitbitr_token} object or an \code{httr::Token2.0} object a la \link[httr]{Token2.0}}
+
 \item{start_date}{The start date of records to be returned in "yyyy-mm-dd" or date(time) format}
 
 \item{end_date}{The end date of records to be returned in "yyyy-mm-dd" or date(time) format}
@@ -23,4 +25,5 @@ start_date <- lubridate::today() - lubridate::weeks(1)
 end_date <- lubridate::today()
 get_calories_bmr(date)
 }
+
 }

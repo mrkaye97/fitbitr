@@ -4,7 +4,10 @@
 \alias{get_lifetime_bests}
 \title{Lifetime Bests}
 \usage{
-get_lifetime_bests()
+get_lifetime_bests(token)
+}
+\arguments{
+\item{token}{A \code{fitbitr_token} object or an \code{httr::Token2.0} object a la \link[httr]{Token2.0}}
 }
 \value{
 A tibble the best \code{distance}, \code{floors}, and \code{steps} (by date) tracked on any of your trackers
@@ -16,4 +19,5 @@ Retrieve lifetime best distance, floors, and steps
 \dontrun{
 get_lifetime_bests()
 }
+
 }

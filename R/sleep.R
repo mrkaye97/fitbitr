@@ -1,12 +1,15 @@
 #' Nightly Sleep Summary
 #'
 #' Returns a tibble of summary by night
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @importFrom purrr pluck list_modify map flatten
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
 #' @importFrom dplyr arrange across
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
@@ -14,11 +17,10 @@
 #'
 #' get_sleep_summary(start_date, end_date)
 #' }
+#'
 #' @return A tibble of a variety of sleep summary data by day
 #' @export
-get_sleep_summary <- function(start_date, end_date = start_date) {
-  check_token_exists()
-
+get_sleep_summary <- function(token, start_date, end_date = start_date) {
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
@@ -63,12 +65,16 @@ get_sleep_summary <- function(start_date, end_date = start_date) {
 #'
 #' Returns a tibble of nightly sleep stage data.
 #' Minutes in each stage, count of times in each stage, and a thirty day average for the number of minutes in each stage.
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @importFrom purrr pluck list_modify map_dfr
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
 #' @importFrom dplyr arrange
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
@@ -76,11 +82,10 @@ get_sleep_summary <- function(start_date, end_date = start_date) {
 #'
 #' get_sleep_stage_summary(start_date, end_date)
 #' }
+#'
 #' @return A tibble of a variety of sleep stage summary data, by day
 #' @export
-get_sleep_stage_summary <- function(start_date, end_date = start_date) {
-  check_token_exists()
-
+get_sleep_stage_summary <- function(token, start_date, end_date = start_date) {
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
@@ -122,12 +127,16 @@ get_sleep_stage_summary <- function(start_date, end_date = start_date) {
 #'
 #' Returns a tibble of nightly sleep stage data.
 #' Very granular. Returns blocks of time spent in each phase.
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @importFrom purrr pluck list_modify
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
 #' @importFrom dplyr arrange
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
@@ -135,11 +144,10 @@ get_sleep_stage_summary <- function(start_date, end_date = start_date) {
 #'
 #' get_sleep_stage_granular(start_date, end_date)
 #' }
+#'
 #' @return A tibble of granular sleep stage data. This method is more granular than \link[fitbitr]{get_sleep_stage_summary}, and returns blocks of time that you spent in each zone throughout the night.
 #' @export
-get_sleep_stage_granular <- function(start_date, end_date = start_date) {
-  check_token_exists()
-
+get_sleep_stage_granular <- function(token, start_date, end_date = start_date) {
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,

@@ -4,12 +4,15 @@
 \alias{generate_fitbitr_token}
 \title{Create an object of class \code{fitbitr_token}}
 \usage{
-generate_fitbitr_token(refresh_token, access_token = NULL)
+generate_fitbitr_token(
+  refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN"),
+  access_token = NULL
+)
 }
 \arguments{
-\item{refresh_token}{A refresh token}
+\item{refresh_token}{A refresh token. Defaults to the value of the \code{FITBIT_REFRESH_TOKEN} env var.}
 
-\item{access_token}{An access token}
+\item{access_token}{An access token. Default: \code{NULL}}
 }
 \value{
 A \code{fitbitr_token} object

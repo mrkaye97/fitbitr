@@ -1,10 +1,14 @@
 #' Activity Summary
 #'
 #' See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param date The date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @importFrom dplyr bind_rows mutate select everything
 #' @importFrom httr content
 #' @importFrom janitor clean_names
+#'
 #' @examples
 #' \dontrun{
 #' date <- lubridate::today()
@@ -12,9 +16,7 @@
 #' }
 #' @return A tibble with the `date` and a number of activity summary metrics for the day.
 #' @export
-get_activity_summary <- function(date) {
-  check_token_exists()
-
+get_activity_summary <- function(token, date) {
   url <- sprintf(
     "%s/1/user/%s/activities/date/%s.json",
     base_url,
@@ -41,16 +43,18 @@ get_activity_summary <- function(date) {
 #' Activity Time Series
 #'
 #' See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param resource_path The resource path. See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for options
+#'
 #' @importFrom purrr flatten_dfr
 #' @importFrom rlang :=
 #' @importFrom dplyr rename
+#'
 #' @noRd
-get_activity_time_series <- function(start_date, end_date, resource_path) {
-  check_token_exists()
-
+get_activity_time_series <- function(token, start_date, end_date, resource_path) {
   url <- sprintf(
     "%s/1/user/%s/activities/%s/date/%s/%s.json",
     base_url,
@@ -79,17 +83,21 @@ get_activity_time_series <- function(start_date, end_date, resource_path) {
 #' Calories Time Series
 #'
 #' Resource path /activities/calories
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
 #' calories(date)
 #' }
+#'
 #' @return A tibble with two columns: `date` and `calories`
 #' @export
-get_calories <- function(start_date, end_date) {
+get_calories <- function(token, start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -100,17 +108,21 @@ get_calories <- function(start_date, end_date) {
 #' Calories BMR Time Series
 #'
 #' Resource path /activities/caloriesBMR
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
 #' get_calories_bmr(date)
 #' }
+#'
 #' @return A tibble with two columns: `date` and `calories_bmr`
 #' @export
-get_calories_bmr <- function(start_date, end_date) {
+get_calories_bmr <- function(token, start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -121,17 +133,21 @@ get_calories_bmr <- function(start_date, end_date) {
 #' Steps Time Series
 #'
 #' Resource path /activities/steps
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
 #' get_steps(date)
 #' }
+#'
 #' @return A tibble with two columns: `date` and `steps`
 #' @export
-get_steps <- function(start_date, end_date) {
+get_steps <- function(token, start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -142,17 +158,21 @@ get_steps <- function(start_date, end_date) {
 #' Distance Time Series
 #'
 #' Resource path /activities/distance
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
 #' get_distance(date)
 #' }
+#'
 #' @return A tibble with two columns: `date` and `distance`
 #' @export
-get_distance <- function(start_date, end_date) {
+get_distance <- function(token, start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -163,17 +183,21 @@ get_distance <- function(start_date, end_date) {
 #' Floors Time Series
 #'
 #' Resource path /activities/floors
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
 #' get_floors(date)
 #' }
+#'
 #' @return A tibble with two columns: `date` and `floors`
 #' @export
-get_floors <- function(start_date, end_date) {
+get_floors <- function(token, start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -184,17 +208,21 @@ get_floors <- function(start_date, end_date) {
 #' Elevation Time Series
 #'
 #' Resource path /activities/elevation
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
 #' get_elevation(date)
 #' }
+#'
 #' @return A tibble with two columns: `date` and `elevation`
 #' @export
-get_elevation <- function(start_date, end_date) {
+get_elevation <- function(token, start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -205,17 +233,21 @@ get_elevation <- function(start_date, end_date) {
 #' Minutes Sedentary Time Series
 #'
 #' Resource path /activities/minutesSedentary
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
 #' get_minutes_sedentary(date)
 #' }
+#'
 #' @return A tibble with two columns: `date` and `minutes_sedentary`
 #' @export
-get_minutes_sedentary <- function(start_date, end_date) {
+get_minutes_sedentary <- function(token, start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -226,17 +258,21 @@ get_minutes_sedentary <- function(start_date, end_date) {
 #' Minutes Lightly Active Time Series
 #'
 #' Resource path /activities/minutesLightlyActive
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
 #' get_minutes_lightly_active(date)
 #' }
+#'
 #' @return A tibble with two columns: `date` and `minutes_lightly_active`
 #' @export
-get_minutes_lightly_active <- function(start_date, end_date) {
+get_minutes_lightly_active <- function(token, start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -247,17 +283,21 @@ get_minutes_lightly_active <- function(start_date, end_date) {
 #' Minutes Fairly Active Time Series
 #'
 #' Resource path /activities/minutesFairlyActive
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
 #' get_minutes_fairly_active(date)
 #' }
+#'
 #' @return A tibble with two columns: `date` and `minutes_fairly_active`
 #' @export
-get_minutes_fairly_active <- function(start_date, end_date) {
+get_minutes_fairly_active <- function(token, start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -268,17 +308,21 @@ get_minutes_fairly_active <- function(start_date, end_date) {
 #' Minutes Very Active Time Series
 #'
 #' Resource path /activities/minutesVeryActive
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
 #' get_minutes_very_active(date)
 #' }
+#'
 #' @return A tibble with two columns: `date` and `minutes_very_active`
 #' @export
-get_minutes_very_active <- function(start_date, end_date) {
+get_minutes_very_active <- function(token, start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -289,17 +333,21 @@ get_minutes_very_active <- function(start_date, end_date) {
 #' Activity Calories Time Series
 #'
 #' Resource path /activities/activityCalories
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
 #' get_activity_calories(date)
 #' }
+#'
 #' @return A tibble with two columns: `date` and `activity_calories`
 #' @export
-get_activity_calories <- function(start_date, end_date) {
+get_activity_calories <- function(token, start_date, end_date) {
   get_activity_time_series(
     start_date,
     end_date,
@@ -308,9 +356,7 @@ get_activity_calories <- function(start_date, end_date) {
 }
 
 #' @noRd
-get_bests_and_totals <- function(best, tracker) {
-  check_token_exists()
-
+get_bests_and_totals <- function(token, best, tracker) {
   url <- sprintf(
     "%s/1/user/%s/activities.json",
     base_url,
@@ -329,13 +375,17 @@ get_bests_and_totals <- function(best, tracker) {
 #' Tracker Totals
 #'
 #' Retrieve tracker total distance, floors, and steps
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+#'
 #' @examples
 #' \dontrun{
 #' get_tracker_totals()
 #' }
+#'
 #' @export
 #' @return A tibble of all-time tracker totals (i.e. the total `distance`, `floors`, and `steps` tracked by your tracker)
-get_tracker_totals <- function() {
+get_tracker_totals <- function(token) {
   get_bests_and_totals(
     best = FALSE,
     tracker = TRUE
@@ -351,13 +401,17 @@ get_tracker_totals <- function() {
 #' Lifetime Totals
 #'
 #' Retrieve lifetime total distance, floors, and steps
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+#'
 #' @examples
 #' \dontrun{
 #' get_lifetime_totals()
 #' }
+#'
 #' @return A tibble of all-time totals across trackers (i.e. the total `distance`, `floors`, and `steps` tracked across all of your trackers)
 #' @export
-get_lifetime_totals <- function() {
+get_lifetime_totals <- function(token) {
   get_bests_and_totals(
     best = FALSE,
     tracker = FALSE
@@ -373,15 +427,20 @@ get_lifetime_totals <- function() {
 #' Tracker Bests
 #'
 #' Retrieve tracker best distance, floors, and steps
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+#'
 #' @examples
 #' \dontrun{
 #' get_tracker_bests()
 #' }
+#'
 #' @importFrom tidyr unnest_wider
 #' @importFrom tibble enframe
+#'
 #' @return A tibble the best `distance`, `floors`, and `steps` (by date) tracked on your tracker
 #' @export
-get_tracker_bests <- function() {
+get_tracker_bests <- function(token) {
   get_bests_and_totals(
     best = TRUE,
     tracker = TRUE
@@ -396,13 +455,17 @@ get_tracker_bests <- function() {
 #' Lifetime Bests
 #'
 #' Retrieve lifetime best distance, floors, and steps
+#'
+#' @param token A `fitbitr_token` object or an `httr::Token2.0` object a la \link[httr]{Token2.0}
+#'
 #' @examples
 #' \dontrun{
 #' get_lifetime_bests()
 #' }
+#'
 #' @return A tibble the best `distance`, `floors`, and `steps` (by date) tracked on any of your trackers
 #' @export
-get_lifetime_bests <- function() {
+get_lifetime_bests <- function(token) {
   get_bests_and_totals(
     best = TRUE,
     tracker = FALSE
