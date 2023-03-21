@@ -2,7 +2,7 @@
 #'
 #' Performs the OAuth 2.0 dance to create a token to use with the Fitbit API.
 #'
-#' @importFrom httr2 oauth_flow_auth_code oauth_client
+#' @importFrom httr2 oauth_flow_auth_code oauth_client url_parse
 #'
 #' @param app_name The name of your OAuth app. Default: `fitbitr`
 #' @param client_id Your Fitbit client ID
@@ -51,7 +51,7 @@ generate_fitbitr_token <- function(
   ...
 ) {
 
-  callback_params <- httr2::url_parse(callback)
+  callback_params <- url_parse(callback)
   client <- oauth_client(
     name = app_name,
     id = client_id,
