@@ -90,12 +90,12 @@ get_sleep_stage_summary <- function(token, start_date, end_date = start_date) {
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
-    tokencredentials$user_id,
+    token$credentials$user_id,
     start_date,
     end_date
   )
 
-  r <- get(url) %>%
+  r <- get(token, url) %>%
     content(as = "parsed", type = "application/json") %>%
     pluck("sleep")
 
@@ -152,12 +152,12 @@ get_sleep_stage_granular <- function(token, start_date, end_date = start_date) {
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
-    tokencredentials$user_id,
+    token$credentials$user_id,
     start_date,
     end_date
   )
 
-  r <- get(url) %>%
+  r <- get(token, url) %>%
     content(as = "parsed", type = "application/json") %>%
     pluck("sleep")
 

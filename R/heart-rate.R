@@ -21,12 +21,12 @@ get_heart_rate_zones <- function(token, start_date, end_date = start_date) {
   url <- sprintf(
     "%s/1/user/%s/activities/heart/date/%s/%s.json",
     base_url,
-    tokencredentials$user_id,
+    token$credentials$user_id,
     start_date,
     end_date
   )
 
-  r <- get(url)
+  r <- get(token, url)
 
   hr_data <- r %>%
     content(as = "parsed", type = "application/json") %>%

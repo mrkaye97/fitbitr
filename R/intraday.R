@@ -41,14 +41,14 @@ get_intraday_time_series <- function(
   url <- sprintf(
     "%s/1/user/%s/activities/%s/date/%s/1d/%s%s",
     base_url,
-    tokencredentials$user_id,
+    token$credentials$user_id,
     resource,
     date,
     detail_level,
     url_suffix
   )
 
-  r <- get(url)
+  r <- get(token, url)
 
   r %>%
     content(as = "parsed", type = "application/json") %>%
@@ -93,7 +93,7 @@ get_intraday_time_series <- function(
 #' @export
 get_calories_intraday <- function(
   token,
-  user_id = tokencredentials$user_id,
+  user_id = token$credentials$user_id,
   date = lubridate::today(),
   detail_level = c("1min", "5min", "15min"),
   start_time = NULL,
@@ -141,7 +141,7 @@ get_calories_intraday <- function(
 #' @export
 get_distance_intraday <- function(
   token,
-  user_id = tokencredentials$user_id,
+  user_id = token$credentials$user_id,
   date = lubridate::today(),
   detail_level = c("1min", "5min", "15min"),
   start_time = NULL,
@@ -189,7 +189,7 @@ get_distance_intraday <- function(
 #' @export
 get_floors_intraday <- function(
   token,
-  user_id = tokencredentials$user_id,
+  user_id = token$credentials$user_id,
   date = lubridate::today(),
   detail_level = c("1min", "5min", "15min"),
   start_time = NULL,
@@ -237,7 +237,7 @@ get_floors_intraday <- function(
 #' @export
 get_steps_intraday <- function(
   token,
-  user_id = tokencredentials$user_id,
+  user_id = token$credentials$user_id,
   date = lubridate::today(),
   detail_level = c("1min", "5min", "15min"),
   start_time = NULL,
@@ -285,7 +285,7 @@ get_steps_intraday <- function(
 #' @export
 get_elevation_intraday <- function(
   token,
-  user_id = tokencredentials$user_id,
+  user_id = token$credentials$user_id,
   date = lubridate::today(),
   detail_level = c("1min", "5min", "15min"),
   start_time = NULL,
@@ -331,7 +331,7 @@ get_elevation_intraday <- function(
 #' @export
 get_heart_rate_intraday <- function(
   token,
-  user_id = tokencredentials$user_id,
+  user_id = token$credentials$user_id,
   date = lubridate::today(),
   detail_level = c("1min", "5min", "15min"),
   start_time = NULL,
@@ -378,7 +378,7 @@ get_heart_rate_intraday <- function(
 #' @export
 get_active_zone_minutes_intraday <- function(
   token,
-  user_id = tokencredentials$user_id,
+  user_id = token$credentials$user_id,
   date = lubridate::today(),
   detail_level = c("1min", "5min", "15min"),
   start_time = NULL,

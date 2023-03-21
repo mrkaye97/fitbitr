@@ -6,7 +6,7 @@
 \usage{
 get_active_zone_minutes_intraday(
   token,
-  user_id = tokencredentials$user_id,
+  user_id = token$credentials$user_id,
   date = lubridate::today(),
   detail_level = c("1min", "5min", "15min"),
   start_time = NULL,
