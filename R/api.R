@@ -1,4 +1,8 @@
 extract_user_id <- function(token) {
+  if (is.null(token)) {
+    abort("No token provided.")
+  }
+
   user_id <- pluck(token, "credentials", "user_id", .default = NULL)
   if (is.null(user_id)) {
     abort("The token you provided had no associated `user_id`. Maybe it was empty? Please supply a valid token.")

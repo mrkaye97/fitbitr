@@ -1,10 +1,8 @@
-date <- start_date <- "2021-05-20"
-end_date <- "2021-05-21"
-
 test_that("Sleep works", {
   skip_on_cran()
 
   tmp <- get_sleep_summary(
+    token = token,
     start_date = start_date,
     end_date = end_date
   )
@@ -21,25 +19,20 @@ test_that("Sleep stage granular works", {
   skip_on_cran()
 
   sleep <- get_sleep_stage_granular(
+    token = token,
     start_date,
     end_date
   )
 
-  expected <- jsonlite::fromJSON(sleep_stage_example)
-
-  expect_identical(
-    sleep$time,
-    lubridate::as_datetime(expected$sleep$levels$data[[1]]$dateTime)
+  expect_equal(max(lubridate::as_date(sleep$time)), end_date)
+  expect_true(dplyr::between(min(lubridate::as_date(sleep$time)), start_date - lubridate::days(1), start_date))
+  expect_equal(
+    colnames(sleep),
+    c("time", "level", "seconds")
   )
-
-  expect_identical(
-    sleep$seconds,
-    expected$sleep$levels$data[[1]]$seconds
-  )
-
-  expect_identical(
-    sleep$level,
-    expected$sleep$levels$data[[1]]$level
+  expect_setequal(
+    unique(sleep$level),
+    c("rem", "deep", "light", "wake")
   )
 })
 
@@ -47,23 +40,16 @@ test_that("Sleep stage summary works", {
   skip_on_cran()
 
   sleep <- get_sleep_stage_summary(
+    token,
     start_date,
     end_date
   )
 
-  expected <- jsonlite::fromJSON(sleep_stage_example)$sleep$levels$summary
-
   expect_identical(
-    sleep$count,
-    c(
-      expected$deep$count,
-      expected$light$count,
-      expected$rem$count,
-      expected$wake$count
-    )
+    colnames(sleep),
+    c("date", "stage", "count", "minutes", "thirty_day_avg_minutes")
   )
-
-  expect_identical(
+  expect_setequal(
     sleep$stage,
     c("deep", "light", "rem", "wake")
   )

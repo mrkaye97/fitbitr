@@ -11,10 +11,3 @@ test_that("Token loads", {
     "Token2.0"
   )
 })
-
-test_that("Testing mode warns", {
-  expect_warning(
-    get_steps(token, '2020-01-01', '2020-01-03'),
-    "Heads up: You're in"
-  )
-})

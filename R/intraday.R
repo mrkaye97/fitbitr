@@ -31,7 +31,7 @@ get_intraday_time_series <- function(
   resource <- match.arg(resource)
 
   if (!is.null(start_time)) {
-    url_suffix <- sprintf("/time/%s/%s.json")
+    url_suffix <- sprintf("/time/%s/%s.json", start_time, end_time)
   } else {
     url_suffix <- ".json"
   }
@@ -99,6 +99,7 @@ get_calories_intraday <- function(
   stop_for_one_sided_interval(start_time, end_time)
 
   get_intraday_time_series(
+    token = token,
     resource = "calories",
     date = date,
     detail_level = detail_level,
@@ -144,6 +145,7 @@ get_distance_intraday <- function(
   stop_for_one_sided_interval(start_time, end_time)
 
   get_intraday_time_series(
+    token = token,
     resource = "distance",
     date = date,
     detail_level = detail_level,
@@ -189,6 +191,7 @@ get_floors_intraday <- function(
   stop_for_one_sided_interval(start_time, end_time)
 
   get_intraday_time_series(
+    token = token,
     resource = "floors",
     date = date,
     detail_level = detail_level,
@@ -234,6 +237,7 @@ get_steps_intraday <- function(
   stop_for_one_sided_interval(start_time, end_time)
 
   get_intraday_time_series(
+    token = token,
     resource = "steps",
     date = date,
     detail_level = detail_level,
@@ -279,6 +283,7 @@ get_elevation_intraday <- function(
   stop_for_one_sided_interval(start_time, end_time)
 
   get_intraday_time_series(
+    token = token,
     resource = "elevation",
     date = date,
     detail_level = detail_level,
@@ -322,6 +327,7 @@ get_heart_rate_intraday <- function(
   stop_for_one_sided_interval(start_time, end_time)
 
   get_intraday_time_series(
+    token = token,
     resource = "heart",
     date = date,
     detail_level = detail_level,
@@ -366,6 +372,7 @@ get_active_zone_minutes_intraday <- function(
   stop_for_one_sided_interval(start_time, end_time)
 
   get_intraday_time_series(
+    token = token,
     resource = "active-zone-minutes",
     date = date,
     detail_level = detail_level,

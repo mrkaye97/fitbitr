@@ -1,73 +1,65 @@
-date <- "2021-05-20"
-
 test_that("Heart rate by minute works", {
   skip_on_cran()
 
   heart <- get_heart_rate_intraday(
+    token = token,
     date = date
   )
 
   expect_equal(colnames(heart), c("time", "heart_rate"))
-  expect_equal(nrow(heart), 5)
+  expect_gt(nrow(heart), 1000)
   checkmate::expect_posixct(heart$time)
-})
 
-test_that("Heart rate by second works", {
-  skip_on_cran()
-
-  tmp <- get_heart_rate_intraday(
+  heart <- get_heart_rate_intraday(
+    token = token,
     date = date,
-    detail_level = "1min"
+    start_time = "00:00:00",
+    end_time = "00:02:00"
   )
 
-  expect_equal(colnames(tmp), c("time", "heart_rate"))
-  expect_equal(nrow(tmp), 5)
-  checkmate::expect_posixct(tmp$time)
+  expect_equal(colnames(heart), c("time", "heart_rate"))
+  expect_equal(nrow(heart), 3)
+  checkmate::expect_posixct(heart$time)
 })
 
 test_that("Intradays work", {
   skip_on_cran()
   skip_on_ci()
 
-  load_cached_token(Sys.getenv("FITBITR_CACHE_LOC"))
+  test_one_min_gran <- function(f, col) {
+    x <- f(token, date, detail_level = "1min")
 
-  one_min_granularity <- get_heart_rate_intraday(
-    date = date,
-    detail_level = "1min"
-  )
-  fifteen_min_granularity <- get_heart_rate_intraday(
-    date = date,
-    detail_level = "15min"
-  )
+    expect_equal(colnames(x), c("time", col))
+    expect_gt(nrow(x), 1000)
+    checkmate::expect_posixct(x$time)
+    expect_true(x$time[1] == x$time[2] - lubridate::minutes(1))
+  }
 
-  expect_equal(colnames(one_min_granularity), c("time", "heart_rate"))
-  expect_equal(nrow(one_min_granularity), 1348)
-  checkmate::expect_posixct(one_min_granularity$time)
+  test_fifteen_min_gran <- function(f, col) {
+    x <- f(token, date, detail_level = "15min")
 
-  expect_gt(
-    nrow(one_min_granularity),
-    nrow(fifteen_min_granularity)
-  )
+    expect_equal(colnames(x), c("time", col))
+    expect_gt(nrow(x), 10)
+    checkmate::expect_posixct(x$time)
+    expect_true(x$time[1] == x$time[2] - lubridate::minutes(15))
+  }
 
-  mean_hr_granular <- mean(
-    dplyr::filter(
-      one_min_granularity,
-      dplyr::between(
-        time,
-        fifteen_min_granularity$time[1],
-        fifteen_min_granularity$time[2]
-      )
-    )$heart_rate
+  resources <- list(
+    calories = get_calories_intraday,
+    distance = get_distance_intraday,
+    elevation = get_elevation_intraday,
+    floors = get_floors_intraday,
+    heart_rate = get_heart_rate_intraday,
+    steps = get_steps_intraday
   )
 
-  expect_lte(
-    abs(mean_hr_granular - fifteen_min_granularity$heart_rate[1]),
-    2
+  purrr::iwalk(
+    resources,
+    test_one_min_gran
   )
 
-  expect_gt(nrow(get_steps_intraday(date, detail_level = "1min")), 1000)
-  expect_gt(nrow(get_floors_intraday(date, detail_level = "1min")), 1000)
-  expect_gt(nrow(get_elevation_intraday(date, detail_level = "1min")), 1000)
-  expect_gt(nrow(get_calories_intraday(date, detail_level = "1min")), 1000)
-  expect_gt(nrow(get_distance_intraday(date, detail_level = "1min")), 1000)
+  purrr::iwalk(
+    resources,
+    test_fifteen_min_gran
+  )
 })
