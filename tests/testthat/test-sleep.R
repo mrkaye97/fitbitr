@@ -1,5 +1,6 @@
 test_that("Sleep works", {
   skip_on_cran()
+  skip_on_ci()
 
   tmp <- get_sleep_summary(
     token = token,
@@ -17,6 +18,7 @@ test_that("Sleep works", {
 
 test_that("Sleep stage granular works", {
   skip_on_cran()
+  skip_on_ci()
 
   sleep <- get_sleep_stage_granular(
     token = token,
@@ -38,6 +40,7 @@ test_that("Sleep stage granular works", {
 
 test_that("Sleep stage summary works", {
   skip_on_cran()
+  skip_on_ci()
 
   sleep <- get_sleep_stage_summary(
     token,

@@ -1,5 +1,6 @@
 test_that("Heart rate by minute works", {
   skip_on_cran()
+  skip_on_ci()
 
   heart <- get_heart_rate_intraday(
     token = token,
@@ -27,7 +28,7 @@ test_that("Intradays work", {
   skip_on_ci()
 
   test_one_min_gran <- function(f, col) {
-    x <- f(token, date, detail_level = "1min")
+    x <- f(date, detail_level = "1min")
 
     expect_equal(colnames(x), c("time", col))
     expect_gt(nrow(x), 1000)
@@ -36,7 +37,7 @@ test_that("Intradays work", {
   }
 
   test_fifteen_min_gran <- function(f, col) {
-    x <- f(token, date, detail_level = "15min")
+    x <- f(date, detail_level = "15min")
 
     expect_equal(colnames(x), c("time", col))
     expect_gt(nrow(x), 10)

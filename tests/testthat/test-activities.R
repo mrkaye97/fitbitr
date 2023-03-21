@@ -1,7 +1,8 @@
 test_that("Activites summary downloads", {
   skip_on_cran()
+  skip_on_ci()
 
-  tmp <- get_activity_summary(token, date)
+  tmp <- get_activity_summary(date)
 
   expect_equal(nrow(tmp), 1)
   expect_equal(ncol(tmp), 14)
@@ -11,12 +12,13 @@ test_that("Activites summary downloads", {
 
 test_that("Activity time series download correctly", {
   skip_on_cran()
+  skip_on_ci()
 
-  run_many <- function(f, token, start_date) {
+  run_many <- function(f, start_date) {
     purrr::walk(
       round(runif(1, 1, 100)),
       ~ {
-        response <- f(token, start_date, start_date + lubridate::days(.x))
+        response <- f(start_date, start_date + lubridate::days(.x))
 
         expect_equal(nrow(response), .x + 1)
         expect_equal(ncol(response), 2)
@@ -26,25 +28,25 @@ test_that("Activity time series download correctly", {
     )
   }
 
-  run_many(get_activity_calories, token, lubridate::as_date(start_date))
-  run_many(get_calories_bmr, token, lubridate::as_date(start_date))
-  run_many(get_calories, token, lubridate::as_date(start_date))
-  run_many(get_distance, token, lubridate::as_date(start_date))
-  run_many(get_elevation, token, lubridate::as_date(start_date))
-  run_many(get_floors, token, lubridate::as_date(start_date))
-  run_many(get_minutes_sedentary, token, lubridate::as_date(start_date))
-  run_many(get_minutes_lightly_active, token, lubridate::as_date(start_date))
-  run_many(get_minutes_fairly_active, token, lubridate::as_date(start_date))
-  run_many(get_minutes_very_active, token, lubridate::as_date(start_date))
-  run_many(get_steps, token, lubridate::as_date(start_date))
+  run_many(get_activity_calories, lubridate::as_date(start_date))
+  run_many(get_calories_bmr, lubridate::as_date(start_date))
+  run_many(get_calories, lubridate::as_date(start_date))
+  run_many(get_distance, lubridate::as_date(start_date))
+  run_many(get_elevation, lubridate::as_date(start_date))
+  run_many(get_floors, lubridate::as_date(start_date))
+  run_many(get_minutes_sedentary, lubridate::as_date(start_date))
+  run_many(get_minutes_lightly_active, lubridate::as_date(start_date))
+  run_many(get_minutes_fairly_active, lubridate::as_date(start_date))
+  run_many(get_minutes_very_active, lubridate::as_date(start_date))
+  run_many(get_steps, lubridate::as_date(start_date))
 })
 
 
 test_that("Bests and totals", {
-  tracker_best <- get_bests_and_totals(token, TRUE, TRUE)
-  tracker_total <- get_bests_and_totals(token, FALSE, TRUE)
-  lifetime_best <- get_bests_and_totals(token, TRUE, FALSE)
-  lifetime_total <- get_bests_and_totals(token, FALSE, FALSE)
+  tracker_best <- get_bests_and_totals(TRUE, TRUE)
+  tracker_total <- get_bests_and_totals(FALSE, TRUE)
+  lifetime_best <- get_bests_and_totals(TRUE, FALSE)
+  lifetime_total <- get_bests_and_totals(FALSE, FALSE)
 
   purrr::walk(
     names(tracker_best),
