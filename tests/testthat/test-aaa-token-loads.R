@@ -4,15 +4,17 @@ test_that("Token loads", {
 
   cache_loc <- Sys.getenv("FITBITR_CACHE_LOC")
 
-  load_cached_token(cache_loc)
-  tmp <- check_token_exists()
+  token <- load_cached_token(cache_loc)
 
-  expect_true(tmp)
+  expect_s3_class(
+    token,
+    "Token2.0"
+  )
 })
 
 test_that("Testing mode warns", {
   expect_warning(
-    get_steps('2020-01-01', '2020-01-03'),
+    get_steps(token, '2020-01-01', '2020-01-03'),
     "Heads up: You're in"
   )
 })

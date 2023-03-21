@@ -20,7 +20,7 @@ get_activity_summary <- function(token, date) {
   url <- sprintf(
     "%s/1/user/%s/activities/date/%s.json",
     base_url,
-    token$credentials$user_id,
+    extract_user_id(token),
     date
   )
 
@@ -58,7 +58,7 @@ get_activity_time_series <- function(token, start_date, end_date, resource_path)
   url <- sprintf(
     "%s/1/user/%s/activities/%s/date/%s/%s.json",
     base_url,
-    token$credentials$user_id,
+    extract_user_id(token),
     resource_path,
     start_date,
     end_date
@@ -99,6 +99,7 @@ get_activity_time_series <- function(token, start_date, end_date, resource_path)
 #' @export
 get_calories <- function(token, start_date, end_date) {
   get_activity_time_series(
+    token,
     start_date,
     end_date,
     resource_path = "calories"
@@ -124,6 +125,7 @@ get_calories <- function(token, start_date, end_date) {
 #' @export
 get_calories_bmr <- function(token, start_date, end_date) {
   get_activity_time_series(
+    token,
     start_date,
     end_date,
     resource_path = "caloriesBMR"
@@ -149,6 +151,7 @@ get_calories_bmr <- function(token, start_date, end_date) {
 #' @export
 get_steps <- function(token, start_date, end_date) {
   get_activity_time_series(
+    token,
     start_date,
     end_date,
     resource_path = "steps"
@@ -174,6 +177,7 @@ get_steps <- function(token, start_date, end_date) {
 #' @export
 get_distance <- function(token, start_date, end_date) {
   get_activity_time_series(
+    token,
     start_date,
     end_date,
     resource_path = "distance"
@@ -199,6 +203,7 @@ get_distance <- function(token, start_date, end_date) {
 #' @export
 get_floors <- function(token, start_date, end_date) {
   get_activity_time_series(
+    token,
     start_date,
     end_date,
     resource_path = "floors"
@@ -224,6 +229,7 @@ get_floors <- function(token, start_date, end_date) {
 #' @export
 get_elevation <- function(token, start_date, end_date) {
   get_activity_time_series(
+    token,
     start_date,
     end_date,
     resource_path = "elevation"
@@ -249,6 +255,7 @@ get_elevation <- function(token, start_date, end_date) {
 #' @export
 get_minutes_sedentary <- function(token, start_date, end_date) {
   get_activity_time_series(
+    token,
     start_date,
     end_date,
     resource_path = "minutesSedentary"
@@ -274,6 +281,7 @@ get_minutes_sedentary <- function(token, start_date, end_date) {
 #' @export
 get_minutes_lightly_active <- function(token, start_date, end_date) {
   get_activity_time_series(
+    token,
     start_date,
     end_date,
     resource_path = "minutesLightlyActive"
@@ -299,6 +307,7 @@ get_minutes_lightly_active <- function(token, start_date, end_date) {
 #' @export
 get_minutes_fairly_active <- function(token, start_date, end_date) {
   get_activity_time_series(
+    token,
     start_date,
     end_date,
     resource_path = "minutesFairlyActive"
@@ -324,6 +333,7 @@ get_minutes_fairly_active <- function(token, start_date, end_date) {
 #' @export
 get_minutes_very_active <- function(token, start_date, end_date) {
   get_activity_time_series(
+    token,
     start_date,
     end_date,
     resource_path = "minutesVeryActive"
@@ -349,6 +359,7 @@ get_minutes_very_active <- function(token, start_date, end_date) {
 #' @export
 get_activity_calories <- function(token, start_date, end_date) {
   get_activity_time_series(
+    token,
     start_date,
     end_date,
     resource_path = "activityCalories"
@@ -360,7 +371,7 @@ get_bests_and_totals <- function(token, best, tracker) {
   url <- sprintf(
     "%s/1/user/%s/activities.json",
     base_url,
-    token$credentials$user_id
+    extract_user_id(token)
   )
 
   r <- get(token, url)
@@ -387,6 +398,7 @@ get_bests_and_totals <- function(token, best, tracker) {
 #' @return A tibble of all-time tracker totals (i.e. the total `distance`, `floors`, and `steps` tracked by your tracker)
 get_tracker_totals <- function(token) {
   get_bests_and_totals(
+    token,
     best = FALSE,
     tracker = TRUE
   ) %>%
@@ -413,6 +425,7 @@ get_tracker_totals <- function(token) {
 #' @export
 get_lifetime_totals <- function(token) {
   get_bests_and_totals(
+    token,
     best = FALSE,
     tracker = FALSE
   ) %>%
@@ -442,6 +455,7 @@ get_lifetime_totals <- function(token) {
 #' @export
 get_tracker_bests <- function(token) {
   get_bests_and_totals(
+    token,
     best = TRUE,
     tracker = TRUE
   ) %>%
@@ -467,6 +481,7 @@ get_tracker_bests <- function(token) {
 #' @export
 get_lifetime_bests <- function(token) {
   get_bests_and_totals(
+    token,
     best = TRUE,
     tracker = FALSE
   ) %>%

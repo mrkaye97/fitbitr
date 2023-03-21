@@ -6,7 +6,6 @@
 \usage{
 get_heart_rate_intraday(
   token,
-  user_id = token$credentials$user_id,
   date = lubridate::today(),
   detail_level = c("1min", "5min", "15min"),
   start_time = NULL,
@@ -15,8 +14,6 @@ get_heart_rate_intraday(
 }
 \arguments{
 \item{token}{A \code{fitbitr_token} object or an \code{httr::Token2.0} object a la \link[httr]{Token2.0}}
-
-\item{user_id}{The fitbitr client's user id}
 
 \item{date}{A date to get data for}
 

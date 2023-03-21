@@ -1,3 +1,12 @@
+extract_user_id <- function(token) {
+  user_id <- pluck(token, "credentials", "user_id", .default = NULL)
+  if (is.null(user_id)) {
+    abort("The token you provided had no associated `user_id`. Maybe it was empty? Please supply a valid token.")
+  }
+
+  token$credentials$user_id
+}
+
 #' @importFrom jsonlite toJSON
 stop_for_status <- function(response) {
   status_code <- response$status_code
