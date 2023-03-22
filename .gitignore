@@ -41,4 +41,4 @@ docs
 .DS_Store
 fitbitr-config.dcf
 .Rprofile
-.fitbitr-token
+.fitbitr-token.rds
