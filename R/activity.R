@@ -97,7 +97,6 @@ get_activity_time_series <- function(start_date, end_date, resource_path) {
 #' @export
 get_calories <- function(start_date, end_date) {
   get_activity_time_series(
-
     start_date,
     end_date,
     resource_path = "calories"
@@ -122,7 +121,6 @@ get_calories <- function(start_date, end_date) {
 #' @export
 get_calories_bmr <- function(start_date, end_date) {
   get_activity_time_series(
-
     start_date,
     end_date,
     resource_path = "caloriesBMR"
@@ -147,7 +145,6 @@ get_calories_bmr <- function(start_date, end_date) {
 #' @export
 get_steps <- function(start_date, end_date) {
   get_activity_time_series(
-
     start_date,
     end_date,
     resource_path = "steps"
@@ -172,7 +169,6 @@ get_steps <- function(start_date, end_date) {
 #' @export
 get_distance <- function(start_date, end_date) {
   get_activity_time_series(
-
     start_date,
     end_date,
     resource_path = "distance"
@@ -197,7 +193,6 @@ get_distance <- function(start_date, end_date) {
 #' @export
 get_floors <- function(start_date, end_date) {
   get_activity_time_series(
-
     start_date,
     end_date,
     resource_path = "floors"
@@ -222,7 +217,6 @@ get_floors <- function(start_date, end_date) {
 #' @export
 get_elevation <- function(start_date, end_date) {
   get_activity_time_series(
-
     start_date,
     end_date,
     resource_path = "elevation"
@@ -247,7 +241,6 @@ get_elevation <- function(start_date, end_date) {
 #' @export
 get_minutes_sedentary <- function(start_date, end_date) {
   get_activity_time_series(
-
     start_date,
     end_date,
     resource_path = "minutesSedentary"
@@ -272,7 +265,6 @@ get_minutes_sedentary <- function(start_date, end_date) {
 #' @export
 get_minutes_lightly_active <- function(start_date, end_date) {
   get_activity_time_series(
-
     start_date,
     end_date,
     resource_path = "minutesLightlyActive"
@@ -297,7 +289,6 @@ get_minutes_lightly_active <- function(start_date, end_date) {
 #' @export
 get_minutes_fairly_active <- function(start_date, end_date) {
   get_activity_time_series(
-
     start_date,
     end_date,
     resource_path = "minutesFairlyActive"
@@ -322,7 +313,6 @@ get_minutes_fairly_active <- function(start_date, end_date) {
 #' @export
 get_minutes_very_active <- function(start_date, end_date) {
   get_activity_time_series(
-
     start_date,
     end_date,
     resource_path = "minutesVeryActive"
@@ -347,7 +337,6 @@ get_minutes_very_active <- function(start_date, end_date) {
 #' @export
 get_activity_calories <- function(start_date, end_date) {
   get_activity_time_series(
-
     start_date,
     end_date,
     resource_path = "activityCalories"

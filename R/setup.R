@@ -2,7 +2,7 @@
 #'
 #' Performs the OAuth 2.0 dance to create a token to use with the Fitbit API.
 #'
-#' @importFrom httr2 oauth_flow_auth_code oauth_client url_parse
+#' @importFrom httr oauth_app oauth2.0_token
 #'
 #' @param app_name The name of your OAuth app. Default: `fitbitr`
 #' @param client_id Your Fitbit client ID
@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' generate_oauth_token(
+#' generate_fitbitr_token(
 #'   client_id = <YOUR-CLIENT-ID>
 #'   client_secret = <YOUR-CLIENT-SECRET>,
 #'   cache = TRUE
@@ -25,7 +25,7 @@ generate_fitbitr_token <- function(
   app_name = "fitbitr",
   client_id = Sys.getenv("FITBIT_CLIENT_ID"),
   client_secret = Sys.getenv("FITBIT_CLIENT_SECRET"),
-  callback = Sys.getenv("FITBIT_CALLBACK", "http://localhost:1410/"),
+  callback = Sys.getenv("FITBIT_CALLBACK", "https://localhost:1410/"),
   scope = c(
     "activity",
     "cardio_fitness",
@@ -41,25 +41,35 @@ generate_fitbitr_token <- function(
     "social",
     "temperature",
     "weight"
-  )
+  ),
+  cache = TRUE,
+  use_basic_auth = TRUE,
+  ...
 ) {
 
-  callback_params <- url_parse(callback)
-  client <- oauth_client(
-    name = app_name,
-    id = client_id,
+  endpoint <- create_endpoint()
+  myapp <- oauth_app(
+    "r-package-test",
+    key = client_id,
     secret = client_secret,
-    token_url = "https://api.fitbit.com/oauth2/token",
-    auth = "header"
+    redirect_uri = callback
   )
 
-  .fitbitr_token <<- oauth_flow_auth_code(
-    client = client,
-    auth_url = "https://www.fitbit.com/oauth2/authorize",
-    scope = paste(scope, collapse = " "),
-    host_name = callback_params$hostname,
-    port = as.integer(callback_params$port)
+  .fitbitr_token <<- oauth2.0_token(
+    endpoint,
+    myapp,
+    scope = scope,
+    use_basic_auth = use_basic_auth,
+    cache = cache,
+    ...
   )
 
   invisible(.fitbitr_token)
+}
+
+create_endpoint <- function() {
+  request <- "https://api.fitbit.com/oauth2/token"
+  authorize <- "https://www.fitbit.com/oauth2/authorize"
+  access <- "https://api.fitbit.com/oauth2/token"
+  httr::oauth_endpoint(request, authorize, access)
 }

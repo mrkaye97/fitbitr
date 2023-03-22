@@ -1,13 +1,14 @@
+#' @importFrom rlang abort
 fetch_user_id <- function() {
   if (is.null(.fitbitr_token)) {
     abort("No token provided.")
   }
 
-  if (class(.fitbitr_token) != "httr2_token") {
-    abort("You must provide a token of class `httr2_token`")
+  if (class(.fitbitr_token)[1] != "Token2.0") {
+    abort("You must provide a token of class `Token2.0`")
   }
 
-  user_id <- pluck("user_id", .default = NULL)
+  user_id <- pluck(.fitbitr_token, "credentials", "user_id", .default = NULL)
   if (is.null(user_id)) {
     abort("The token you provided had no associated `user_id`. Maybe it was empty? Please supply a valid token.")
   }
@@ -15,7 +16,7 @@ fetch_user_id <- function() {
   user_id
 }
 
-#' @importFrom jsonlite toJSON
+#' @importFrom jsonlite toJSON fromJSON validate
 stop_for_status <- function(response) {
   status_code <- response$status_code
   if (status_code == 200) {
@@ -23,11 +24,19 @@ stop_for_status <- function(response) {
   } else {
     response <- content(response)
 
+    to_print <- if (!is.null(pluck(response, "errors"))) {
+      toJSON(response$errors, pretty = TRUE, auto_unbox = TRUE)
+    } else if (validate(response)) {
+      toJSON(fromJSON(response), pretty = TRUE, auto_unbox = TRUE)
+    } else {
+      as.character(response)
+    }
+
     abort(
       c(
         sprintf("Fitbit API request failed with status code %s", status_code),
         "*" = "Error text below:",
-        toJSON(response$errors, pretty = TRUE, auto_unbox = TRUE)
+        to_print
       )
     )
   }
@@ -49,15 +58,15 @@ perform_get <- function(url, ...) {
     abort("No token found. Please run `generate_fitbitr_token()` to create one.")
   }
 
-  if (class(.fitbitr_token) != "httr2_token") {
-    abort("You must provide a token of class `httr2_token`")
+  if (class(.fitbitr_token)[1] != "Token2.0") {
+    abort("You must provide a token of class `Token2.0`")
   }
 
   response <- GET(
     url,
     add_headers(
       .headers = c(
-        Authorization = paste0("Bearer ", .fitbitr_token$access_token)
+        Authorization = paste0("Bearer ", .fitbitr_token$credentials$access_token)
       )
     )
   )

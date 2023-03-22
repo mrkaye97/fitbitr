@@ -8,10 +8,13 @@ generate_fitbitr_token(
   app_name = "fitbitr",
   client_id = Sys.getenv("FITBIT_CLIENT_ID"),
   client_secret = Sys.getenv("FITBIT_CLIENT_SECRET"),
-  callback = Sys.getenv("FITBIT_CALLBACK", "http://localhost:1410/"),
+  callback = Sys.getenv("FITBIT_CALLBACK", "https://localhost:1410/"),
   scope = c("activity", "cardio_fitness", "electrocardiogram", "heartrate", "location",
     "nutrition", "oxygen_saturation", "profile", "respiratory_rate", "settings", "sleep",
-    "social", "temperature", "weight")
+    "social", "temperature", "weight"),
+  cache = TRUE,
+  use_basic_auth = TRUE,
+  ...
 )
 }
 \arguments{
@@ -33,7 +36,7 @@ Performs the OAuth 2.0 dance to create a token to use with the Fitbit API.
 }
 \examples{
 \dontrun{
-generate_oauth_token(
+generate_fitbitr_token(
   client_id = <YOUR-CLIENT-ID>
   client_secret = <YOUR-CLIENT-SECRET>,
   cache = TRUE
