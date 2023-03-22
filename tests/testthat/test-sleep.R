@@ -3,7 +3,6 @@ test_that("Sleep works", {
   skip_on_ci()
 
   tmp <- get_sleep_summary(
-     
     start_date = start_date,
     end_date = end_date
   )
@@ -21,7 +20,6 @@ test_that("Sleep stage granular works", {
   skip_on_ci()
 
   sleep <- get_sleep_stage_granular(
-     
     start_date,
     end_date
   )
@@ -43,7 +41,6 @@ test_that("Sleep stage summary works", {
   skip_on_ci()
 
   sleep <- get_sleep_stage_summary(
-    
     start_date,
     end_date
   )

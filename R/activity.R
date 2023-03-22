@@ -99,7 +99,7 @@ get_activity_time_series <- function(start_date, end_date, resource_path) {
 #' @export
 get_calories <- function(start_date, end_date) {
   get_activity_time_series(
-    
+
     start_date,
     end_date,
     resource_path = "calories"
@@ -125,7 +125,7 @@ get_calories <- function(start_date, end_date) {
 #' @export
 get_calories_bmr <- function(start_date, end_date) {
   get_activity_time_series(
-    
+
     start_date,
     end_date,
     resource_path = "caloriesBMR"
@@ -151,7 +151,7 @@ get_calories_bmr <- function(start_date, end_date) {
 #' @export
 get_steps <- function(start_date, end_date) {
   get_activity_time_series(
-    
+
     start_date,
     end_date,
     resource_path = "steps"
@@ -177,7 +177,7 @@ get_steps <- function(start_date, end_date) {
 #' @export
 get_distance <- function(start_date, end_date) {
   get_activity_time_series(
-    
+
     start_date,
     end_date,
     resource_path = "distance"
@@ -203,7 +203,7 @@ get_distance <- function(start_date, end_date) {
 #' @export
 get_floors <- function(start_date, end_date) {
   get_activity_time_series(
-    
+
     start_date,
     end_date,
     resource_path = "floors"
@@ -229,7 +229,7 @@ get_floors <- function(start_date, end_date) {
 #' @export
 get_elevation <- function(start_date, end_date) {
   get_activity_time_series(
-    
+
     start_date,
     end_date,
     resource_path = "elevation"
@@ -255,7 +255,7 @@ get_elevation <- function(start_date, end_date) {
 #' @export
 get_minutes_sedentary <- function(start_date, end_date) {
   get_activity_time_series(
-    
+
     start_date,
     end_date,
     resource_path = "minutesSedentary"
@@ -281,7 +281,7 @@ get_minutes_sedentary <- function(start_date, end_date) {
 #' @export
 get_minutes_lightly_active <- function(start_date, end_date) {
   get_activity_time_series(
-    
+
     start_date,
     end_date,
     resource_path = "minutesLightlyActive"
@@ -307,7 +307,7 @@ get_minutes_lightly_active <- function(start_date, end_date) {
 #' @export
 get_minutes_fairly_active <- function(start_date, end_date) {
   get_activity_time_series(
-    
+
     start_date,
     end_date,
     resource_path = "minutesFairlyActive"
@@ -333,7 +333,7 @@ get_minutes_fairly_active <- function(start_date, end_date) {
 #' @export
 get_minutes_very_active <- function(start_date, end_date) {
   get_activity_time_series(
-    
+
     start_date,
     end_date,
     resource_path = "minutesVeryActive"
@@ -359,7 +359,7 @@ get_minutes_very_active <- function(start_date, end_date) {
 #' @export
 get_activity_calories <- function(start_date, end_date) {
   get_activity_time_series(
-    
+
     start_date,
     end_date,
     resource_path = "activityCalories"
@@ -396,9 +396,8 @@ get_bests_and_totals <- function(best, tracker) {
 #'
 #' @export
 #' @return A tibble of all-time tracker totals (i.e. the total `distance`, `floors`, and `steps` tracked by your tracker)
-get_tracker_totals <- function.fitbitr_token {
+get_tracker_totals <- function() {
   get_bests_and_totals(
-    
     best = FALSE,
     tracker = TRUE
   ) %>%
@@ -414,7 +413,6 @@ get_tracker_totals <- function.fitbitr_token {
 #'
 #' Retrieve lifetime total distance, floors, and steps
 #'
-
 #'
 #' @examples
 #' \dontrun{
@@ -423,9 +421,8 @@ get_tracker_totals <- function.fitbitr_token {
 #'
 #' @return A tibble of all-time totals across trackers (i.e. the total `distance`, `floors`, and `steps` tracked across all of your trackers)
 #' @export
-get_lifetime_totals <- function.fitbitr_token {
+get_lifetime_totals <- function() {
   get_bests_and_totals(
-    
     best = FALSE,
     tracker = FALSE
   ) %>%
@@ -453,9 +450,8 @@ get_lifetime_totals <- function.fitbitr_token {
 #'
 #' @return A tibble the best `distance`, `floors`, and `steps` (by date) tracked on your tracker
 #' @export
-get_tracker_bests <- function.fitbitr_token {
+get_tracker_bests <- function() {
   get_bests_and_totals(
-    
     best = TRUE,
     tracker = TRUE
   ) %>%
@@ -479,9 +475,8 @@ get_tracker_bests <- function.fitbitr_token {
 #'
 #' @return A tibble the best `distance`, `floors`, and `steps` (by date) tracked on any of your trackers
 #' @export
-get_lifetime_bests <- function.fitbitr_token {
+get_lifetime_bests <- function() {
   get_bests_and_totals(
-    
     best = TRUE,
     tracker = FALSE
   ) %>%

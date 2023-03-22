@@ -21,7 +21,6 @@ stop_for_one_sided_interval <- function(start_time, end_time) {
 #'
 #' @return A tibble with two columns: `time` and `{{resource}}`
 get_intraday_time_series <- function(
-    
     resource = c("active-zone-minutes", "calories", "distance", "elevation", "floors", "heart", "steps"),
     date,
     detail_level,
@@ -88,7 +87,6 @@ get_intraday_time_series <- function(
 #' @return A tibble with two columns: `time` and `calories`
 #' @export
 get_calories_intraday <- function(
-    
     date = lubridate::today(),
     detail_level = c("1min", "5min", "15min"),
     start_time = NULL,
@@ -97,7 +95,6 @@ get_calories_intraday <- function(
   stop_for_one_sided_interval(start_time, end_time)
 
   get_intraday_time_series(
-     
     resource = "calories",
     date = date,
     detail_level = detail_level,
@@ -133,7 +130,6 @@ get_calories_intraday <- function(
 #' @return A tibble with two columns: `time` and `distance`
 #' @export
 get_distance_intraday <- function(
-    
     date = lubridate::today(),
     detail_level = c("1min", "5min", "15min"),
     start_time = NULL,
@@ -142,7 +138,6 @@ get_distance_intraday <- function(
   stop_for_one_sided_interval(start_time, end_time)
 
   get_intraday_time_series(
-     
     resource = "distance",
     date = date,
     detail_level = detail_level,
@@ -178,7 +173,6 @@ get_distance_intraday <- function(
 #' @return A tibble with two columns: `time` and `floors`
 #' @export
 get_floors_intraday <- function(
-    
     date = lubridate::today(),
     detail_level = c("1min", "5min", "15min"),
     start_time = NULL,
@@ -187,7 +181,6 @@ get_floors_intraday <- function(
   stop_for_one_sided_interval(start_time, end_time)
 
   get_intraday_time_series(
-     
     resource = "floors",
     date = date,
     detail_level = detail_level,
@@ -223,7 +216,6 @@ get_floors_intraday <- function(
 #' @return A tibble with two columns: `time` and `steps`
 #' @export
 get_steps_intraday <- function(
-    
     date = lubridate::today(),
     detail_level = c("1min", "5min", "15min"),
     start_time = NULL,
@@ -232,7 +224,6 @@ get_steps_intraday <- function(
   stop_for_one_sided_interval(start_time, end_time)
 
   get_intraday_time_series(
-     
     resource = "steps",
     date = date,
     detail_level = detail_level,
@@ -268,7 +259,6 @@ get_steps_intraday <- function(
 #' @return A tibble with two columns: `time` and `elevation`
 #' @export
 get_elevation_intraday <- function(
-    
     date = lubridate::today(),
     detail_level = c("1min", "5min", "15min"),
     start_time = NULL,
@@ -277,7 +267,6 @@ get_elevation_intraday <- function(
   stop_for_one_sided_interval(start_time, end_time)
 
   get_intraday_time_series(
-     
     resource = "elevation",
     date = date,
     detail_level = detail_level,
@@ -311,7 +300,6 @@ get_elevation_intraday <- function(
 #' }
 #' @export
 get_heart_rate_intraday <- function(
-    
     date = lubridate::today(),
     detail_level = c("1min", "5min", "15min"),
     start_time = NULL,
@@ -320,7 +308,6 @@ get_heart_rate_intraday <- function(
   stop_for_one_sided_interval(start_time, end_time)
 
   get_intraday_time_series(
-     
     resource = "heart",
     date = date,
     detail_level = detail_level,
@@ -355,7 +342,6 @@ get_heart_rate_intraday <- function(
 #' }
 #' @export
 get_active_zone_minutes_intraday <- function(
-    
     date = lubridate::today(),
     detail_level = c("1min", "5min", "15min"),
     start_time = NULL,
@@ -364,7 +350,6 @@ get_active_zone_minutes_intraday <- function(
   stop_for_one_sided_interval(start_time, end_time)
 
   get_intraday_time_series(
-     
     resource = "active-zone-minutes",
     date = date,
     detail_level = detail_level,

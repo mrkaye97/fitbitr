@@ -1,4 +1,4 @@
-extract_user_id <- function.fitbitr_token {
+extract_user_id <- function() {
   if (missing.fitbitr_token || is.null.fitbitr_token) {
     abort("No token provided.")
   }
