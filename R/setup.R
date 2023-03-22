@@ -9,6 +9,9 @@
 #' @param client_secret Your Fitbit client secret
 #' @param callback Your Fitbit redirect URL
 #' @param scope The scopes to enable
+#' @param cache Do you want to cache your token? See \link[httr]{oauth2.0_token} for details
+#' @param use_basic_auth A boolean for whether or not to use basic auth in \link[httr]{oauth2.0_token}. Defaults to `TRUE`
+#' @param ... additional arguments to be passed to \link[httr]{oauth2.0_token}
 #'
 #' @examples
 #' \dontrun{

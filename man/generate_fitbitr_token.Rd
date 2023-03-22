@@ -27,6 +27,12 @@ generate_fitbitr_token(
 \item{callback}{Your Fitbit redirect URL}
 
 \item{scope}{The scopes to enable}
+
+\item{cache}{Do you want to cache your token? See \link[httr]{oauth2.0_token} for details}
+
+\item{use_basic_auth}{A boolean for whether or not to use basic auth in \link[httr]{oauth2.0_token}. Defaults to \code{TRUE}}
+
+\item{...}{additional arguments to be passed to \link[httr]{oauth2.0_token}}
 }
 \value{
 Returns an OAuth 2.0 token that can be used to authorize requests to the Fitbit API
