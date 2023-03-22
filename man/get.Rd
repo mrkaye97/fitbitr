@@ -4,11 +4,9 @@
 \alias{perform_get}
 \title{Perform a GET request}
 \usage{
-perform_get(token, url, ...)
+perform_get(url, ...)
 }
 \arguments{
-\item{token}{A \code{fitbitr_token} object or an \code{httr::Token2.0} object a la \link[httr]{Token2.0}}
-
 \item{url}{The URL to make the request to}
 
 \item{\dots}{Additional arguments (not currently used)}

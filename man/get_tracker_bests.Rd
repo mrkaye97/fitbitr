@@ -4,10 +4,7 @@
 \alias{get_tracker_bests}
 \title{Tracker Bests}
 \usage{
-get_tracker_bests(token)
-}
-\arguments{
-\item{token}{A \code{fitbitr_token} object or an \code{httr::Token2.0} object a la \link[httr]{Token2.0}}
+get_tracker_bests()
 }
 \value{
 A tibble the best \code{distance}, \code{floors}, and \code{steps} (by date) tracked on your tracker

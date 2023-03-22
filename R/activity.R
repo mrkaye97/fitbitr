@@ -2,7 +2,6 @@
 #'
 #' See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
 #'
-
 #' @param date The date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
 #' @importFrom dplyr bind_rows mutate select everything
@@ -44,7 +43,6 @@ get_activity_summary <- function(date) {
 #'
 #' See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for more details.
 #'
-
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param resource_path The resource path. See \url{https://dev.fitbit.com/build/reference/web-api/activity/} for options
@@ -110,7 +108,6 @@ get_calories <- function(start_date, end_date) {
 #'
 #' Resource path /activities/caloriesBMR
 #'
-
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -136,7 +133,6 @@ get_calories_bmr <- function(start_date, end_date) {
 #'
 #' Resource path /activities/steps
 #'
-
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -162,7 +158,6 @@ get_steps <- function(start_date, end_date) {
 #'
 #' Resource path /activities/distance
 #'
-
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -188,7 +183,6 @@ get_distance <- function(start_date, end_date) {
 #'
 #' Resource path /activities/floors
 #'
-
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -214,7 +208,6 @@ get_floors <- function(start_date, end_date) {
 #'
 #' Resource path /activities/elevation
 #'
-
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -240,7 +233,6 @@ get_elevation <- function(start_date, end_date) {
 #'
 #' Resource path /activities/minutesSedentary
 #'
-
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -266,7 +258,6 @@ get_minutes_sedentary <- function(start_date, end_date) {
 #'
 #' Resource path /activities/minutesLightlyActive
 #'
-
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -292,7 +283,6 @@ get_minutes_lightly_active <- function(start_date, end_date) {
 #'
 #' Resource path /activities/minutesFairlyActive
 #'
-
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -318,7 +308,6 @@ get_minutes_fairly_active <- function(start_date, end_date) {
 #'
 #' Resource path /activities/minutesVeryActive
 #'
-
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -344,7 +333,6 @@ get_minutes_very_active <- function(start_date, end_date) {
 #'
 #' Resource path /activities/activityCalories
 #'
-
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
@@ -387,7 +375,6 @@ get_bests_and_totals <- function(best, tracker) {
 #'
 #' Retrieve tracker total distance, floors, and steps
 #'
-
 #'
 #' @examples
 #' \dontrun{
@@ -438,7 +425,6 @@ get_lifetime_totals <- function() {
 #'
 #' Retrieve tracker best distance, floors, and steps
 #'
-
 #'
 #' @examples
 #' \dontrun{
@@ -466,7 +452,6 @@ get_tracker_bests <- function() {
 #'
 #' Retrieve lifetime best distance, floors, and steps
 #'
-
 #'
 #' @examples
 #' \dontrun{

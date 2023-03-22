@@ -5,7 +5,6 @@
 \title{Get intraday calories time series}
 \usage{
 get_calories_intraday(
-  token,
   date = lubridate::today(),
   detail_level = c("1min", "5min", "15min"),
   start_time = NULL,
@@ -13,8 +12,6 @@ get_calories_intraday(
 )
 }
 \arguments{
-\item{token}{A \code{fitbitr_token} object or an \code{httr::Token2.0} object a la \link[httr]{Token2.0}}
-
 \item{date}{A date to get data for}
 
 \item{detail_level}{The detail level. One of \code{"1min"}, \code{"5min"}, or \code{"15min"}}

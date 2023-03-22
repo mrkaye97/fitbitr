@@ -4,11 +4,9 @@
 \alias{get_activity_summary}
 \title{Activity Summary}
 \usage{
-get_activity_summary(token, date)
+get_activity_summary(date)
 }
 \arguments{
-\item{token}{A \code{fitbitr_token} object or an \code{httr::Token2.0} object a la \link[httr]{Token2.0}}
-
 \item{date}{The date of records to be returned in "yyyy-mm-dd" or date(time) format}
 }
 \value{

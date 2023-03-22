@@ -4,10 +4,7 @@
 \alias{get_lifetime_totals}
 \title{Lifetime Totals}
 \usage{
-get_lifetime_totals(token)
-}
-\arguments{
-\item{token}{A \code{fitbitr_token} object or an \code{httr::Token2.0} object a la \link[httr]{Token2.0}}
+get_lifetime_totals()
 }
 \value{
 A tibble of all-time totals across trackers (i.e. the total \code{distance}, \code{floors}, and \code{steps} tracked across all of your trackers)

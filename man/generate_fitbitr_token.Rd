@@ -12,7 +12,6 @@ generate_fitbitr_token(
   scope = c("activity", "cardio_fitness", "electrocardiogram", "heartrate", "location",
     "nutrition", "oxygen_saturation", "profile", "respiratory_rate", "settings", "sleep",
     "social", "temperature", "weight"),
-  refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN"),
   cache = FALSE,
   use_basic_auth = TRUE,
   ...

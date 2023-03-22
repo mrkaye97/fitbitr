@@ -5,7 +5,6 @@
 \title{Get an intraday time series}
 \usage{
 get_intraday_time_series(
-  token,
   resource = c("active-zone-minutes", "calories", "distance", "elevation", "floors",
     "heart", "steps"),
   date,
@@ -15,8 +14,6 @@ get_intraday_time_series(
 )
 }
 \arguments{
-\item{token}{A \code{fitbitr_token} object or an \code{httr::Token2.0} object a la \link[httr]{Token2.0}}
-
 \item{resource}{The resource to get}
 
 \item{date}{A date to get data for}

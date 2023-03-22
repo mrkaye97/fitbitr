@@ -9,7 +9,6 @@ stop_for_one_sided_interval <- function(start_time, end_time) {
 #' See the \href{https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-date/}{API documentation} for
 #' more detailed explanations of parameters and more usage information and examples.
 #'
-
 #' @param resource The resource to get
 #' @param date A date to get data for
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
@@ -67,7 +66,6 @@ get_intraday_time_series <- function(
 #'
 #' @family intraday
 #'
-
 #' @param date A date to get data for
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
@@ -110,7 +108,6 @@ get_calories_intraday <- function(
 #'
 #' @family intraday
 #'
-
 #' @param date A date to get data for
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
@@ -153,7 +150,6 @@ get_distance_intraday <- function(
 #'
 #' @family intraday
 #'
-
 #' @param date A date to get data for
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
@@ -196,7 +192,6 @@ get_floors_intraday <- function(
 #'
 #' @family intraday
 #'
-
 #' @param date A date to get data for
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
@@ -239,7 +234,6 @@ get_steps_intraday <- function(
 #'
 #' @family intraday
 #'
-
 #' @param date A date to get data for
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
@@ -282,7 +276,6 @@ get_elevation_intraday <- function(
 #'
 #' @family intraday
 #'
-
 #' @param date A date to get data for
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
@@ -324,7 +317,6 @@ get_heart_rate_intraday <- function(
 #'
 #' @family intraday
 #'
-
 #' @param date A date to get data for
 #' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day

@@ -4,11 +4,9 @@
 \alias{get_activity_calories}
 \title{Activity Calories Time Series}
 \usage{
-get_activity_calories(token, start_date, end_date)
+get_activity_calories(start_date, end_date)
 }
 \arguments{
-\item{token}{A \code{fitbitr_token} object or an \code{httr::Token2.0} object a la \link[httr]{Token2.0}}
-
 \item{start_date}{The start date of records to be returned in "yyyy-mm-dd" or date(time) format}
 
 \item{end_date}{The end date of records to be returned in "yyyy-mm-dd" or date(time) format}

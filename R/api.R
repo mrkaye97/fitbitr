@@ -39,7 +39,6 @@ stop_for_status <- function(response) {
 #'
 #' @importFrom httr GET add_headers
 #'
-
 #' @param url The URL to make the request to
 #' @param \dots Additional arguments (not currently used)
 #'
@@ -113,7 +112,6 @@ check_rate_limit <- function(r) {
 
 #' @noRd
 #'
-
 #' @param reason A string reason for why the request failed
 #' @param error_message the error message
 #'

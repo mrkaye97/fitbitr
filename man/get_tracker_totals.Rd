@@ -4,10 +4,7 @@
 \alias{get_tracker_totals}
 \title{Tracker Totals}
 \usage{
-get_tracker_totals(token)
-}
-\arguments{
-\item{token}{A \code{fitbitr_token} object or an \code{httr::Token2.0} object a la \link[httr]{Token2.0}}
+get_tracker_totals()
 }
 \value{
 A tibble of all-time tracker totals (i.e. the total \code{distance}, \code{floors}, and \code{steps} tracked by your tracker)

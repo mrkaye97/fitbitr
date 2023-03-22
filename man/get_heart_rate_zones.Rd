@@ -4,11 +4,9 @@
 \alias{get_heart_rate_zones}
 \title{Heart Rate Zones}
 \usage{
-get_heart_rate_zones(token, start_date, end_date = start_date)
+get_heart_rate_zones(start_date, end_date = start_date)
 }
 \arguments{
-\item{token}{A \code{fitbitr_token} object or an \code{httr::Token2.0} object a la \link[httr]{Token2.0}}
-
 \item{start_date}{The start date of records to be returned in "yyyy-mm-dd" or date(time) format}
 
 \item{end_date}{The end date of records to be returned in "yyyy-mm-dd" or date(time) format}

@@ -4,7 +4,6 @@
 #'
 #' @importFrom purrr map_chr
 #'
-
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
 #'
