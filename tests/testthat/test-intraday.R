@@ -3,7 +3,7 @@ test_that("Heart rate by minute works", {
   skip_on_ci()
 
   heart <- get_heart_rate_intraday(
-    token = token,
+     
     date = date
   )
 
@@ -12,7 +12,7 @@ test_that("Heart rate by minute works", {
   checkmate::expect_posixct(heart$time)
 
   heart <- get_heart_rate_intraday(
-    token = token,
+     
     date = date,
     start_time = "00:00:00",
     end_time = "00:02:00"

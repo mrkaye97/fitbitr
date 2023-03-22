@@ -25,7 +25,7 @@ get_sleep_summary <- function(start_date, end_date = start_date) {
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
-    extract_user_id.fitbitr_token,
+    extract_user_id(.fitbitr_token),
     start_date,
     end_date
   )
@@ -90,7 +90,7 @@ get_sleep_stage_summary <- function(start_date, end_date = start_date) {
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
-    extract_user_id.fitbitr_token,
+    extract_user_id(.fitbitr_token),
     start_date,
     end_date
   )
@@ -152,7 +152,7 @@ get_sleep_stage_granular <- function(start_date, end_date = start_date) {
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
-    extract_user_id.fitbitr_token,
+    extract_user_id(.fitbitr_token),
     start_date,
     end_date
   )

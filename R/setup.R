@@ -45,7 +45,7 @@ generate_fitbitr_token <- function(
     "temperature",
     "weight"
   ),
-  refresh_token = Sys.getenv("FITBIT_REFRESH_TOKEN"),
+  refresh_ Sys.getenv("FITBIT_REFRESH_TOKEN"),
   cache = FALSE,
   use_basic_auth = TRUE,
   ...
