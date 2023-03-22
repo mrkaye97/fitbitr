@@ -6,7 +6,7 @@
 \usage{
 get_heart_rate_intraday(
   date = lubridate::today(),
-  detail_level = c("1min", "5min", "15min"),
+  detail_level = c("1sec", "1min", "5min", "15min"),
   start_time = NULL,
   end_time = NULL
 )
@@ -14,7 +14,7 @@ get_heart_rate_intraday(
 \arguments{
 \item{date}{A date to get data for}
 
-\item{detail_level}{The detail level. One of \code{"1min"}, \code{"5min"}, or \code{"15min"}}
+\item{detail_level}{The detail level. One of \code{"1sec"}, \code{"1min"}, \code{"5min"}, or \code{"15min"}}
 
 \item{start_time}{The start time of the time window. Default: \code{NULL} gets the whole day}
 

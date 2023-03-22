@@ -284,7 +284,7 @@ get_elevation_intraday <- function(
 #' @family intraday
 #'
 #' @param date A date to get data for
-#' @param detail_level The detail level. One of `"1min"`, `"5min"`, or `"15min"`
+#' @param detail_level The detail level. One of `"1sec"`, `"1min"`, `"5min"`, or `"15min"`
 #' @param start_time The start time of the time window. Default: `NULL` gets the whole day
 #' @param end_time The end time of the time window. Default: `NULL` gets the whole day
 #'
@@ -301,7 +301,7 @@ get_elevation_intraday <- function(
 #' @export
 get_heart_rate_intraday <- function(
   date = lubridate::today(),
-  detail_level = c("1min", "5min", "15min"),
+  detail_level = c("1sec", "1min", "5min", "15min"),
   start_time = NULL,
   end_time = NULL
 ) {
