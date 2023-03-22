@@ -17,6 +17,9 @@
 #' @return A tibble of the date, the heart rate zone (`zone`), the minimum heart rate in that zone (`min_hr`), the maximum heart rate in that zone (`max_hr`), the minutes in that zone (`minutes_in_zone`), and the calories burned in that zone (`calories_out`)
 #' @export
 get_heart_rate_zones <- function(start_date, end_date = start_date) {
+  validate_date(start_date)
+  validate_date(end_date)
+
   url <- sprintf(
     "%s/1/user/%s/activities/heart/date/%s/%s.json",
     base_url,

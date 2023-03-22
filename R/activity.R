@@ -16,6 +16,8 @@
 #' @return A tibble with the `date` and a number of activity summary metrics for the day.
 #' @export
 get_activity_summary <- function(date) {
+  validate_date(date)
+
   url <- sprintf(
     "%s/1/user/%s/activities/date/%s.json",
     base_url,
@@ -53,6 +55,9 @@ get_activity_summary <- function(date) {
 #'
 #' @noRd
 get_activity_time_series <- function(start_date, end_date, resource_path) {
+  validate_date(start_date)
+  validate_date(end_date)
+
   url <- sprintf(
     "%s/1/user/%s/activities/%s/date/%s/%s.json",
     base_url,

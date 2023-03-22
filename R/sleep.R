@@ -21,6 +21,9 @@
 #' @return A tibble of a variety of sleep summary data by day
 #' @export
 get_sleep_summary <- function(start_date, end_date = start_date) {
+  validate_date(start_date)
+  validate_date(end_date)
+
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
@@ -85,6 +88,9 @@ get_sleep_summary <- function(start_date, end_date = start_date) {
 #' @return A tibble of a variety of sleep stage summary data, by day
 #' @export
 get_sleep_stage_summary <- function(start_date, end_date = start_date) {
+  validate_date(start_date)
+  validate_date(end_date)
+
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
@@ -146,6 +152,9 @@ get_sleep_stage_summary <- function(start_date, end_date = start_date) {
 #' @return A tibble of granular sleep stage data. This method is more granular than \link[fitbitr]{get_sleep_stage_summary}, and returns blocks of time that you spent in each zone throughout the night.
 #' @export
 get_sleep_stage_granular <- function(start_date, end_date = start_date) {
+  validate_date(start_date)
+  validate_date(end_date)
+
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
