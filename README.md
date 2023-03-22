@@ -68,7 +68,31 @@ your Fitbit data:
 
 5.  And that’s it! You now have your Fitbit API credentials set up.
     `fitbitr` tracks them behind the scenes for you, so all that you
-    need to do at the start of each R session is `generate_token()`.
+    need to do at the start of each R session is `generate_token()`. On
+    a session restart, `generate_token()` will try to laod a token from
+    your `.httr-oauth` if it exists.
+
+## Using `fitbitr`
+
+Once you have a token, using `fitbitr` is very straightforward:
+
+    ```r
+    > get_steps("2020-05-21", "2020-05-28")
+    # A tibble: 8 × 2
+      date       steps
+      <date>     <dbl>
+    1 2020-05-21  3734
+    2 2020-05-22  5107
+    3 2020-05-23  5640
+    4 2020-05-24  6595
+    5 2020-05-25  8466
+    6 2020-05-26  5833
+    7 2020-05-27  8616
+    8 2020-05-28  3161
+    ```
+
+`fitbitr` tries to return a useful, tidy object back to you from the
+API.
 
 ## Known Issues / Futute Work
 
