@@ -1,9 +1,9 @@
-extract_user_id <- function() {
-  if (missing.fitbitr_token || is.null.fitbitr_token) {
+fetch_user_id <- function() {
+  if (is.null(.fitbitr_token)) {
     abort("No token provided.")
   }
 
-  if (class.fitbitr_token != "httr2_token") {
+  if (class(.fitbitr_token) != "httr2_token") {
     abort("You must provide a token of class `httr2_token`")
   }
 
@@ -45,11 +45,11 @@ stop_for_status <- function(response) {
 #' @return The response
 #' @export
 perform_get <- function(url, ...) {
-  if (missing.fitbitr_token || is.null.fitbitr_token) {
-    abort("No token provided.")
+  if (is.null(.fitbitr_token)) {
+    abort("No token found. Please run `generate_fitbitr_token()` to create one.")
   }
 
-  if (class.fitbitr_token != "httr2_token") {
+  if (class(.fitbitr_token) != "httr2_token") {
     abort("You must provide a token of class `httr2_token`")
   }
 
@@ -57,35 +57,20 @@ perform_get <- function(url, ...) {
     url,
     add_headers(
       .headers = c(
-        Authorization = paste0("Bearer ", token$access_token)
+        Authorization = paste0("Bearer ", .fitbitr_token$access_token)
       )
     )
   )
 
   if (check_token_expiry(response)) {
-    tryCatch(
-      {
-        inform("Token expired. Trying to refresh...\n\n ...\n")
-        token <- refresh_api_token.fitbitr_token
-      },
-      error = function(e) {
-        ask_refresh("Refresh failed", e)
-      }
-    )
-
-    return(perform_get(url))
+    abort("Token expired. Please generate a new one with `generate_fitbitr_token()")
   }
 
   if (check_rate_limit(response)) {
     abort("Fitbit API rate limit exceeded. For details, see https://dev.fitbit.com/build/reference/web-api/basics/#rate-limits.")
   }
 
-  tryCatch(
-    stop_for_status(response),
-    error = function(e) {
-      ask_refresh("Failed to query the API with your token", e)
-    }
-  )
+  stop_for_status(response)
 }
 
 #' @noRd
@@ -110,32 +95,3 @@ check_rate_limit <- function(r) {
   }
 }
 
-#' @noRd
-#'
-#' @param reason A string reason for why the request failed
-#' @param error_message the error message
-#'
-#' @importFrom rlang inform abort
-#' @importFrom utils askYesNo
-#'
-#' @return No return value. Called for side effects
-ask_refresh <- function(reason, error_message) {
-  inform(sprintf("%s. Error message: \n\n", reason))
-  inform(error_message$message)
-  inform("\n")
-
-  do_refresh <- askYesNo(
-    "Would you like to generate a new token?",
-    default = FALSE,
-    prompts = c("y", "n", "c")
-  )
-
-  if (do_refresh & !is.na(do_refresh)) {
-    inform("Trying to generate a new token...")
-    refresh_api_token.fitbitr_token
-  } else {
-    abort("No token was found, and a new one was not generated.")
-  }
-
-  invisible()
-}

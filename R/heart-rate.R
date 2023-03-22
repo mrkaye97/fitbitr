@@ -20,7 +20,7 @@ get_heart_rate_zones <- function(start_date, end_date = start_date) {
   url <- sprintf(
     "%s/1/user/%s/activities/heart/date/%s/%s.json",
     base_url,
-    extract_user_id(.fitbitr_token),
+    fetch_user_id(),
     start_date,
     end_date
   )

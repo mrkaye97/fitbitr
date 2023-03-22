@@ -36,7 +36,7 @@ get_intraday_time_series <- function(
   url <- sprintf(
     "%s/1/user/%s/activities/%s/date/%s/1d/%s%s",
     base_url,
-    extract_user_id(.fitbitr_token),
+    fetch_user_id(),
     resource,
     date,
     detail_level,
