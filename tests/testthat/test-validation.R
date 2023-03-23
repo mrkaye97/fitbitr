@@ -1,4 +1,7 @@
 test_that("Date validation works", {
+  skip_on_cran()
+  skip_on_ci()
+
   expect_error(
     get_steps("foobar"),
     "Date validation failed"

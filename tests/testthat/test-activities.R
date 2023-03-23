@@ -43,6 +43,9 @@ test_that("Activity time series download correctly", {
 
 
 test_that("Bests and totals", {
+  skip_on_cran()
+  skip_on_ci()
+
   tracker_best <- get_bests_and_totals(TRUE, TRUE)
   tracker_total <- get_bests_and_totals(FALSE, TRUE)
   lifetime_best <- get_bests_and_totals(TRUE, FALSE)
