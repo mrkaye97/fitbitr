@@ -12,3 +12,4 @@
 ^\.httr-oauth$
 ^codecov\.yml$
 .httr-oauth
+^cran-comments\.md$
