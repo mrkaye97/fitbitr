@@ -5,6 +5,7 @@
   invisible()
 }
 
+
 ## package constants
 base_url <- "https://api.fitbit.com"
 

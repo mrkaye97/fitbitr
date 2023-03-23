@@ -1,3 +1,5 @@
+^renv$
+^renv\.lock$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.github$
@@ -9,3 +11,5 @@
 ^CRAN-RELEASE$
 ^\.httr-oauth$
 ^codecov\.yml$
+.httr-oauth
+^cran-comments\.md$

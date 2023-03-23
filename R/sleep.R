@@ -1,36 +1,38 @@
 #' Nightly Sleep Summary
 #'
 #' Returns a tibble of summary by night
+#'
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @importFrom purrr pluck list_modify map flatten
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
 #' @importFrom dplyr arrange across
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
 #'
-#' sleep_summary(start_date, end_date)
+#' get_sleep_summary(start_date, end_date)
 #' }
+#'
 #' @return A tibble of a variety of sleep summary data by day
 #' @export
-sleep_summary <- function(start_date, end_date = start_date) {
-  check_token_exists()
+get_sleep_summary <- function(start_date, end_date = start_date) {
+  validate_date(start_date)
+  validate_date(end_date)
 
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
-    .fitbitr_token$credentials$user_id,
+    fetch_user_id(),
     start_date,
     end_date
   )
 
-  r <- get(
-    url = url,
-    .example_identifier = "sleep summary"
-  )
+  r <- perform_get(url)
 
   r %>%
     content(as = "parsed", type = "application/json") %>%
@@ -39,26 +41,26 @@ sleep_summary <- function(start_date, end_date = start_date) {
       function(x) list_modify(x, "levels" = NULL)
     ) %>%
     bind_rows() %>%
-    arrange(.data$dateOfSleep) %>%
+    arrange("dateOfSleep") %>%
     mutate(
       date = as.Date(.data$dateOfSleep)
     ) %>%
     clean_names() %>%
     select(
-      .data$log_id,
-      .data$date,
-      .data$start_time,
-      .data$end_time,
-      .data$duration,
-      .data$efficiency,
-      .data$minutes_to_fall_asleep,
-      .data$minutes_asleep,
-      .data$minutes_awake,
-      .data$minutes_after_wakeup,
-      .data$time_in_bed
+      "log_id",
+      "date",
+      "start_time",
+      "end_time",
+      "duration",
+      "efficiency",
+      "minutes_to_fall_asleep",
+      "minutes_asleep",
+      "minutes_awake",
+      "minutes_after_wakeup",
+      "time_in_bed"
     ) %>%
     mutate(
-      across(c(.data$start_time, .data$end_time), as_datetime)
+      across(c("start_time", "end_time"), as_datetime)
     )
 }
 
@@ -66,36 +68,38 @@ sleep_summary <- function(start_date, end_date = start_date) {
 #'
 #' Returns a tibble of nightly sleep stage data.
 #' Minutes in each stage, count of times in each stage, and a thirty day average for the number of minutes in each stage.
+#'
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @importFrom purrr pluck list_modify map_dfr
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
 #' @importFrom dplyr arrange
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
 #'
-#' sleep_stage_summary(start_date, end_date)
+#' get_sleep_stage_summary(start_date, end_date)
 #' }
+#'
 #' @return A tibble of a variety of sleep stage summary data, by day
 #' @export
-sleep_stage_summary <- function(start_date, end_date = start_date) {
-  check_token_exists()
+get_sleep_stage_summary <- function(start_date, end_date = start_date) {
+  validate_date(start_date)
+  validate_date(end_date)
 
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
-    .fitbitr_token$credentials$user_id,
+    fetch_user_id(),
     start_date,
     end_date
   )
 
-  r <- get(
-    url = url,
-    .example_identifier = "sleep stage"
-  ) %>%
+  r <- perform_get(url) %>%
     content(as = "parsed", type = "application/json") %>%
     pluck("sleep")
 
@@ -116,11 +120,11 @@ sleep_stage_summary <- function(start_date, end_date = start_date) {
       }
     ) %>%
     select(
-      .data$date,
-      .data$stage,
-      .data$count,
-      .data$minutes,
-      thirty_day_avg_minutes = .data$thirtyDayAvgMinutes
+      "date",
+      "stage",
+      "count",
+      "minutes",
+      thirty_day_avg_minutes = "thirtyDayAvgMinutes"
     )
 }
 
@@ -128,50 +132,48 @@ sleep_stage_summary <- function(start_date, end_date = start_date) {
 #'
 #' Returns a tibble of nightly sleep stage data.
 #' Very granular. Returns blocks of time spent in each phase.
+#'
 #' @param start_date The start date of records to be returned in "yyyy-mm-dd" or date(time) format
 #' @param end_date The end date of records to be returned in "yyyy-mm-dd" or date(time) format
+#'
 #' @importFrom purrr pluck list_modify
 #' @importFrom tibble enframe
 #' @importFrom tidyr pivot_wider
 #' @importFrom dplyr arrange
+#'
 #' @examples
 #' \dontrun{
 #' start_date <- lubridate::today() - lubridate::weeks(1)
 #' end_date <- lubridate::today()
 #'
-#' sleep_stage_granular(start_date, end_date)
+#' get_sleep_stage_granular(start_date, end_date)
 #' }
-#' @return A tibble of granular sleep stage data. This method is more granular than \link[fitbitr]{sleep_stage_summary}, and returns blocks of time that you spent in each zone throughout the night.
+#'
+#' @return A tibble of granular sleep stage data. This method is more granular than \link[fitbitr]{get_sleep_stage_summary}, and returns blocks of time that you spent in each zone throughout the night.
 #' @export
-sleep_stage_granular <- function(start_date, end_date = start_date) {
-  check_token_exists()
+get_sleep_stage_granular <- function(start_date, end_date = start_date) {
+  validate_date(start_date)
+  validate_date(end_date)
 
   url <- sprintf(
     "%s/1.2/user/%s/sleep/date/%s/%s.json",
     base_url,
-    .fitbitr_token$credentials$user_id,
+    fetch_user_id(),
     start_date,
     end_date
   )
 
-  r <- get(
-    url = url,
-    .example_identifier = "sleep stage"
-  ) %>%
+  r <- perform_get(url) %>%
     content(as = "parsed", type = "application/json") %>%
     pluck("sleep")
 
 
   r %>%
-    map(
-      pluck, "levels"
+    map_dfr(
+      pluck, "levels", "data"
     ) %>%
-    map(
-      pluck, "data"
-    ) %>%
-    bind_rows() %>%
     rename(
-      time = .data$dateTime
+      time = "dateTime"
     ) %>%
     mutate(
       time = as_datetime(.data$time)

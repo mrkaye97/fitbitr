@@ -1,34 +1,62 @@
-#' Generate a Fitbit API token
+#' Generate an Oauth token
 #'
-#' Simplify the setup process by persisting your Fitbit client_id and secret in the `.fitbitr-oauth` file.
+#' Performs the OAuth 2.0 dance to create a token to use with the Fitbit API.
 #'
 #' @importFrom httr oauth_app oauth2.0_token
-#' @param client_id your Fitbit client ID
-#' @param client_secret your Fitbit client secret
-#' @param callback your Fitbit redirect URL
-#' @param scope the scopes to enable
+#'
+#' @param app_name The name of your OAuth app. Default: `fitbitr`
+#' @param client_id Your Fitbit client ID
+#' @param client_secret Your Fitbit client secret
+#' @param callback Your Fitbit redirect URL
+#' @param scope The scopes to enable
 #' @param cache Do you want to cache your token? See \link[httr]{oauth2.0_token} for details
 #' @param use_basic_auth A boolean for whether or not to use basic auth in \link[httr]{oauth2.0_token}. Defaults to `TRUE`
 #' @param ... additional arguments to be passed to \link[httr]{oauth2.0_token}
+#'
 #' @examples
 #' \dontrun{
-#' generate_token(
+#' generate_fitbitr_token(
 #'   client_id = <YOUR-CLIENT-ID>
 #'   client_secret = <YOUR-CLIENT-SECRET>,
 #'   cache = TRUE
 #' )
 #' }
-#' @return No return value. This function generates a token and saves it (hidden) in the global environment to be used for the remainder of the R session. You can cache this token with `cache = TRUE` or explicitly setting a filepath to cache to. See \link[httr]{oauth2.0_token} for details.
+#'
+#' @return Returns an OAuth 2.0 token that can be used to authorize requests to the Fitbit API
 #' @export
-generate_token <- function(client_id,
-                           client_secret,
-                           callback = "http://localhost:1410/",
-                           scope = c("sleep", "activity", "heartrate", "location", "nutrition", "profile", "settings", "social", "weight"),
-                           cache = FALSE,
-                           use_basic_auth = TRUE,
-                           ...) {
+generate_fitbitr_token <- function(
+  app_name = "fitbitr",
+  client_id = Sys.getenv("FITBIT_CLIENT_ID"),
+  client_secret = Sys.getenv("FITBIT_CLIENT_SECRET"),
+  callback = Sys.getenv("FITBIT_CALLBACK", "https://localhost:1410/"),
+  scope = c(
+    "activity",
+    "cardio_fitness",
+    "electrocardiogram",
+    "heartrate",
+    "location",
+    "nutrition",
+    "oxygen_saturation",
+    "profile",
+    "respiratory_rate",
+    "settings",
+    "sleep",
+    "social",
+    "temperature",
+    "weight"
+  ),
+  cache = TRUE,
+  use_basic_auth = TRUE,
+  ...
+) {
+
   endpoint <- create_endpoint()
-  myapp <- oauth_app("r-package-test", key = client_id, secret = client_secret, redirect_uri = callback)
+  myapp <- oauth_app(
+    appname = app_name,
+    key = client_id,
+    secret = client_secret,
+    redirect_uri = callback
+  )
 
   .fitbitr_token <<- oauth2.0_token(
     endpoint,
@@ -39,28 +67,7 @@ generate_token <- function(client_id,
     ...
   )
 
-  invisible()
-}
-
-#' Load a token from the cache
-#'
-#' @importFrom purrr keep
-#' @param path the path to the file where the token is stored
-#' @examples
-#' \dontrun{
-#' load_cached_token()
-#' }
-#' @return No return value. The token is stored in the global environment as a hidden variable named `.fitbitr_token`
-#' @export
-load_cached_token <- function(path = ".httr-oauth") {
-  .fitbitr_token <<- path %>%
-    readRDS() %>%
-    keep(
-      ~ grepl("fitbit", .x$endpoint$request)
-    ) %>%
-    pluck(1)
-
-  invisible()
+  invisible(.fitbitr_token)
 }
 
 create_endpoint <- function() {

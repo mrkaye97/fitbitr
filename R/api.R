@@ -1,46 +1,85 @@
-#' @importFrom httr GET add_headers stop_for_status
-#' @importFrom utils askYesNo
-#' @param url the endpoint
-#' @param .example_identifier An internal identifier to choose which example to run
-#' @noRd
-get <- function(url, .example_identifier) {
-  if (Sys.getenv("FITBITR_ENVIRONMENT") == "testing mode") {
-    r <- get_example_response(url, .example_identifier)
+#' @importFrom rlang abort
+fetch_user_id <- function() {
+  if (is.null(.fitbitr_token)) {
+    abort("No token provided.")
+  }
+
+  if (class(.fitbitr_token)[1] != "Token2.0") {
+    abort("You must provide a token of class `Token2.0`")
+  }
+
+  user_id <- pluck(.fitbitr_token, "credentials", "user_id", .default = NULL)
+  if (is.null(user_id)) {
+    abort("The token you provided had no associated `user_id`. Maybe it was empty? Please supply a valid token.")
+  }
+
+  user_id
+}
+
+#' @importFrom jsonlite toJSON fromJSON validate
+stop_for_status <- function(response) {
+  status_code <- response$status_code
+  if (status_code == 200) {
+    response
   } else {
-    r <- GET(
-      url,
-      add_headers(
-        .headers = c(
-          Authorization = paste0("Bearer ", .fitbitr_token$credentials$access_token)
-        )
-      )
-    )
+    response <- content(response)
 
-    if (check_token_expiry(r)) {
-      tryCatch(
-        {
-          inform("Token expired. Trying to refresh...\n\n ...\n")
-          .fitbitr_token$refresh()
-        },
-        error = function(e) {
-          ask_refresh("Refresh failed", e)
-        }
-      )
-
-      return(get(url, .example_identifier))
+    to_print <- if (!is.null(pluck(response, "errors"))) {
+      toJSON(response$errors, pretty = TRUE, auto_unbox = TRUE)
+    } else if (validate(response)) {
+      toJSON(fromJSON(response), pretty = TRUE, auto_unbox = TRUE)
+    } else {
+      as.character(response)
     }
 
-    if (check_rate_limit(r)) {
-      abort("Fitbit API rate limit exceeded. For details, see https://dev.fitbit.com/build/reference/web-api/basics/#rate-limits.")
-    }
-
-    tryCatch(
-      stop_for_status(r),
-      error = function(e) {
-        ask_refresh("Failed to query the API with your token", e)
-      }
+    abort(
+      c(
+        sprintf("Fitbit API request failed with status code %s", status_code),
+        "*" = "Error text below:",
+        to_print
+      )
     )
   }
+}
+
+#' Perform a GET request
+#'
+#' @rdname get
+#'
+#' @importFrom httr GET add_headers
+#'
+#' @param url The URL to make the request to
+#' @param \dots Additional arguments (not currently used)
+#'
+#' @return The response
+#' @export
+perform_get <- function(url, ...) {
+  if (is.null(.fitbitr_token)) {
+    abort("No token found. Please run `generate_fitbitr_token()` to create one.")
+  }
+
+  if (class(.fitbitr_token)[1] != "Token2.0") {
+    abort("You must provide a token of class `Token2.0`")
+  }
+
+  response <- GET(
+    url,
+    add_headers(
+      .headers = c(
+        Authorization = paste0("Bearer ", .fitbitr_token$credentials$access_token)
+      )
+    )
+  )
+
+  if (check_token_expiry(response)) {
+    abort("Token expired. Please generate a new one with `generate_fitbitr_token()")
+  }
+
+  if (check_rate_limit(response)) {
+    abort("Fitbit API rate limit exceeded. For details, see https://dev.fitbit.com/build/reference/web-api/basics/#rate-limits.")
+  }
+
+  stop_for_status(response)
 }
 
 #' @noRd
@@ -65,28 +104,3 @@ check_rate_limit <- function(r) {
   }
 }
 
-#' @noRd
-#' @param reason A string reason for why the request failed
-#' @param error_message the error message
-#' @importFrom rlang inform
-#' @return No return value. Called for side effects
-ask_refresh <- function(reason, error_message) {
-  inform(sprintf("%s. Error message: \n\n", reason))
-  inform(error_message$message)
-  inform("\n")
-
-  do_refresh <- askYesNo(
-    "Would you like to generate a new token?",
-    default = FALSE,
-    prompts = c("y", "n", "c")
-  )
-
-  if (do_refresh & !is.na(do_refresh)) {
-    inform("Trying to generate a new token...")
-    .fitbitr_token$init_credentials()
-  } else {
-    abort("No token was found, and a new one was not generated.")
-  }
-
-  invisible()
-}

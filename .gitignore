@@ -39,3 +39,6 @@ vignettes/*.pdf
 .Renviron
 docs
 .DS_Store
+fitbitr-config.dcf
+.Rprofile
+.fitbitr-token.rds
