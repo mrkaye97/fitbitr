@@ -12,6 +12,7 @@ test_that("Heart rate by minute works", {
 
   heart <- get_heart_rate_intraday(
     date = date,
+    detail_level = "1min",
     start_time = "00:00:00",
     end_time = "00:02:00"
   )
