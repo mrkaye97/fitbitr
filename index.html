@@ -56,7 +56,7 @@
     
     <a class="navbar-brand me-2" href="index.html">fitbitr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,7 +104,7 @@
 <p>Or you can install the latest development version from Github:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mrkaye97/fitbitr"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"mrkaye97/fitbitr"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
@@ -121,18 +121,46 @@
 <p>Generate a token:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(fitbitr)</span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">generate_token</span>(</span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">client_id =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>CLIENT<span class="op">-</span>ID<span class="op">&gt;</span>,</span>
-<span id="cb3-5"><a href="#cb3-5"></a>  <span class="dt">client_secret =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>CLIENT<span class="op">-</span>SECRET<span class="op">&gt;</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="st">  </span><span class="dt">callback =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>REDIRECT<span class="op">-</span>URL<span class="op">&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>)</span></code></pre></div>
+<span id="cb3-3"><a href="#cb3-3"></a>.fitbitr_token &lt;-<span class="st"> </span><span class="kw">generate_oauth_token</span>(</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">oauth_app_name =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>APP<span class="op">-</span>NAME<span class="op">&gt;</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="dt">client_id =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>CLIENT<span class="op">-</span>ID<span class="op">&gt;</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="dt">client_secret =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>CLIENT<span class="op">-</span>SECRET<span class="op">&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="st">  </span><span class="dt">callback =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>REDIRECT<span class="op">-</span>URL<span class="op">&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>)</span></code></pre></div>
 <ul>
 <li>If you want to edit the scopes that are enabled, you can do so with the <code>scopes = c('scopes', 'you', 'want', 'enabled')</code> argument. You can find information on the available scope options <a href="https://dev.fitbit.com/build/reference/web-api/oauth2/#scope" class="external-link">here</a>.</li>
 <li>If you want to cache your token, you can do so by specifying either <code>cache = TRUE</code> or <code>cache = &lt;some-file-path&gt;</code>. See the docs on <code><a href="https://httr.r-lib.org/reference/oauth2.0_token.html" class="external-link">httr::oauth2.0_token()</a></code> for details.</li>
 </ul>
 </li>
-<li><p>And that’s it! You now have your Fitbit API credentials set up. <code>fitbitr</code> tracks them behind the scenes for you, so all that you need to do at the start of each R session is either <code><a href="reference/generate_token.html">generate_token()</a></code> or <code><a href="reference/load_cached_token.html">load_cached_token()</a></code>, and you’ll be off and running.</p></li>
+<li><p>And that’s it! You now have your Fitbit API credentials set up. <code>fitbitr</code> tracks them behind the scenes for you, so all that you need to do at the start of each R session is <code>generate_token()</code>. On a session restart, <code>generate_token()</code> will try to laod a token from your <code>.httr-oauth</code> if it exists.</p></li>
 </ol>
+</div>
+<div class="section level2">
+<h2 id="using-fitbitr">Using <code>fitbitr</code>
+<a class="anchor" aria-label="anchor" href="#using-fitbitr"></a>
+</h2>
+<p>Once you have a token, using <code>fitbitr</code> is very straightforward:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="st">```</span><span class="dt">r</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="dt">&gt; get_steps("2020-05-21", "2020-05-28")</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="dt"># A tibble: 8 × 2</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="dt">  date       steps</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="dt">  &lt;date&gt;     &lt;dbl&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="dt">1 2020-05-21  3734</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="dt">2 2020-05-22  5107</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="dt">3 2020-05-23  5640</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="dt">4 2020-05-24  6595</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="dt">5 2020-05-25  8466</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="dt">6 2020-05-26  5833</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="dt">7 2020-05-27  8616</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="dt">8 2020-05-28  3161</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="st">```</span></span></code></pre></div>
+<p><code>fitbitr</code> tries to return a useful, tidy object back to you from the API.</p>
+</div>
+<div class="section level2">
+<h2 id="known-issues--futute-work">Known Issues / Futute Work<a class="anchor" aria-label="anchor" href="#known-issues--futute-work"></a>
+</h2>
+<p>Given the structure of the Fitbit API, it doesn’t appear to be currently possible to use <code>fitbitr</code> <em>outside</em> of an interactive session. And furthermore, it doesn’t help that Fitbit refresh tokens only last 8 hours, at which point you’d need another interactive session to generate a new one.</p>
+<p>For these reasons, it is not advised to try to use <code>fitbitr</code> non-interactively, such as in a Shiny app server, a CI/CD process, a background job, etc.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

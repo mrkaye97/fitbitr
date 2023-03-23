@@ -19,78 +19,99 @@
     <loc>https://matthewrkaye.com/fitbitr/news/index.html</loc>
   </url>
   <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/activity_calories.html</loc>
+    <loc>https://matthewrkaye.com/fitbitr/reference/generate_fitbitr_token.html</loc>
   </url>
   <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/activity_summary.html</loc>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get.html</loc>
   </url>
   <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/calories.html</loc>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_active_zone_minutes_intraday.html</loc>
   </url>
   <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/calories_bmr.html</loc>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_activity_calories.html</loc>
   </url>
   <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/distance.html</loc>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_activity_summary.html</loc>
   </url>
   <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/elevation.html</loc>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_calories.html</loc>
   </url>
   <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/floors.html</loc>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_calories_bmr.html</loc>
   </url>
   <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/generate_token.html</loc>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_calories_intraday.html</loc>
   </url>
   <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/heart_rate_intraday.html</loc>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_distance.html</loc>
   </url>
   <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/heart_rate_zones.html</loc>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_distance_intraday.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_elevation.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_elevation_intraday.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_floors.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_floors_intraday.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_heart_rate_intraday.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_heart_rate_zones.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_intraday_time_series.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_lifetime_bests.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_lifetime_totals.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_minutes_fairly_active.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_minutes_lightly_active.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_minutes_sedentary.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_minutes_very_active.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_sleep_stage_granular.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_sleep_stage_summary.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_sleep_summary.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_steps.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_steps_intraday.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_tracker_bests.html</loc>
+  </url>
+  <url>
+    <loc>https://matthewrkaye.com/fitbitr/reference/get_tracker_totals.html</loc>
   </url>
   <url>
     <loc>https://matthewrkaye.com/fitbitr/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/lifetime_bests.html</loc>
-  </url>
-  <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/lifetime_totals.html</loc>
-  </url>
-  <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/load_cached_token.html</loc>
-  </url>
-  <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/minutes_fairly_active.html</loc>
-  </url>
-  <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/minutes_lightly_active.html</loc>
-  </url>
-  <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/minutes_sedentary.html</loc>
-  </url>
-  <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/minutes_very_active.html</loc>
-  </url>
-  <url>
     <loc>https://matthewrkaye.com/fitbitr/reference/pipe.html</loc>
-  </url>
-  <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/sleep_stage_granular.html</loc>
-  </url>
-  <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/sleep_stage_summary.html</loc>
-  </url>
-  <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/sleep_summary.html</loc>
-  </url>
-  <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/steps.html</loc>
-  </url>
-  <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/tracker_bests.html</loc>
-  </url>
-  <url>
-    <loc>https://matthewrkaye.com/fitbitr/reference/tracker_totals.html</loc>
   </url>
 </urlset>
