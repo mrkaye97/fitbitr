@@ -52,7 +52,7 @@ generate_fitbitr_token <- function(
 
   endpoint <- create_endpoint()
   myapp <- oauth_app(
-    "r-package-test",
+    appname = app_name,
     key = client_id,
     secret = client_secret,
     redirect_uri = callback
