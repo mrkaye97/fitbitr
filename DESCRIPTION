@@ -22,7 +22,7 @@ Description: Many 'Fitbit' users, and R-friendly 'Fitbit' users
     at <https://dev.fitbit.com/build/reference/web-api/>.
 License: GPL (>= 3)
 URL: https://github.com/mrkaye97/fitbitr,
-    https://mrkaye97.github.io/fitbitr/
+    https://matthewrkaye.com/fitbitr/
 BugReports: https://github.com/mrkaye97/fitbitr/issues
 Imports:
     dplyr,
@@ -36,10 +36,8 @@ Imports:
     tibble (>= 2.0.0),
     tidyr
 Suggests:
-    covr,
     checkmate (>= 2.0.0),
     devtools,
-    rprojroot,
     spelling,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
