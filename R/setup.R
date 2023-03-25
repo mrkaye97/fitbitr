@@ -2,6 +2,9 @@
 #'
 #' Performs the OAuth 2.0 dance to create a token to use with the Fitbit API.
 #'
+#' Saves a token as `.fitbitr_token` which can then be used in the
+#' background to authorize requests
+#'
 #' @importFrom httr oauth_app oauth2.0_token
 #'
 #' @param app_name The name of your OAuth app. Default: `fitbitr`
@@ -22,7 +25,7 @@
 #' )
 #' }
 #'
-#' @return Returns an OAuth 2.0 token that can be used to authorize requests to the Fitbit API
+#' @return Returns an OAuth 2.0 token (invisibly) that can be used to authorize requests to the Fitbit API. Also saves the token to `.fitbitr_token`.
 #' @export
 generate_fitbitr_token <- function(
   app_name = "fitbitr",

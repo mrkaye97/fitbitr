@@ -35,10 +35,14 @@ generate_fitbitr_token(
 \item{...}{additional arguments to be passed to \link[httr]{oauth2.0_token}}
 }
 \value{
-Returns an OAuth 2.0 token that can be used to authorize requests to the Fitbit API
+Returns an OAuth 2.0 token (invisibly) that can be used to authorize requests to the Fitbit API. Also saves the token to \code{.fitbitr_token}.
 }
 \description{
 Performs the OAuth 2.0 dance to create a token to use with the Fitbit API.
+}
+\details{
+Saves a token as \code{.fitbitr_token} which can then be used in the
+background to authorize requests
 }
 \examples{
 \dontrun{
