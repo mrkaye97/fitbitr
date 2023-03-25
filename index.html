@@ -121,7 +121,7 @@
 <p>Generate a token:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(fitbitr)</span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a>.fitbitr_token &lt;-<span class="st"> </span><span class="kw">generate_oauth_token</span>(</span>
+<span id="cb3-3"><a href="#cb3-3"></a>.fitbitr_token &lt;-<span class="st"> </span><span class="kw">generate_fitbitr_token</span>(</span>
 <span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">oauth_app_name =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>APP<span class="op">-</span>NAME<span class="op">&gt;</span>,</span>
 <span id="cb3-5"><a href="#cb3-5"></a>  <span class="dt">client_id =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>CLIENT<span class="op">-</span>ID<span class="op">&gt;</span>,</span>
 <span id="cb3-6"><a href="#cb3-6"></a>  <span class="dt">client_secret =</span> <span class="op">&lt;</span>YOUR<span class="op">-</span>CLIENT<span class="op">-</span>SECRET<span class="op">&gt;</span></span>
@@ -132,7 +132,7 @@
 <li>If you want to cache your token, you can do so by specifying either <code>cache = TRUE</code> or <code>cache = &lt;some-file-path&gt;</code>. See the docs on <code><a href="https://httr.r-lib.org/reference/oauth2.0_token.html" class="external-link">httr::oauth2.0_token()</a></code> for details.</li>
 </ul>
 </li>
-<li><p>And that’s it! You now have your Fitbit API credentials set up. <code>fitbitr</code> tracks them behind the scenes for you, so all that you need to do at the start of each R session is <code>generate_token()</code>. On a session restart, <code>generate_token()</code> will try to laod a token from your <code>.httr-oauth</code> if it exists.</p></li>
+<li><p>And that’s it! You now have your Fitbit API credentials set up. <code>fitbitr</code> tracks them behind the scenes for you, so all that you need to do at the start of each R session is <code><a href="reference/generate_fitbitr_token.html">generate_fitbitr_token()</a></code>. On a session restart, <code><a href="reference/generate_fitbitr_token.html">generate_fitbitr_token()</a></code> will try to laod a token from your <code>.httr-oauth</code> if it exists.</p></li>
 </ol>
 </div>
 <div class="section level2">
