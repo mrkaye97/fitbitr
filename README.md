@@ -50,7 +50,7 @@ your Fitbit data:
     ``` r
     library(fitbitr)
 
-    .fitbitr_token <- generate_oauth_token(
+    .fitbitr_token <- generate_fitbitr_token(
       oauth_app_name = <YOUR-APP-NAME>,
       client_id = <YOUR-CLIENT-ID>,
       client_secret = <YOUR-CLIENT-SECRET>
@@ -68,9 +68,10 @@ your Fitbit data:
 
 5.  And that’s it! You now have your Fitbit API credentials set up.
     `fitbitr` tracks them behind the scenes for you, so all that you
-    need to do at the start of each R session is `generate_token()`. On
-    a session restart, `generate_token()` will try to laod a token from
-    your `.httr-oauth` if it exists.
+    need to do at the start of each R session is
+    `generate_fitbitr_token()`. On a session restart,
+    `generate_fitbitr_token()` will try to laod a token from your
+    `.httr-oauth` if it exists.
 
 ## Using `fitbitr`
 
