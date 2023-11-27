@@ -53,7 +53,7 @@ your Fitbit data:
     .fitbitr_token <- generate_fitbitr_token(
       oauth_app_name = <YOUR-APP-NAME>,
       client_id = <YOUR-CLIENT-ID>,
-      client_secret = <YOUR-CLIENT-SECRET>
+      client_secret = <YOUR-CLIENT-SECRET>,
       callback = <YOUR-REDIRECT-URL>
     )
     ```
