@@ -8,7 +8,7 @@
 [![R-CMD-check](https://github.com/mrkaye97/fitbitr/workflows/R-CMD-check/badge.svg)](https://github.com/mrkaye97/fitbitr/actions)
 [![CRAN
 Version](http://www.r-pkg.org/badges/version/fitbitr)](https://CRAN.R-project.org/package=fitbitr)
-[![](https://cranlogs.r-pkg.org/badges/slackr)](https://cran.r-project.org/package=slackr)
+[![](https://cranlogs.r-pkg.org/badges/fitbitr)](https://cran.r-project.org/package=fitbitr)
  [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
